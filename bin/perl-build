@@ -7,14 +7,31 @@ use Pod::Usage;
 use Getopt::Long;
 
 my $test = undef;
+my (@D, @A, @U);
+Getopt::Long::Configure(
+    'pass_through',
+    'no_ignore_case',
+    'bundling',
+);
 GetOptions(
     'test' => \$test,
+    'D=s@' => \@D,
+    'A=s@' => \@A,
+    'U=s@' => \@U,
 );
+for (@D, @A, @U) {
+    for (@_) {
+        s/^=//;
+    }
+}
 
 my $stuff   = shift @ARGV or pod2usage();
 my $dest    = shift @ARGV or pod2usage();
 
 my @configure_options = @ARGV ? @ARGV : ('-de');
+push @configure_options, map { "-D$_" } @D;
+push @configure_options, map { "-A$_" } @A;
+push @configure_options, map { "-U$_" } @U;
 
 if ($stuff =~ /\.(gz|bz2)$/) {
     Perl::Build->install_from_tarball(
