@@ -12,17 +12,17 @@ my $build = Module::Build->new(
     },
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
-        perl => '5.008005',
-        # 'Exporter'                      => '0',
-        'parent'                        => '0',
-        # 'Plack'                         => '0.9949',
+        perl                   => '5.008005',
+        'File::pushd'          => 0,
+        'CPAN::Perl::Releases' => 0,
+        'Devel::PatchPerl'     => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
-    name        => 'App-perlbuild',
-    module_name => 'App::perlbuild',
+    name        => 'Perl-Build',
+    module_name => 'Perl::Build',
 
-    # script_files => [''],
+    script_files => ['bin/perl-build'],
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,

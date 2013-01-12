@@ -1,5 +1,9 @@
 use strict;
 use Test::More;
 
-BEGIN { use_ok 'App::perlbuild' }
+use_ok $_ for qw(
+    App::perlbuild
+    Perl::Build
+);
+
 done_testing;
