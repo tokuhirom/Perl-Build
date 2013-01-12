@@ -86,6 +86,7 @@ perltidy.ERR$
 ^README.mkdn$
 ^tags$
 ^App-perlbuild-
+^Perl-Build-
 ^MYMETA\.
 \b_build
 ^MANIFEST\.SKIP
