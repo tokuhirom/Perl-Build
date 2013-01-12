@@ -130,7 +130,7 @@ sub perl_release {
 }
 
 sub http_mirror {
-    my ($url, $path, $on_error) = @_;
+    my ($class, $url, $path, $on_error) = @_;
 
     my $header = undef;
 
@@ -182,7 +182,7 @@ sub install_from_cpan {
     }
 
     # and extract tar ball.
-    my $dist_extracted_path = Perl::Build->extract_tarball($dist_tarball_path, $args{build_dir});
+    my $dist_extracted_path = Perl::Build->extract_tarball($dist_tarball_path, $build_dir);
     Perl::Build->install(
         src_path          => $dist_extracted_path,
         dst_path          => $dst_path,
@@ -202,7 +202,7 @@ sub install_from_tarball {
     my $configure_options = $args{configure_options}
         || ['-de'];
 
-    my $dist_extracted_path = Perl::Build->extract_tarball($dist_tarball_path, $args{build_dir});
+    my $dist_extracted_path = Perl::Build->extract_tarball($dist_tarball_path, $build_dir);
     Perl::Build->install(
         src_path          => $dist_extracted_path,
         dst_path          => $dst_path,
