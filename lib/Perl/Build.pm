@@ -268,6 +268,19 @@ sub do_system {
     }
 }
 
+sub symlink_devel_executables {
+    my ($class, $bin_dir) = @_;
+
+    for my $executable (<$bin_dir/*>) {
+        my ($name, $version) = $executable =~ m/bin\/(.+?)(5\.\d.*)?$/;
+        if ($version) {
+            my $cmd = "ln -fs $executable $bin_dir/$name";
+            $class->info($cmd);
+            system($cmd);
+        }
+    }
+}
+
 sub info {
     my ($class, @msg) = @_;
     print @msg, "\n";
