@@ -271,7 +271,7 @@ sub do_system {
 sub symlink_devel_executables {
     my ($class, $bin_dir) = @_;
 
-    for my $executable (<$bin_dir/*>) {
+    for my $executable (glob("$bin_dir/*")) {
         my ($name, $version) = $executable =~ m/bin\/(.+?)(5\.\d.*)?$/;
         if ($version) {
             my $cmd = "ln -fs $executable $bin_dir/$name";
