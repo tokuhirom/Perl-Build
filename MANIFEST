@@ -2,7 +2,6 @@
 bin/perl-build
 Build.PL
 Changes
-lib/App/perlbuild.pm
 lib/Perl/Build.pm
 LICENSE
 MANIFEST			This list of files

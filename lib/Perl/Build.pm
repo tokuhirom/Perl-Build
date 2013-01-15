@@ -271,7 +271,7 @@ sub do_system {
 sub symlink_devel_executables {
     my ($class, $bin_dir) = @_;
 
-    for my $executable (<$bin_dir/*>) {
+    for my $executable (glob("$bin_dir/*")) {
         my ($name, $version) = $executable =~ m/bin\/(.+?)(5\.\d.*)?$/;
         if ($version) {
             my $cmd = "ln -fs $executable $bin_dir/$name";
@@ -391,6 +391,8 @@ Path to L<patchperl>. patchperl is a patch set for older perls.
 
 Build and install Perl5 from extracted source directory.
 
+=over 4
+
 =item src_path(Required)
 
 Source code directory to build.  That contains extracted Perl5 source code.
@@ -416,6 +418,12 @@ Path to L<patchperl>. patchperl is a patch set for older perls.
 If you set this value as true, Perl::Build runs C<< make test >> after building.
 
 (Default: 0)
+
+=back
+
+=item Perl::Build->symlink_devel_executables($bin_dir:Str)
+
+Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
 
 =back
 
