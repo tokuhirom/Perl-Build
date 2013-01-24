@@ -1,5 +1,10 @@
 Revision history for Perl extension App::perlbuild
 
+0.03
+
+    - support relative path to install tar ball
+      (tokuhirom)
+
 0.02
 
     - more documentations
