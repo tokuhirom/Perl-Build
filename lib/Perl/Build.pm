@@ -94,10 +94,10 @@ sub extract_tarball {
     my $tarx =
         ($^O eq 'solaris' ? 'gtar ' : 'tar ') .
         ( $dist_tarball =~ m/bz2$/ ? 'xjf' : 'xzf' );
-    my $extract_command = "cd @{[ $destdir ]}; $tarx $dist_tarball";
+    my $extract_command = "cd @{[ $destdir ]}; $tarx @{[ File::Spec->rel2abs($dist_tarball) ]}";
     system($extract_command) == 0
         or die "Failed to extract $dist_tarball";
-    $dist_tarball =~ s{.*/([^/]+)\.tar\.(?:gz|bz2)$}{$1};
+    $dist_tarball =~ s{(?:.*/)?([^/]+)\.tar\.(?:gz|bz2)$}{$1};
     return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
 }
 
