@@ -260,11 +260,11 @@ sub do_system {
     if (ref $cmd eq 'ARRAY') {
         $class->info(join(' ', @$cmd));
         system(@$cmd) == 0
-            or die "Installation failure.";
+            or die "Installation failure: @$cmd";
     } else {
         $class->info($cmd);
         system($cmd) == 0
-            or die "Installation failure.";
+            or die "Installation failure: $cmd";
     }
 }
 
