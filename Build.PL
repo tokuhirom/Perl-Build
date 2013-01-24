@@ -16,6 +16,7 @@ my $build = Module::Build->new(
         'File::pushd'          => 0,
         'CPAN::Perl::Releases' => 0,
         'Devel::PatchPerl'     => 0,
+        'HTTP::Tiny'           => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
