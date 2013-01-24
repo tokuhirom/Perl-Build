@@ -1,5 +1,10 @@
 Revision history for Perl extension App::perlbuild
 
+0.04 2013-01-24T12:19:57
+
+    - switch to HTTP::Tiny
+      (tokuhirom)
+
 0.03
 
     - support relative path to install tar ball

@@ -59,3 +59,7 @@ Miyashita
 mysqldiff
 mmm
 JSON
+CPAN
+-de
+patchperl
+perlbrew
