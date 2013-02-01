@@ -1,5 +1,16 @@
 Revision history for Perl extension App::perlbuild
 
+0.05 2013-02-01T15:00:50
+
+    commit 1d9912144703e31079ac71f56e0616af4bddee77
+    Author: Syohei YOSHIDA <syohex@gmail.com>
+    Date:   Wed Jan 30 13:58:05 2013 +0900
+
+    Fixed for parsing command line arguments
+
+      - Loop for @D, @A, @U makes no sense
+      - Remove '--' if @ARGV contains it(See also Getopt::Long document).
+
 0.04 2013-01-24T12:19:57
 
     - switch to HTTP::Tiny
