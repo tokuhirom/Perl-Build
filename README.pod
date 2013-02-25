@@ -1,1 +1,1 @@
-lib/App/perlbuild.pm
+lib/Perl/Build.pm
