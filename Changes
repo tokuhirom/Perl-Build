@@ -1,5 +1,11 @@
 Revision history for Perl extension App::perlbuild
 
+0.06 2013-03-10T10:37:42
+
+    - Depend to latest Devel::PatchPerl
+      It removes dependency for IPC::Cmd.
+      (tokuhirom)
+
 0.05 2013-02-01T15:00:50
 
     commit 1d9912144703e31079ac71f56e0616af4bddee77
