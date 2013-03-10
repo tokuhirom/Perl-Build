@@ -15,7 +15,7 @@ my $build = Module::Build->new(
         perl                   => '5.008005',
         'File::pushd'          => 0,
         'CPAN::Perl::Releases' => 0,
-        'Devel::PatchPerl'     => 0,
+        'Devel::PatchPerl'     => '0.84', # no IPC::Cmd
         'HTTP::Tiny'           => 0,
     },
 
