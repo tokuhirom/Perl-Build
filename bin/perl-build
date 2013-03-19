@@ -4,7 +4,7 @@ use warnings;
 use Perl::Build;
 use Getopt::Long;
 use Pod::Usage;
-use Getopt::Long;
+use File::Spec;
 
 my $test = undef;
 my (@D, @A, @U);
@@ -27,6 +27,7 @@ shift @ARGV if @ARGV >= 1 && $ARGV[0] eq '--';
 
 my $stuff   = shift @ARGV or pod2usage();
 my $dest    = shift @ARGV or pod2usage();
+   $dest    = File::Spec->rel2abs($dest);
 
 my @configure_options = @ARGV ? @ARGV : ('-de');
 push @configure_options, map { "-D$_" } @D;
