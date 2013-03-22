@@ -123,7 +123,7 @@ sub install_from_cpan {
         print "Use the previously fetched ${dist_tarball}\n";
     }
     else {
-        print "Fetching $version as $dist_tarball_path\n";
+        print "Fetching $version as $dist_tarball_path ($dist_tarball_url)\n";
         http_mirror( $dist_tarball_url, $dist_tarball_path );
     }
 
@@ -301,6 +301,8 @@ Path to L<patchperl>. patchperl is a patch set for older perls.
 
 (Default: 'patchperl')
 
+Note: If you want to use patchperl plugins, please google "PERL5_PATCHPERL_PLUGIN".
+
 =back
 
 =item Perl::Build->install_from_tarball($dist_tarball_path, %args)
@@ -375,7 +377,11 @@ Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method 
 
 =head1 THANKS TO
 
-most of the code was taken from L<App::perlbrew>.
+Most of the code was taken from L<App::perlbrew>.
+
+TYPESTER - suggests C<< --patches >> option
+
+Thanks
 
 =head1 AUTHOR
 
