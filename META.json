@@ -1,0 +1,44 @@
+{
+   "abstract" : "perl builder",
+   "author" : [
+      "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/0.0.44",
+   "license" : "restricted",
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Perl-Build",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0.98",
+            "Test::Requires" : 0
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "CPAN::Perl::Releases" : 0,
+            "Devel::PatchPerl" : "0.84",
+            "File::pushd" : 0,
+            "HTTP::Tiny" : 0,
+            "perl" : "5.008005"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "homepage" : "git://github.com/tokuhirom/Perl-Build/tree",
+      "repository" : {
+         "url" : "git://github.com/tokuhirom/Perl-Build.git"
+      }
+   },
+   "version" : "0.06"
+}

@@ -13,6 +13,10 @@ pm_to_blib
 blib/
 META.yml
 MYMETA.*
-META.json
 META.yml
 README
+.build
+_build_params
+/Build
+!Build/
+!META.json
