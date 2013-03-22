@@ -20,3 +20,4 @@ _build_params
 /Build
 !Build/
 !META.json
+Perl-Build-*.tar.gz
