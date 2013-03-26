@@ -6,12 +6,14 @@ use utf8;
 use 5.008005;
 our $VERSION = '0.08';
 
+use Carp ();
 use File::Basename;
 use File::Spec::Functions qw(catfile catdir rel2abs);
 use CPAN::Perl::Releases;
 use File::pushd qw(pushd);
 use File::Temp;
 use HTTP::Tiny;
+use Devel::PatchPerl;
 
 our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://search.cpan.org/CPAN';
 
@@ -107,6 +109,8 @@ sub http_mirror {
 sub install_from_cpan {
     my ($class, $version, %args) = @_;
 
+    $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
+
     my $tarball_dir = $args{tarball_dir}
         || File::Temp::tempdir( CLEANUP => 1 );
     my $build_dir = $args{build_dir}
@@ -133,13 +137,13 @@ sub install_from_cpan {
         src_path          => $dist_extracted_path,
         dst_path          => $dst_path,
         configure_options => $configure_options,
-        patchperl         => $args{patchperl},
         test              => $args{test},
     );
 }
 
 sub install_from_tarball {
     my ($class, $dist_tarball_path, %args) = @_;
+    $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
 
     my $build_dir = $args{build_dir}
         || File::Temp::tempdir( CLEANUP => 1 );
@@ -153,13 +157,13 @@ sub install_from_tarball {
         src_path          => $dist_extracted_path,
         dst_path          => $dst_path,
         configure_options => $configure_options,
-        patchperl         => $args{patchperl},
         test              => $args{test},
     );
 }
 
 sub install {
     my ($class, %args) = @_;
+    $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
 
     my $src_path = $args{src_path}
         or die "Missing mandatory parameter: src_path";
@@ -167,7 +171,6 @@ sub install {
         or die "Missing mandatory parameter: dst_path";
     my $configure_options = $args{configure_options}
         or die "Missing mandatory parameter: configure_options";
-    my $patchperl = $args{patchperl} || 'patchperl';
 
     unshift @$configure_options, qq(-Dprefix=$dst_path);
 
@@ -181,7 +184,7 @@ sub install {
         $class->do_system("rm -f config.sh Policy.sh");
 
         # apply patches
-        $class->do_system($patchperl || 'patchperl');
+        Devel::PatchPerl->patch_source();
 
         # configure
         $class->do_system(['sh', 'Configure', @$configure_options]);
@@ -301,14 +304,6 @@ Temporary directory to put tar ball.
 
 Temporary directory to build binary.
 
-=item patchperl(Optional)
-
-Path to L<patchperl>. patchperl is a patch set for older perls.
-
-(Default: 'patchperl')
-
-Note: If you want to use patchperl plugins, please google "PERL5_PATCHPERL_PLUGIN".
-
 =back
 
 =item Perl::Build->install_from_tarball($dist_tarball_path, %args)
@@ -333,12 +328,6 @@ Command line arguments for ./Configure.
 
 Temporary directory to build binary.
 
-=item patchperl(Optional)
-
-Path to L<patchperl>. patchperl is a patch set for older perls.
-
-(Default: 'patchperl')
-
 =back
 
 =item Perl::Build->install(%args)
@@ -361,12 +350,6 @@ Command line arguments for ./Configure.
 
 (Default: ['-de'])
 
-=item patchperl(Optional)
-
-Path to L<patchperl>. patchperl is a patch set for older perls.
-
-(Default: 'patchperl')
-
 =item test: Bool(Optional)
 
 If you set this value as true, Perl::Build runs C<< make test >> after building.
@@ -378,6 +361,16 @@ If you set this value as true, Perl::Build runs C<< make test >> after building.
 =item Perl::Build->symlink_devel_executables($bin_dir:Str)
 
 Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
+
+=back
+
+=head1 FAQ
+
+=over 4
+
+=item How can I use patchperl plugins?
+
+If you want to use patchperl plugins, please google "PERL5_PATCHPERL_PLUGIN".
 
 =back
 
