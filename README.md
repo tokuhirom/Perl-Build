@@ -58,14 +58,6 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         Temporary directory to build binary.
 
-    - patchperl(Optional)
-
-        Path to [patchperl](http://search.cpan.org/perldoc?patchperl). patchperl is a patch set for older perls.
-
-        (Default: 'patchperl')
-
-        Note: If you want to use patchperl plugins, please google "PERL5\_PATCHPERL\_PLUGIN".
-
 - Perl::Build->install\_from\_tarball($dist\_tarball\_path, %args)
 
     Install perl from tar ball. This method extracts tar ball, build, and install.
@@ -86,12 +78,6 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         Temporary directory to build binary.
 
-    - patchperl(Optional)
-
-        Path to [patchperl](http://search.cpan.org/perldoc?patchperl). patchperl is a patch set for older perls.
-
-        (Default: 'patchperl')
-
 - Perl::Build->install(%args)
 
     Build and install Perl5 from extracted source directory.
@@ -110,12 +96,6 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         (Default: \['-de'\])
 
-    - patchperl(Optional)
-
-        Path to [patchperl](http://search.cpan.org/perldoc?patchperl). patchperl is a patch set for older perls.
-
-        (Default: 'patchperl')
-
     - test: Bool(Optional)
 
         If you set this value as true, Perl::Build runs `make test` after building.
@@ -125,6 +105,12 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 - Perl::Build->symlink\_devel\_executables($bin\_dir:Str)
 
     Perl5 binary generated with ` -Dusedevel `, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
+
+# FAQ
+
+- How can I use patchperl plugins?
+
+    If you want to use patchperl plugins, please google "PERL5\_PATCHPERL\_PLUGIN".
 
 # THANKS TO
 
