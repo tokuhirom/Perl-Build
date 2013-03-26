@@ -4,6 +4,12 @@ Perl::Build - perl builder
 
 # SYNOPSIS
 
+# CLI interface
+
+    % perl-build 5.16.2 /opt/perl-5.16/
+
+## Programmable interface
+
     # install perl from CPAN
     Perl::Build->install_from_cpan(
         '5.16.2' => (
