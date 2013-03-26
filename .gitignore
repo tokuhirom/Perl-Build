@@ -24,3 +24,6 @@ Perl-Build-*.tar.gz
 /Perl-Build-*
 /.build
 /_build_params
+/fatlib/
+/fatpacker.trace
+/packlists
