@@ -4,8 +4,10 @@
       "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/0.0.44",
-   "license" : "restricted",
+   "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "unknown"
+   ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
@@ -15,7 +17,7 @@
       "build" : {
          "requires" : {
             "Test::More" : "0.98",
-            "Test::Requires" : 0
+            "Test::Requires" : "0"
          }
       },
       "configure" : {
@@ -25,19 +27,24 @@
       },
       "runtime" : {
          "requires" : {
-            "CPAN::Perl::Releases" : 0,
+            "CPAN::Perl::Releases" : "0",
             "Devel::PatchPerl" : "0.84",
-            "File::pushd" : 0,
-            "HTTP::Tiny" : 0,
+            "File::pushd" : "0",
+            "HTTP::Tiny" : "0",
             "perl" : "5.008005"
          }
       }
    },
    "release_status" : "unstable",
    "resources" : {
-      "homepage" : "git://github.com/tokuhirom/Perl-Build/tree",
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/Perl-Build/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/Perl-Build",
       "repository" : {
-         "url" : "git://github.com/tokuhirom/Perl-Build.git"
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/Perl-Build.git",
+         "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
    "version" : "0.08"

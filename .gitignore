@@ -21,3 +21,6 @@ _build_params
 !Build/
 !META.json
 Perl-Build-*.tar.gz
+/Perl-Build-*
+/.build
+/_build_params
