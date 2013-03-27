@@ -1,4 +1,4 @@
-requires 'perl' => '5.008005';
+requires 'perl' => '5.008002';
 requires 'CPAN::Perl::Releases' => '0';
 requires 'File::pushd' => '0';
 requires 'HTTP::Tiny' => '0';
