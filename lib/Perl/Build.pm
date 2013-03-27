@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 use 5.008005;
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 use Carp ();
 use File::Basename;
@@ -246,8 +246,14 @@ Perl::Build - perl builder
 
 =head1 SYNOPSIS
 
+=head1 CLI interface without dependencies
+
+    # perl-build command is FatPacker ready
+    % curl https://raw.github.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
+
 =head1 CLI interface
 
+    % cpanm Perl::Build
     % perl-build 5.16.2 /opt/perl-5.16/
 
 =head2 Programmable interface
@@ -294,7 +300,7 @@ Destination directory to install perl.
 
 Command line arguments for ./Configure.
 
-(Default: ['-de'])
+(Default: C<< ['-de'] >>)
 
 =item tarball_dir(Optional)
 
@@ -322,7 +328,7 @@ Destination directory to install perl.
 
 Command line arguments for ./Configure.
 
-(Default: ['-de'])
+(Default: C<< ['-de'] >>)
 
 =item build_dir(Optional)
 
@@ -348,7 +354,7 @@ Destination directory to install perl.
 
 Command line arguments for ./Configure.
 
-(Default: ['-de'])
+(Default: C<< ['-de'] >>)
 
 =item test: Bool(Optional)
 

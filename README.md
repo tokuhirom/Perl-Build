@@ -4,8 +4,14 @@ Perl::Build - perl builder
 
 # SYNOPSIS
 
+# CLI interface without dependencies
+
+    # perl-build command is FatPacker ready
+    % curl https://raw.github.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
+
 # CLI interface
 
+    % cpanm Perl::Build
     % perl-build 5.16.2 /opt/perl-5.16/
 
 ## Programmable interface
