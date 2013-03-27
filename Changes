@@ -2,6 +2,13 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+0.10 2013-03-27T12:08:57Z
+
+    - Perl5 installs public executable scripts(like `prove`) to /usr/local/share/
+      if it exists.
+      This -A'eval:scriptdir=$prefix/bin' option avoid this feature.
+      (Reported by moznion++)
+
 0.09 2013-03-27T05:13:03Z
 
     - Remove 'patchperl' option in OO APIs.
