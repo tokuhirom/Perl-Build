@@ -2,6 +2,10 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+0.11 2013-03-28T02:45:03Z
+
+    - re-packaging
+
 0.10 2013-03-27T12:08:57Z
 
     - Perl5 installs public executable scripts(like `prove`) to /usr/local/share/
