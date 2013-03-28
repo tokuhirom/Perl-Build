@@ -54,7 +54,7 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         Command line arguments for ./Configure.
 
-        (Default: \['-de'\])
+        (Default: `['-de']`)
 
     - tarball\_dir(Optional)
 
@@ -78,7 +78,7 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         Command line arguments for ./Configure.
 
-        (Default: \['-de'\])
+        (Default: `['-de']`)
 
     - build\_dir(Optional)
 
@@ -100,7 +100,7 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         Command line arguments for ./Configure.
 
-        (Default: \['-de'\])
+        (Default: `['-de']`)
 
     - test: Bool(Optional)
 
