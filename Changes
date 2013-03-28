@@ -2,6 +2,11 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+0.12 2013-03-28T07:52:13Z
+
+    - packaging, again.
+      Back to Module::Build from Module::Build::Tiny.
+
 0.11 2013-03-28T02:45:03Z
 
     - re-packaging
