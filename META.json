@@ -57,7 +57,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "0.13",
+   "version" : "0.14",
    "x_contributors" : [
       "Syohei YOSHIDA <syohex@gmail.com>",
       "Daisuke Murase <typester@cpan.org>"

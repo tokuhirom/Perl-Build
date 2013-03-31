@@ -2,6 +2,11 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+0.14 2013-03-31T07:23:51Z
+
+    - Documentation enhancements suggested by markstosj
+      (tokuhirom)
+
 0.13 2013-03-29T23:46:30Z
 
     - add to support build-dir command-line option

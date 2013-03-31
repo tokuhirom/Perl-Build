@@ -118,6 +118,13 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
     If you want to use patchperl plugins, please google "PERL5\_PATCHPERL\_PLUGIN".
 
+- What's difference between perlbrew?
+
+    [perlbrew](http://search.cpan.org/perldoc?perlbrew) is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
+    It makes perl5 installation easily. That's all. perl-build doesn't care user's environment.
+
+    So, perl-build is just a installer.
+
 # THANKS TO
 
 Most of the code was taken from [App::perlbrew](http://search.cpan.org/perldoc?App::perlbrew).
