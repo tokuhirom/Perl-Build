@@ -386,6 +386,13 @@ Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method 
 
 If you want to use patchperl plugins, please google "PERL5_PATCHPERL_PLUGIN".
 
+=item What's difference between perlbrew?
+
+L<perlbrew> is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
+It makes perl5 installation easily. That's all. perl-build doesn't care user's environment.
+
+So, perl-build is just a installer.
+
 =back
 
 =head1 THANKS TO
