@@ -128,7 +128,7 @@ Thanks
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
+Tokuhiro Matsuno <tokuhirom@gmail.com>
 
 
 
