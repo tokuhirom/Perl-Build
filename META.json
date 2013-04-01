@@ -6,7 +6,7 @@
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.120921",
    "license" : [
-      "unknown"
+      "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -60,6 +60,7 @@
    "version" : "0.14",
    "x_contributors" : [
       "Syohei YOSHIDA <syohex@gmail.com>",
-      "Daisuke Murase <typester@cpan.org>"
+      "Daisuke Murase <typester@cpan.org>",
+      "Mark Stosberg <mark@stosberg.com>"
    ]
 }

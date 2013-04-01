@@ -118,10 +118,10 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
     If you want to use patchperl plugins, please google "PERL5\_PATCHPERL\_PLUGIN".
 
-- What's difference between perlbrew?
+- What's the difference between perlbrew?
 
     [perlbrew](http://search.cpan.org/perldoc?perlbrew) is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
-    It makes perl5 installation easily. That's all. perl-build doesn't care user's environment.
+    It makes perl5 installation easily. That's all. perl-build doesn't care about the user's environment.
 
     So, perl-build is just a installer.
 
@@ -141,6 +141,33 @@ Tokuhiro Matsuno <tokuhirom@gmail.com>
 
 # LICENSE
 
-This software takes most of the code from [App::perlbrew](http://search.cpan.org/perldoc?App::perlbrew).
+Copyright (C) Tokuhiro Matsuno
 
-Perl::Build uses same license with perlbrew.
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+This software takes lot of the code from [App::perlbrew](http://search.cpan.org/perldoc?App::perlbrew). App::perlbrew's license is:
+
+    The MIT License
+
+    Copyright (c) 2010,2011 Kang-min Liu
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+
