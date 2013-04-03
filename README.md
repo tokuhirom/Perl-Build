@@ -17,7 +17,7 @@ Perl::Build - perl builder
 ## Programmable interface
 
     # install perl from CPAN
-    Perl::Build->install_from_cpan(
+    my $result = Perl::Build->install_from_cpan(
         '5.16.2' => (
             dst_path          => '/path/to/perl-5.16.2/',
             configure_options => ['-des'],
@@ -25,7 +25,7 @@ Perl::Build - perl builder
     );
 
     # install perl from tar ball
-    Perl::Build->install_from_cpan(
+    my $result = Perl::Build->install_from_cpan(
         'path/to/perl-5.16.2.tar.gz' => (
             dst_path          => '/path/to/perl-5.16.2/',
             configure_options => ['-des'],
@@ -107,6 +107,8 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
         If you set this value as true, Perl::Build runs `make test` after building.
 
         (Default: 0)
+
+    Returns an instance of [Perl::Build::Built](http://search.cpan.org/perldoc?Perl::Build::Built) to facilitate using the built perl from code.
 
 - Perl::Build->symlink\_devel\_executables($bin\_dir:Str)
 

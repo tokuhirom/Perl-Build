@@ -14,6 +14,7 @@ use File::pushd qw(pushd);
 use File::Temp;
 use HTTP::Tiny;
 use Devel::PatchPerl;
+use Perl::Build::Built;
 
 our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://search.cpan.org/CPAN';
 
@@ -209,6 +210,9 @@ sub install {
         }
         $class->do_system('make install');
     }
+    return Perl::Build::Built->new(
+        installed_path => $dst_path,
+    );
 }
 
 sub do_system {
@@ -267,7 +271,7 @@ Perl::Build - perl builder
 =head2 Programmable interface
 
     # install perl from CPAN
-    Perl::Build->install_from_cpan(
+    my $result = Perl::Build->install_from_cpan(
         '5.16.2' => (
             dst_path          => '/path/to/perl-5.16.2/',
             configure_options => ['-des'],
@@ -275,7 +279,7 @@ Perl::Build - perl builder
     );
 
     # install perl from tar ball
-    Perl::Build->install_from_cpan(
+    my $result = Perl::Build->install_from_cpan(
         'path/to/perl-5.16.2.tar.gz' => (
             dst_path          => '/path/to/perl-5.16.2/',
             configure_options => ['-des'],
@@ -371,6 +375,8 @@ If you set this value as true, Perl::Build runs C<< make test >> after building.
 (Default: 0)
 
 =back
+
+Returns an instance of L<Perl::Build::Built> to facilitate using the built perl from code.
 
 =item Perl::Build->symlink_devel_executables($bin_dir:Str)
 
