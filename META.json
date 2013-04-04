@@ -24,12 +24,6 @@
       ]
    },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Test::More" : "0.98",
-            "Test::Requires" : "0"
-         }
-      },
       "configure" : {
          "requires" : {
             "CPAN::Meta" : "0",
@@ -50,9 +44,17 @@
          "requires" : {
             "CPAN::Perl::Releases" : "0",
             "Devel::PatchPerl" : "0.84",
+            "File::Temp" : "0",
             "File::pushd" : "0",
+            "Getopt::Long" : "0",
             "HTTP::Tiny" : "0",
+            "Pod::Usage" : "0",
             "perl" : "5.008002"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0.98"
          }
       }
    },
