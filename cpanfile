@@ -3,15 +3,11 @@ requires 'CPAN::Perl::Releases' => '0';
 requires 'File::pushd' => '0';
 requires 'HTTP::Tiny' => '0';
 requires 'Devel::PatchPerl' => '0.84';
-on configure => sub {
-    requires 'Module::Build' => '0.38';
-};
+requires 'File::Temp';
+requires 'Getopt::Long';
+requires 'Pod::Usage';
 
-on build => sub {
-    requires 'Test::Requires' => '0';
+on test => sub {
     requires 'Test::More' => '0.98';
-};
-
-on develop => sub {
 };
 
