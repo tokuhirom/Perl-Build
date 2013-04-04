@@ -13,6 +13,16 @@
       "version" : "2"
    },
    "name" : "Perl-Build",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples"
+      ]
+   },
    "prereqs" : {
       "build" : {
          "requires" : {
@@ -23,6 +33,7 @@
       "configure" : {
          "requires" : {
             "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
             "Module::Build" : "0.38"
          }
       },
@@ -57,10 +68,11 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "0.15",
+   "version" : "0.16",
    "x_contributors" : [
       "Syohei YOSHIDA <syohex@gmail.com>",
       "Daisuke Murase <typester@cpan.org>",
-      "Mark Stosberg <mark@stosberg.com>"
+      "Mark Stosberg <mark@stosberg.com>",
+      "Kent Fredric <kentfredric@gmail.com>"
    ]
 }

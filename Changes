@@ -2,6 +2,11 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+0.16 2013-04-04T04:08:37Z
+
+    - Add a Built package and integrate it into Build.pm
+      (Kent Fredric)
+
 0.15 2013-04-01T01:55:25Z
 
     - Grammer fix and Typo fixes.
