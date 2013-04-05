@@ -5,6 +5,7 @@ Revision history for Perl extension App::perlbuild
 0.17 2013-04-05T08:36:20Z
 
     - Perl::Build::Built::new should take HashRef
+      Broken at 0.16.
       (syohex)
 
 0.16 2013-04-04T04:08:37Z
