@@ -210,9 +210,9 @@ sub install {
         }
         $class->do_system('make install');
     }
-    return Perl::Build::Built->new(
+    return Perl::Build::Built->new({
         installed_path => $dst_path,
-    );
+    });
 }
 
 sub do_system {
