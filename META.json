@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Minilla/v0.4.2, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -20,7 +20,8 @@
          "inc",
          "share",
          "eg",
-         "examples"
+         "examples",
+         "author"
       ]
    },
    "prereqs" : {
@@ -33,11 +34,10 @@
       },
       "develop" : {
          "requires" : {
-            "Pod::Wordlist::hanekomu" : "0",
             "Test::CPAN::Meta" : "0",
             "Test::MinimumVersion" : "0.10108",
             "Test::Pod" : "1.41",
-            "Test::Spelling" : "0"
+            "Test::Spellunker" : "v0.2.2"
          }
       },
       "runtime" : {
@@ -75,6 +75,7 @@
       "Daisuke Murase <typester@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",
       "Mark Stosberg <mark@stosberg.com>",
-      "Syohei YOSHIDA <syohex@gmail.com>"
+      "Syohei YOSHIDA <syohex@gmail.com>",
+      "Kang-min Liu <gugod@gugod.org>"
    ]
 }

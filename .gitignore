@@ -27,3 +27,4 @@ Perl-Build-*.tar.gz
 /fatlib/
 /fatpacker.trace
 /packlists
+!LICENSE
