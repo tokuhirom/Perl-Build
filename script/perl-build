@@ -24,6 +24,7 @@ GetOptions(
     'U=s@' => \@U,
     'patches=s' => \$patches,
     'build-dir=s' => \$build_dir,
+    'j|jobs=i' => \my $jobs,
 );
 for (@D, @A, @U) {
     s/^=//;
@@ -49,6 +50,7 @@ if ($stuff =~ /\.(gz|bz2)$/) {
             configure_options => \@configure_options,
             test              => $test,
             build_dir         => $build_dir,
+            jobs              => $jobs,
         )
     );
 } else {
@@ -59,6 +61,7 @@ if ($stuff =~ /\.(gz|bz2)$/) {
             configure_options => \@configure_options,
             test              => $test,
             build_dir         => $build_dir,
+            jobs              => $jobs,
         )
     );
 }
@@ -106,6 +109,12 @@ You can set I<PERL5_PATCHPERL_PLUGIN> environment variable by this option.
 =item --build-dir=path
 
 Specify perl build path. optional. (Default: temporary directory)
+
+=item -j n
+
+=item --jobs n
+
+Parallel building and testing.
 
 =back
 

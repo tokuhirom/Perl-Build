@@ -139,6 +139,7 @@ sub install_from_cpan {
         dst_path          => $dst_path,
         configure_options => $configure_options,
         test              => $args{test},
+        jobs              => $args{jobs},
     );
 }
 
@@ -159,6 +160,7 @@ sub install_from_tarball {
         dst_path          => $dst_path,
         configure_options => $configure_options,
         test              => $args{test},
+        jobs              => $args{jobs},
     );
 }
 
@@ -172,6 +174,7 @@ sub install {
         or die "Missing mandatory parameter: dst_path";
     my $configure_options = $args{configure_options}
         or die "Missing mandatory parameter: configure_options";
+    my $jobs = $args{jobs}; # optional
 
     unshift @$configure_options, qq(-Dprefix=$dst_path);
 
@@ -204,8 +207,13 @@ sub install {
         # }
 
         # build
-        $class->do_system('make');
+        my @make = qw(make);
+        if ($jobs) {
+            push @make, '-j', $jobs;
+        }
+        $class->do_system(\@make);
         if ($args{test}) {
+            local $ENV{TEST_JOBS} = $jobs;
             $class->do_system('make test');
         }
         $class->do_system('make install');
@@ -322,6 +330,12 @@ Temporary directory to put tar ball.
 
 Temporary directory to build binary.
 
+=item jobs: Int(Optional)
+
+Parallel building and testing.
+
+(Default: 1)
+
 =back
 
 =item Perl::Build->install_from_tarball($dist_tarball_path, %args)
@@ -345,6 +359,12 @@ Command line arguments for ./Configure.
 =item build_dir(Optional)
 
 Temporary directory to build binary.
+
+=item jobs: Int(Optional)
+
+Parallel building and testing.
+
+(Default: 1)
 
 =back
 
@@ -373,6 +393,12 @@ Command line arguments for ./Configure.
 If you set this value as true, Perl::Build runs C<< make test >> after building.
 
 (Default: 0)
+
+=item jobs: Int(Optional)
+
+Parallel building and testing.
+
+(Default: 1)
 
 =back
 
