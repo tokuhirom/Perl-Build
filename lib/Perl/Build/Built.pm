@@ -5,7 +5,7 @@ use warnings;
 use utf8;
 
 use 5.008002;
-our $VERSION = '0.17';
+our $VERSION = '0.18';
 
 use Carp ();
 use File::Spec::Functions qw( catdir catfile );
@@ -69,6 +69,8 @@ __END__
 =pod
 
 =encoding utf8
+
+=for stopwords dir
 
 =head1 NAME
 

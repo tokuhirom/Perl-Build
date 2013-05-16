@@ -56,13 +56,19 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         (Default: `['-de']`)
 
-    - tarball\_dir(Optional)
+    - tarball\_dir (Optional)
 
         Temporary directory to put tar ball.
 
-    - build\_dir(Optional)
+    - build\_dir (Optional)
 
         Temporary directory to build binary.
+
+    - jobs: Int(Optional)
+
+        Parallel building and testing.
+
+        (Default: 1)
 
 - Perl::Build->install\_from\_tarball($dist\_tarball\_path, %args)
 
@@ -70,7 +76,7 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
     You can pass following options in %args.
 
-    - dst\_path(Required)
+    - dst\_path (Required)
 
         Destination directory to install perl.
 
@@ -80,19 +86,25 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         (Default: `['-de']`)
 
-    - build\_dir(Optional)
+    - build\_dir (Optional)
 
         Temporary directory to build binary.
+
+    - jobs: Int(Optional)
+
+        Parallel building and testing.
+
+        (Default: 1)
 
 - Perl::Build->install(%args)
 
     Build and install Perl5 from extracted source directory.
 
-    - src\_path(Required)
+    - src\_path (Required)
 
         Source code directory to build.  That contains extracted Perl5 source code.
 
-    - dst\_path(Required)
+    - dst\_path (Required)
 
         Destination directory to install perl.
 
@@ -108,6 +120,12 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         (Default: 0)
 
+    - jobs: Int(Optional)
+
+        Parallel building and testing.
+
+        (Default: 1)
+
     Returns an instance of [Perl::Build::Built](http://search.cpan.org/perldoc?Perl::Build::Built) to facilitate using the built perl from code.
 
 - Perl::Build->symlink\_devel\_executables($bin\_dir:Str)
@@ -118,7 +136,7 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
 - How can I use patchperl plugins?
 
-    If you want to use patchperl plugins, please google "PERL5\_PATCHPERL\_PLUGIN".
+    If you want to use patchperl plugins, please Google "PERL5\_PATCHPERL\_PLUGIN".
 
 - What's the difference between perlbrew?
 

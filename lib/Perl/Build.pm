@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 use 5.008002;
-our $VERSION = '0.17';
+our $VERSION = '0.18';
 
 use Carp ();
 use File::Basename;
@@ -293,6 +293,8 @@ __END__
 
 =encoding utf8
 
+=for stopwords tarball Optional symlinks patchperl
+
 =head1 NAME
 
 Perl::Build - perl builder
@@ -355,11 +357,11 @@ Command line arguments for ./Configure.
 
 (Default: C<< ['-de'] >>)
 
-=item tarball_dir(Optional)
+=item tarball_dir (Optional)
 
 Temporary directory to put tar ball.
 
-=item build_dir(Optional)
+=item build_dir (Optional)
 
 Temporary directory to build binary.
 
@@ -379,7 +381,7 @@ You can pass following options in %args.
 
 =over 4
 
-=item dst_path(Required)
+=item dst_path (Required)
 
 Destination directory to install perl.
 
@@ -389,7 +391,7 @@ Command line arguments for ./Configure.
 
 (Default: C<< ['-de'] >>)
 
-=item build_dir(Optional)
+=item build_dir (Optional)
 
 Temporary directory to build binary.
 
@@ -407,11 +409,11 @@ Build and install Perl5 from extracted source directory.
 
 =over 4
 
-=item src_path(Required)
+=item src_path (Required)
 
 Source code directory to build.  That contains extracted Perl5 source code.
 
-=item dst_path(Required)
+=item dst_path (Required)
 
 Destination directory to install perl.
 
@@ -449,7 +451,7 @@ Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method 
 
 =item How can I use patchperl plugins?
 
-If you want to use patchperl plugins, please google "PERL5_PATCHPERL_PLUGIN".
+If you want to use patchperl plugins, please Google "PERL5_PATCHPERL_PLUGIN".
 
 =item What's the difference between perlbrew?
 
