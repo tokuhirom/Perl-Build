@@ -2,6 +2,10 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+0.19 2013-05-16T02:17:08Z
+
+    - no feature changes
+
 0.18 2013-05-16T01:51:30Z
 
     - Support --jobs for parallel building.
