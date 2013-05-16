@@ -43,7 +43,17 @@ push @configure_options, map { "-U$_" } @U;
 
 $ENV{PERL5_PATCHPERL_PLUGIN} = $patches if defined $patches;
 
-if ($stuff =~ /\.(gz|bz2)$/) {
+if ($stuff =~ m{^http://}) {
+    Perl::Build->install_from_url(
+        $stuff => (
+            dst_path          => $dest,
+            configure_options => \@configure_options,
+            test              => $test,
+            build_dir         => $build_dir,
+            jobs              => $jobs,
+        )
+    );
+} elsif ($stuff =~ /\.(gz|bz2)$/) {
     Perl::Build->install_from_tarball(
         $stuff => (
             dst_path          => $dest,

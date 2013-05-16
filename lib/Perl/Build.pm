@@ -143,6 +143,39 @@ sub install_from_cpan {
     );
 }
 
+sub install_from_url {
+    my ($class, $dist_tarball_url, %args) = @_;
+    $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
+
+    my $build_dir = $args{build_dir}
+        || File::Temp::tempdir( CLEANUP => 1 );
+    my $tarball_dir = $args{tarball_dir}
+        || File::Temp::tempdir( CLEANUP => 1 );
+    my $dst_path = $args{dst_path}
+        or die "Missing mandatory parameter: dst_path";
+    my $configure_options = $args{configure_options}
+        || ['-de'];
+
+    my $dist_tarball = basename($dist_tarball_url);
+    my $dist_tarball_path = catfile($tarball_dir, $dist_tarball);
+    if (-f $dist_tarball_path) {
+        print "Use the previously fetched ${dist_tarball}\n";
+    }
+    else {
+        print "Fetching $dist_tarball_path ($dist_tarball_url)\n";
+        http_mirror( $dist_tarball_url, $dist_tarball_path );
+    }
+
+    my $dist_extracted_path = Perl::Build->extract_tarball($dist_tarball_path, $build_dir);
+    Perl::Build->install(
+        src_path          => $dist_extracted_path,
+        dst_path          => $dst_path,
+        configure_options => $configure_options,
+        test              => $args{test},
+        jobs              => $args{jobs},
+    );
+}
+
 sub install_from_tarball {
     my ($class, $dist_tarball_path, %args) = @_;
     $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
