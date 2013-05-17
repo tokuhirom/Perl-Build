@@ -18,13 +18,14 @@ Getopt::Long::Configure(
     'bundling',
 );
 GetOptions(
-    'test' => \$test,
-    'D=s@' => \@D,
-    'A=s@' => \@A,
-    'U=s@' => \@U,
+    'test!' => \$test,
+    'D=s@'  => \@D,
+    'A=s@'  => \@A,
+    'U=s@'  => \@U,
     'patches=s' => \$patches,
     'build-dir=s' => \$build_dir,
     'j|jobs=i' => \my $jobs,
+    'tarball-dir=s' => \my $tarball_dir,
 );
 for (@D, @A, @U) {
     s/^=//;
@@ -51,6 +52,7 @@ if ($stuff =~ m{^http://}) {
             test              => $test,
             build_dir         => $build_dir,
             jobs              => $jobs,
+            tarball_dir       => $tarball_dir,
         )
     );
 } elsif ($stuff =~ /\.(gz|bz2)$/) {
@@ -72,6 +74,7 @@ if ($stuff =~ m{^http://}) {
             test              => $test,
             build_dir         => $build_dir,
             jobs              => $jobs,
+            tarball_dir       => $tarball_dir,
         )
     );
 }
@@ -125,6 +128,12 @@ Specify perl build path. optional. (Default: temporary directory)
 =item --jobs n
 
 Parallel building and testing.
+
+=item --tarball-dir
+
+Specify the tar ball saving directory.
+
+(Default: temporary directory, will remove after building)
 
 =back
 
