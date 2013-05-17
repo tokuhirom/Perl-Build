@@ -13,7 +13,7 @@ use CPAN::Perl::Releases;
 use File::pushd qw(pushd);
 use File::Temp;
 use HTTP::Tiny;
-use Devel::PatchPerl;
+use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
 
 our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://search.cpan.org/CPAN';
@@ -208,6 +208,7 @@ sub install {
     my $configure_options = $args{configure_options}
         or die "Missing mandatory parameter: configure_options";
     my $jobs = $args{jobs}; # optional
+    my $test = $args{test}; # optional
 
     unshift @$configure_options, qq(-Dprefix=$dst_path);
 
@@ -224,6 +225,10 @@ sub install {
 
     {
         my $dir = pushd($src_path);
+
+        # determine_version is a public API.
+        my $dist_version = Devel::PatchPerl->determine_version();
+        print "Configuring perl '$dist_version'\n";
 
         # clean up
         $class->do_system("rm -f config.sh Policy.sh");
@@ -245,9 +250,18 @@ sub install {
             push @make, '-j', $jobs;
         }
         $class->do_system(\@make);
-        if ($args{test}) {
+        if ($test) {
             local $ENV{TEST_JOBS} = $jobs;
-            $class->do_system('make test');
+            # Test via "make test_harness" if available so we'll get
+            # automatic parallel testing via $HARNESS_OPTIONS. The
+            # "test_harness" target was added in 5.7.3, which was the last
+            # development release before 5.8.0.
+            my $test_target = 'test';
+            if ($dist_version && $dist_version =~ /^5\.([0-9]+)\.([0-9]+)/
+                && ($1 >= 8 || $1 == 7 && $2 == 3)) {
+                $test_target = "test_harness";
+            }
+            $class->do_system([@make, $test_target]);
         }
         $class->do_system('make install');
     }
