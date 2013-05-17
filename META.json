@@ -43,7 +43,7 @@
       "runtime" : {
          "requires" : {
             "CPAN::Perl::Releases" : "0",
-            "Devel::PatchPerl" : "0.84",
+            "Devel::PatchPerl" : "0.88",
             "File::Temp" : "0",
             "File::pushd" : "0",
             "Getopt::Long" : "0",
@@ -70,7 +70,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "0.19",
+   "version" : "0.20",
    "x_contributors" : [
       "Daisuke Murase <typester@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",

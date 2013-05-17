@@ -5,7 +5,7 @@ use warnings;
 use utf8;
 
 use 5.008002;
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 
 use Carp ();
 use File::Spec::Functions qw( catdir catfile );
