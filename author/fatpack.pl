@@ -1,6 +1,7 @@
 #!/bin/sh
 SRC=script/perl-build
 DST=perl-build
+export PLENV_VERSION=5.8.5
 export PERL5LIB=`dirname $0`/../lib/
 
 fatpack trace $SRC
