@@ -59,7 +59,7 @@ lives exception {
 }, 'run_env runs';
 
 lives exception {
-    unlike( $sample->combined_man_path,
+    unlike( $sample->combined_man_path || '',
         qr/wizzardry_example/,
         "combined_man_path not inclusive due to no real man path existing" );
 }, 'combined_man_path lives';
