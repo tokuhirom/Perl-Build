@@ -18,6 +18,7 @@ Getopt::Long::Configure(
     'bundling',
 );
 GetOptions(
+    'h|help' => \my $help,
     'test!' => \$test,
     'D=s@'  => \@D,
     'A=s@'  => \@A,
@@ -30,6 +31,8 @@ GetOptions(
 for (@D, @A, @U) {
     s/^=//;
 }
+
+pod2usage(1) if $help;
 
 shift @ARGV if @ARGV >= 1 && $ARGV[0] eq '--';
 
