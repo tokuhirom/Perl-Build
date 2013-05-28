@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 use 5.008002;
-our $VERSION = 'y';
+our $VERSION = '0.21';
 
 use Carp ();
 use File::Basename;
