@@ -23,6 +23,7 @@ GetOptions(
     'D=s@'  => \@D,
     'A=s@'  => \@A,
     'U=s@'  => \@U,
+    'definitions' => \my $definitions,
     'patches=s' => \$patches,
     'build-dir=s' => \$build_dir,
     'j|jobs=i' => \my $jobs,
@@ -33,6 +34,13 @@ for (@D, @A, @U) {
 }
 
 pod2usage(1) if $help;
+
+if ($definitions) {
+    for (Perl::Build->available_perls()) {
+        print "$_\n";
+    }
+    exit 0;
+}
 
 shift @ARGV if @ARGV >= 1 && $ARGV[0] eq '--';
 
@@ -137,6 +145,12 @@ Parallel building and testing.
 Specify the tar ball saving directory.
 
 (Default: temporary directory, will remove after building)
+
+=item --definitions
+
+    % perl-build --definitions
+
+Display the available perl versions and exit.
 
 =back
 
