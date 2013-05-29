@@ -28,9 +28,15 @@ GetOptions(
     'build-dir=s' => \$build_dir,
     'j|jobs=i' => \my $jobs,
     'tarball-dir=s' => \my $tarball_dir,
+    'version' => \my $show_version,
 );
 for (@D, @A, @U) {
     s/^=//;
+}
+
+if ($show_version) {
+    print "$Perl::Build::VERSION\n";
+    exit 0;
 }
 
 pod2usage(1) if $help;
@@ -151,6 +157,10 @@ Specify the tar ball saving directory.
     % perl-build --definitions
 
 Display the available perl versions and exit.
+
+=item --version
+
+Show version number and exit.
 
 =back
 
