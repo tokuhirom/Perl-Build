@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 SRC=script/perl-build
 DST=perl-build
 export PLENV_VERSION=5.8.5
