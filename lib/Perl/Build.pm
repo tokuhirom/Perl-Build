@@ -21,7 +21,7 @@ our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://search.cpan.org/CPAN'
 sub available_perls {
     my ( $class, $dist ) = @_;
 
-    my $url = "http://www.cpan.org/src/README.html";
+    my $url = "http://www.cpan.org/src/5.0/";
     my $html = http_get( $url );
 
     unless($html) {
@@ -30,11 +30,13 @@ sub available_perls {
 
     my @available_versions;
 
+    my %uniq;
     for ( split "\n", $html ) {
-        push @available_versions, $1
-          if m|<td><a href="http://www.cpan.org/src/.+?">(.+?)</a></td>|;
+        if (my ($version) = m|<a href="perl-(.+)\.tar\.gz">(.+?)</a>|) {
+            next if $uniq{$version}++;
+            push @available_versions, $version;
+        }
     }
-    s/\.tar\.gz// for @available_versions;
 
     return @available_versions;
 }
