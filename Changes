@@ -2,6 +2,13 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.01 2013-05-29T21:27:28Z
+
+    - Added --symlink-devel-executables option.
+      (tokuhirom)
+    - Added --version option
+      (tokuhirom)
+
 1.00 2013-05-29T09:01:22Z
 
     [INCOMPATIBLE CHANGES]
