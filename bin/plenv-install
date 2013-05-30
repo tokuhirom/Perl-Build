@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env perl
 #
 # Summary: Install a Perl version using the perl-build plugin
 #
@@ -12,81 +12,87 @@
 # For detailed information on installing Perl versions with
 # perl-build, including a list of environment variables for adjusting
 # compilation, see: https://github.com/tokuhirom/perl-build#usage
-#
-set -e
-[ -n "$PLENV_DEBUG" ] && set -x
+use strict;
+use warnings;
+use 5.008001;
+use FindBin;
+use lib "$FindBin::Bin/../lib/";
 
-# Provide plenv completions
-# if [ "$1" = "--complete" ]; then
-#    exec perl-build --definitions
-# fi
+use Getopt::Long ();
+use File::Path qw(mkpath);
 
-if [ -z "$PLENV_ROOT" ]; then
-    PLENV_ROOT="${HOME}/.plenv"
-fi
+my $PERL_BUILD = "$FindBin::Bin/perl-build";
 
-function parse_options ()
-{
-    OPTIONS=();
-    ARGUMENTS=();
-    local arg option index;
-    for arg in "$@";
-    do
-        if [ "${arg:0:1}" = "-" ]; then
-            OPTIONS[${#OPTIONS[*]}]="$arg";
-        else
-            ARGUMENTS[${#ARGUMENTS[*]}]="$arg";
-        fi;
-    done
-};
+&main;exit 0;
 
-usage() {
-  # We can remove the sed fallback once plenv 0.4.0 is widely available.
-  plenv-help install 2>/dev/null || sed -ne '/^#/!q;s/.//;s/.//;1,4d;p' < "$0"
-  [ -z "$1" ] || exit "$1"
+sub main {
+    if (!defined $ENV{PLENV_ROOT}) {
+        $ENV{PLENV_ROOT} = "$ENV{HOME}/.plenv";
+    }
+
+
+    if (@ARGV > 0 && $ARGV[0] eq '--complete') {
+        print `/usr/bin/perl $PERL_BUILD --definitions`;
+        exit 0;
+    }
+
+    my $p = Getopt::Long::Parser->new(
+        config => [qw(posix_default no_ignore_case pass_through)]
+    );
+    $p->getoptions(
+        'version!'       => \my $version,
+        'h|help'         => \my $help,
+        'l|list'         => \my $list,
+    );
+    if ($version) {
+        print "$Perl::Build::VERSION\n";
+        exit 0;
+    } elsif ($help) {
+        usage();
+    } elsif ($list) {
+        print "Available versions:\n";
+        print `/usr/bin/perl $PERL_BUILD --definitions | sed 's/^/ /g'`;
+        exit 0;
+    }
+
+    my $definition = shift @ARGV or usage();
+    my $prefix = "$ENV{PLENV_ROOT}/versions/$definition";
+    if (-d $prefix) {
+        die "$prefix is already installed\n";
+    }
+
+    my $cache_dir = "$ENV{PLENV_ROOT}/cache/";
+    mkpath($cache_dir);
+    my $build_dir = "$ENV{PLENV_ROOT}/build/";
+    mkpath($build_dir);
+
+    system(
+        '/usr/bin/perl',
+        '--',
+        $PERL_BUILD,
+        '--symlink-devel-executables',
+        '--build-dir'   => $build_dir,
+        '--tarball-dir' => $cache_dir,
+        '-Dusedevel',
+        @ARGV,
+        $definition,
+        $prefix,
+    ) == 0 or die "ABORT\n";
+
+    system("plenv rehash");
 }
 
-unset VERBOSE
+sub usage {
+    open my $fh, '<', $0 or die "$0: $!\n";
+    my $buf = '';
+    <$fh>; # shebang
+    while (<$fh>) {
+        s/^#// or last;
+        s/^ //;
+        $buf .= $_;
+    }
+    print $buf;
+    exit 0;
+}
 
-#   exec $PERL_BUILD $*
-parse_options "$@"
-for option in "${OPTIONS[@]}"; do
-  case "$option" in
-  "-h" | "--help" )
-    usage 0
-    ;;
-  "-l" | "--list" )
-    echo "Available versions:"
-    /usr/bin/perl -- `which perl-build` --definitions | sed 's/^/  /'
-    exit
-    ;;
-  "--version" )
-    exec /usr/bin/perl -- `which perl-build` --version
-    ;;
-  esac
-done
-
-DEFINITION="${ARGUMENTS[0]}"
-[ -n "$DEFINITION" ] || usage 1
-
-for script in $(plenv-hooks install); do
-  source "$script"
-done
-
-VERSION_NAME="${DEFINITION##*/}"
-PREFIX="${PLENV_ROOT}/versions/${VERSION_NAME}"
-
-if [ -d $PREFIX ]; then
-    echo "$PREFIX is already installed"
-    exit 1
-fi
-
-CACHE_DIR=${PLENV_ROOT}/cache/
-mkdir -p $CACHE_DIR
-
-BUILD_DIR=${PLENV_ROOT}/build/
-mkdir -p $BUILD_DIR
-
-/usr/bin/perl -- `which perl-build` --symlink-devel-executables --build-dir=$BUILD_DIR --tarball-dir=$CACHE_DIR -Dusedevel "${OPTIONS[@]}" $DEFINITION "$PREFIX"
-plenv rehash
 
