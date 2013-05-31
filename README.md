@@ -4,6 +4,10 @@ Perl::Build - perl builder
 
 # SYNOPSIS
 
+# Install as plenv plugin(Recommended)
+
+    % git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
+
 # CLI interface without dependencies
 
     # perl-build command is FatPacker ready

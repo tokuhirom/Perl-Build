@@ -2,6 +2,11 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.03 2013-05-31T00:35:58Z
+
+    - It works well as plugin for plenv.
+      (tokuhirom)
+
 1.01 2013-05-29T21:27:28Z
 
     - Added --symlink-devel-executables option.
