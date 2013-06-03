@@ -31,6 +31,7 @@ sub main {
     }
 
 
+    # Provide plenv completions
     if (@ARGV > 0 && $ARGV[0] eq '--complete') {
         print `/usr/bin/perl $PERL_BUILD --definitions`;
         exit 0;
