@@ -25,13 +25,13 @@ my $PERL_BUILD = "$FindBin::Bin/perl-build";
 
 &main;exit 0;
 
+# Provide plenv completions
 sub main {
     if (!defined $ENV{PLENV_ROOT}) {
         $ENV{PLENV_ROOT} = "$ENV{HOME}/.plenv";
     }
 
 
-    # Provide plenv completions
     if (@ARGV > 0 && $ARGV[0] eq '--complete') {
         print `/usr/bin/perl $PERL_BUILD --definitions`;
         exit 0;
