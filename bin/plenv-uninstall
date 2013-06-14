@@ -17,8 +17,8 @@ if [ "$1" = "--complete" ]; then
   exec plenv versions --bare
 fi
 
-if [ -z "$plenv_ROOT" ]; then
-  plenv_ROOT="${HOME}/.plenv"
+if [ -z "$PLENV_ROOT" ]; then
+  PLENV_ROOT="${HOME}/.plenv"
 fi
 
 unset FORCE
@@ -39,7 +39,7 @@ case "$DEFINITION" in
 esac
 
 VERSION_NAME="${DEFINITION##*/}"
-PREFIX="${plenv_ROOT}/versions/${VERSION_NAME}"
+PREFIX="${PLENV_ROOT}/versions/${VERSION_NAME}"
 
 if [ -z "$FORCE" ]; then
   if [ ! -d "$PREFIX" ]; then
