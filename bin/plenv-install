@@ -8,6 +8,7 @@
 #
 #   -l/--list        List all available versions
 #   -v/--verbose     Verbose mode: print compilation status to stdout
+#   --as=<NAME>      Install the definition as <NAME>
 #
 # For detailed information on installing Perl versions with
 # perl-build, including a list of environment variables for adjusting
@@ -44,6 +45,7 @@ sub main {
         'version!'       => \my $version,
         'h|help'         => \my $help,
         'l|list'         => \my $list,
+        'as=s'           => \my $as,
     );
     if ($version) {
         print "$Perl::Build::VERSION\n";
@@ -57,7 +59,10 @@ sub main {
     }
 
     my $definition = shift @ARGV or usage();
-    my $prefix = "$ENV{PLENV_ROOT}/versions/$definition";
+    if (not defined $as) {
+        $as = $definition;
+    }
+    my $prefix = "$ENV{PLENV_ROOT}/versions/$as";
     if (-d $prefix) {
         die "$prefix is already installed\n";
     }
