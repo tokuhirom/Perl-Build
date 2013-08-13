@@ -39,7 +39,7 @@ sub main {
     }
 
     my $p = Getopt::Long::Parser->new(
-        config => [qw(posix_default no_ignore_case pass_through)]
+        config => [qw(posix_default no_ignore_case pass_through permute)]
     );
     $p->getoptions(
         'version!'       => \my $version,
