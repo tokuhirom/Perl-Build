@@ -2,6 +2,15 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.04 2013-08-13T00:03:11Z
+
+    - Added --as option for plenv-install command
+      (tokuhirom)
+    - fix case for PLENV_ROOT environment variable in plenv-uninstall
+      (Akihiro Uchida)
+    - Provide plenv completions. Closed #13
+      (tokuhirom)
+
 1.03 2013-05-31T00:35:58Z
 
     - It works well as plugin for plenv.
