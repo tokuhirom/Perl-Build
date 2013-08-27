@@ -9,6 +9,7 @@
 #   -l/--list        List all available versions
 #   -v/--verbose     Verbose mode: print compilation status to stdout
 #   --as=<NAME>      Install the definition as <NAME>
+#   --test           Run test cases
 #
 # For detailed information on installing Perl versions with
 # perl-build, including a list of environment variables for adjusting
