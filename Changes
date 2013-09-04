@@ -2,6 +2,17 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.05 2013-09-04T01:46:13Z
+
+    - document `--test` option.
+      (tokuhirom)
+    - Tweaks needed for conformance with CPAN::Changes::Spec
+      (Neil Bowers)
+    - plenv-install: Use 'permute' option for Getopt::Long::Parser
+      It allows `plenv install 5.18.1 -Dusedtrace --as 5.18.1-dtrace`.
+      This issue was reported by hanekomu.
+      (tokuhirom)
+
 1.04 2013-08-13T00:03:11Z
 
     - Added --as option for plenv-install command
