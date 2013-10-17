@@ -35,7 +35,7 @@ sub main {
 
 
     if (@ARGV > 0 && $ARGV[0] eq '--complete') {
-        print `/usr/bin/perl $PERL_BUILD --definitions`;
+        print `$^X $PERL_BUILD --definitions`;
         exit 0;
     }
 
@@ -55,7 +55,7 @@ sub main {
         usage();
     } elsif ($list) {
         print "Available versions:\n";
-        print `/usr/bin/perl $PERL_BUILD --definitions | sed 's/^/ /g'`;
+        print `$^X $PERL_BUILD --definitions | sed 's/^/ /g'`;
         exit 0;
     }
 
@@ -74,7 +74,7 @@ sub main {
     mkpath($build_dir);
 
     system(
-        '/usr/bin/perl',
+        $^X,
         '--',
         $PERL_BUILD,
         '--symlink-devel-executables',
