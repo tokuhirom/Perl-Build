@@ -39,14 +39,21 @@ sub main {
         exit 0;
     }
 
+    my (@D, @A, @U);
     my $p = Getopt::Long::Parser->new(
-        config => [qw(posix_default no_ignore_case pass_through permute)]
+        config => [qw(posix_default no_ignore_case pass_through permute bundling)]
     );
     $p->getoptions(
         'version!'       => \my $version,
         'h|help'         => \my $help,
         'l|list'         => \my $list,
         'as=s'           => \my $as,
+
+        # perl-build args
+        'j|jobs=i' => \my $jobs,
+        'D=s@'  => \@D,
+        'A=s@'  => \@A,
+        'U=s@'  => \@U,
     );
     if ($version) {
         print "$Perl::Build::VERSION\n";
@@ -63,6 +70,9 @@ sub main {
     if (not defined $as) {
         $as = $definition;
     }
+    if ($definition =~ /\A-/) {
+        die "You should put `${definition}` as a last argument.\n";
+    }
     my $prefix = "$ENV{PLENV_ROOT}/versions/$as";
     if (-d $prefix) {
         die "$prefix is already installed\n";
@@ -73,7 +83,9 @@ sub main {
     my $build_dir = "$ENV{PLENV_ROOT}/build/";
     mkpath($build_dir);
 
-    system(
+    print "Installing $definition as $as\n";
+
+    my @cmd = (
         $^X,
         '--',
         $PERL_BUILD,
@@ -81,10 +93,17 @@ sub main {
         '--build-dir'   => $build_dir,
         '--tarball-dir' => $cache_dir,
         '-Dusedevel',
+        (map { "-D$_" } @D),
+        (map { "-A$_" } @A),
+        (map { "-U$_" } @U),
+        ($jobs ? "--jobs=${jobs}" : ()),
         @ARGV,
         $definition,
-        $prefix,
-    ) == 0 or die "ABORT\n";
+        $prefix
+    );
+    print join(' ', @cmd), "\n";
+
+    system(@cmd) == 0 or die "ABORT\n";
 
     system("plenv rehash");
 }
