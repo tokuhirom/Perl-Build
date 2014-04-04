@@ -2,6 +2,21 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.06 2014-04-04T01:11:10Z
+
+    commit e04fcb3280188992fb3ebf85bf93ca11391b08ef
+    Author: tokuhirom <tokuhirom@gmail.com>
+    Date:   Tue Nov 5 09:02:09 2013 +0900
+
+        Support -D,-A,-U,-j as a first argument.
+        https://github.com/tokuhirom/plenv/issues/61
+
+    commit 2c59fa4836d6dab57b1fe079f4e0ca1ff5350f01
+    Author: Katsuhiro KONISHI <konishi@hauN.org>
+    Date:   Thu Oct 17 17:43:07 2013 +0900
+
+        change /usr/bin/perl to $^X
+
 1.05 2013-09-04T01:46:13Z
 
     - document `--test` option.

@@ -130,7 +130,7 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
         (Default: 1)
 
-    Returns an instance of [Perl::Build::Built](http://search.cpan.org/perldoc?Perl::Build::Built) to facilitate using the built perl from code.
+    Returns an instance of [Perl::Build::Built](https://metacpan.org/pod/Perl::Build::Built) to facilitate using the built perl from code.
 
 - Perl::Build->symlink\_devel\_executables($bin\_dir:Str)
 
@@ -144,14 +144,14 @@ __THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE__.
 
 - What's the difference between perlbrew?
 
-    [perlbrew](http://search.cpan.org/perldoc?perlbrew) is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
+    [perlbrew](https://metacpan.org/pod/perlbrew) is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
     It makes perl5 installation easily. That's all. perl-build doesn't care about the user's environment.
 
     So, perl-build is just a installer.
 
 # THANKS TO
 
-Most of the code was taken from [App::perlbrew](http://search.cpan.org/perldoc?App::perlbrew).
+Most of the code was taken from [App::perlbrew](https://metacpan.org/pod/App::perlbrew).
 
 TYPESTER - suggests `--patches` option
 
@@ -161,8 +161,6 @@ Thanks
 
 Tokuhiro Matsuno <tokuhirom@gmail.com>
 
-
-
 # LICENSE
 
 Copyright (C) Tokuhiro Matsuno
@@ -170,7 +168,7 @@ Copyright (C) Tokuhiro Matsuno
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-This software takes lot of the code from [App::perlbrew](http://search.cpan.org/perldoc?App::perlbrew). App::perlbrew's license is:
+This software takes lot of the code from [App::perlbrew](https://metacpan.org/pod/App::perlbrew). App::perlbrew's license is:
 
     The MIT License
 
@@ -193,5 +191,3 @@ This software takes lot of the code from [App::perlbrew](http://search.cpan.org/
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
-
-
