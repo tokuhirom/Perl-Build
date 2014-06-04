@@ -16,7 +16,7 @@ use HTTP::Tiny;
 use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
 
-our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://search.cpan.org/CPAN';
+our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://www.cpan.org';
 
 sub available_perls {
     my ( $class, $dist ) = @_;
