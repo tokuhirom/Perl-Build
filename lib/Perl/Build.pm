@@ -70,18 +70,17 @@ sub perl_release {
         my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
         return ($dist_tarball, $dist_tarball_url);
     }
+    my $tsv = http_get("http://perl-releases.s3-website-us-east-1.amazonaws.com/");
 
-    my $html = http_get("http://search.cpan.org/dist/perl-${version}");
-
-    unless ($html) {
+    unless ($tsv) {
         die "ERROR: Failed to download perl-${version} tarball.";
     }
 
     my ($dist_path, $dist_tarball) =
-        $html =~ m[<a href="(/CPAN/authors/id/.+/(perl-${version}.tar.(gz|bz2)))">Download</a>];
+        $tsv =~ m[^\Q${version}\E\t(.+?/(perl-${version}.tar.(gz|bz2)))]m;
     die "ERROR: Cannot find the tarball for perl-$version\n"
         if !$dist_path and !$dist_tarball;
-    my $dist_tarball_url = "http://search.cpan.org${dist_path}";
+    my $dist_tarball_url = "$CPAN_MIRROR/authors/id/${dist_path}";
     return ($dist_tarball, $dist_tarball_url);
 }
 
