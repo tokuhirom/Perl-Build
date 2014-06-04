@@ -15,6 +15,7 @@ use File::Temp;
 use HTTP::Tiny;
 use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
+use Time::Local;
 
 our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://www.cpan.org';
 
@@ -60,30 +61,87 @@ sub extract_tarball {
 sub perl_release {
     my ($class, $version) = @_;
 
-    # TODO: switch to metacpan API?
+    my ($dist_tarball, $dist_tarball_url);
+    for my $func (qw/cpan_perl_releases perl_releases_page search_cpan_org/) {
+        eval {
+            ($dist_tarball, $dist_tarball_url) = $class->can("perl_release_by_$func")->($class,$version);
+        };
+        warn "WARN: [$func] $@" if $@;
+        last if $dist_tarball && $dist_tarball_url;
+    }
+    die "ERROR: Cannot find the tarball for perl-$version\n"
+        if !$dist_tarball and !$dist_tarball_url;
+           
+    return ($dist_tarball, $dist_tarball_url);
+}
+
+sub perl_release_by_cpan_perl_releases {
+    my ($class, $version) = @_;
     my $tarballs = CPAN::Perl::Releases::perl_tarballs($version);
 
     my $x = (values %$tarballs)[0];
+    die "not found the tarball for perl-$version\n" unless $x;
+    my $dist_tarball = (split("/", $x))[-1];
+    my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
+    return ($dist_tarball, $dist_tarball_url);
+}
 
-    if ($x) {
-        my $dist_tarball = (split("/", $x))[-1];
-        my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
-        return ($dist_tarball, $dist_tarball_url);
+sub perl_release_by_perl_releases_page {
+    my ($class, $version) = @_;
+
+    my $url = "http://perl-releases.s3-website-us-east-1.amazonaws.com/";
+    my $http = HTTP::Tiny->new();
+    my $response = $http->get($url);
+    if (!$response->{success}) {
+        die "Cannot get content from $url: $response->{status} $response->{reason}\n";
     }
+
+    if ( ! exists $response->{headers}{'last-modified'} ) {
+        die "There is not Last-Modified header. ignore this response\n";
+    }
+
+    my $last_modified;
+    # Copy from HTTP::Tiny::_parse_date_time
+    my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
+    if ( $response->{headers}{'last-modified'} =~ 
+             /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
+        my @tl_parts = ($6, $5, $4, $1, (index($MoY,$2)/4), $3);
+        $last_modified = eval {
+            my $t = @tl_parts ? Time::Local::timegm(@tl_parts) : -1;
+            $t < 0 ? undef : $t;
+        };
+    }
+    if ( ! defined $last_modified || time - $last_modified > 3*86400 ) { #parse error or 3days old
+        die "This page is 3 or more days old. ignore\n";
+    }
+
+    my ($dist_path, $dist_tarball) =
+        $response->{content} =~ m[^\Q${version}\E\t(.+?/(perl-${version}.tar.(gz|bz2)))]m;
+    die "not found the tarball for perl-$version\n"
+        if !$dist_path and !$dist_tarball;
+    my $dist_tarball_url = "$CPAN_MIRROR/authors/id/${dist_path}";
+    return ($dist_tarball, $dist_tarball_url);
+
+}
+
+sub perl_release_by_search_cpan_org {
+    my ($class, $version) = @_;
 
     my $html = http_get("http://search.cpan.org/dist/perl-${version}");
 
     unless ($html) {
-        die "ERROR: Failed to download perl-${version} tarball.";
+        die "Failed to download perl-${version} tarball\n";
     }
 
     my ($dist_path, $dist_tarball) =
-        $html =~ m[<a href="(/CPAN/authors/id/.+/(perl-${version}.tar.(gz|bz2)))">Download</a>];
-    die "ERROR: Cannot find the tarball for perl-$version\n"
+        $html =~ m[<a href="/CPAN/(authors/id/.+/(perl-${version}.tar.(gz|bz2)))">Download</a>];
+    die "not found the tarball for perl-$version\n"
         if !$dist_path and !$dist_tarball;
-    my $dist_tarball_url = "http://search.cpan.org${dist_path}";
+    my $dist_tarball_url = "$CPAN_MIRROR/${dist_path}";
     return ($dist_tarball, $dist_tarball_url);
+
 }
+
 
 sub http_get {
     my ($url) = @_;
@@ -93,7 +151,7 @@ sub http_get {
     if ($response->{success}) {
         return $response->{content};
     } else {
-        return "Cannot get content from $url: $response->{status} $response->{reason}";
+        die "Cannot get content from $url: $response->{status} $response->{reason}\n";
     }
 }
 
