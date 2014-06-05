@@ -1,0 +1,41 @@
+# How to fatpack with Vagrant
+# vagrant >= 1.6.3 is required
+#
+# * fatpack build-perl
+#   $ cd author
+#   $ vagrant up
+# 
+# * halt vm
+#   $ vagrant halt
+#
+# * retry fatpack
+#   $ vagrant up --provision
+#     or 
+#   $ vagrant reload --provision
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "hashicorp/precise64"
+  config.vm.synced_folder "./", "/vagrant", disabled: true
+  config.vm.synced_folder "../", "/perl-build"
+  config.vm.provision "docker" do |d|
+    d.build_image "/perl-build/author",
+      args: "-t perl-build"
+    d.run "perl-build",
+      args: "-v /perl-build:/perl-build",
+      daemonize: true
+  end
+  config.vm.provision "shell", :inline => <<-EOT
+while :
+do
+  if docker ps | grep "perl-build" >/dev/null 2>&1; then
+    sleep 1 
+  else
+    break
+  fi
+done
+EOT
+end
+
