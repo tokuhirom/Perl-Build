@@ -1,7 +1,7 @@
 # How to fatpack with docker
 #
 # docker build -t `whoami`/perl-build .
-# docker run -v `pwd/../`:/perl-build `whoami`/perl-build 
+# docker run -v `pwd`/../:/perl-build `whoami`/perl-build
 #
 
 FROM jmmills/plenv-base:latest
