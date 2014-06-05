@@ -2,6 +2,16 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.07 2014-06-05T07:02:16Z
+
+    - Change default cpan mirror to www.cpan.org.
+      (kazeburo++)
+    - use perl-releases page instead of scraping search.cpan.org
+      (kazeburo++)
+    - update github raw content URI
+      ref: https://developer.github.com/changes/2014-04-25-user-content-security/
+      (chiba)
+
 1.06 2014-04-04T01:11:10Z
 
     commit e04fcb3280188992fb3ebf85bf93ca11391b08ef
