@@ -32,6 +32,9 @@ subtest 'perl-releases-page' => sub {
 
 subtest 'search.cpan.org' => sub {
     plan skip_all => 'author test only' unless $ENV{AUTHOR_TESTING};
+    my $tiny = HTTP::Tiny->new(timeout=>5);
+    my $res = $tiny->get("http://search.cpan.org/");
+    plan skip_all => 'search.cpan.org seems to be down' unless $res->{success};
     local $Perl::Build::CPAN_MIRROR = '';
     no warnings 'redefine';
     *{CPAN::Perl::Releases::perl_tarballs} = sub {};
