@@ -2,6 +2,13 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.08 2014-06-09T02:57:17Z
+
+    - requires newer Pod::Usage for fixing a dependencies error on perl-5.8
+      (kazeburo)
+    - change shebang of perl-build command
+      (kazeburo)
+
 1.07 2014-06-05T07:02:16Z
 
     - Change default cpan mirror to www.cpan.org.
