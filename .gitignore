@@ -29,3 +29,5 @@ Perl-Build-*.tar.gz
 /packlists
 !LICENSE
 /author/.vagrant
+*~
+
