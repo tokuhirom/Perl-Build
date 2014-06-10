@@ -4,7 +4,7 @@ Perl::Build - perl builder
 
 # SYNOPSIS
 
-# Install as plenv plugin(Recommended)
+# Install as plenv plugin (Recommended)
 
     % git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
 
@@ -44,97 +44,97 @@ This is yet another perl builder module.
 
 # METHODS
 
-- Perl::Build->install\_from\_cpan($version, %args)
+- `Perl::Build->install_from_cpan($version, %args)`
 
-    Install $version perl from CPAN. This method fetches tar ball from CPAN, build, and install it.
+    Install `$version` perl from CPAN. This method fetches tar ball from CPAN, build, and install it.
 
-    You can pass following options in %args.
+    You can pass following options in `%args`.
 
-    - dst\_path
+    - `dst_path`
 
         Destination directory to install perl.
 
-    - configure\_options : ArrayRef(Optional)
+    - `configure_options : ArrayRef(Optional)`
 
-        Command line arguments for ./Configure.
+        Command line arguments for `./Configure`.
 
         (Default: `['-de']`)
 
-    - tarball\_dir (Optional)
+    - `tarball_dir` (Optional)
 
         Temporary directory to put tar ball.
 
-    - build\_dir (Optional)
+    - `build_dir` (Optional)
 
         Temporary directory to build binary.
 
-    - jobs: Int(Optional)
+    - `jobs: Int` (Optional)
 
         Parallel building and testing.
 
-        (Default: 1)
+        (Default: `1`)
 
-- Perl::Build->install\_from\_tarball($dist\_tarball\_path, %args)
+- `Perl::Build->install_from_tarball($dist_tarball_path, %args)`
 
     Install perl from tar ball. This method extracts tar ball, build, and install.
 
-    You can pass following options in %args.
+    You can pass following options in `%args`.
 
-    - dst\_path (Required)
+    - `dst_path` (Required)
 
         Destination directory to install perl.
 
-    - configure\_options : ArrayRef(Optional)
+    - `configure_options : ArrayRef` (Optional)
 
-        Command line arguments for ./Configure.
+        Command line arguments for `./Configure`.
 
         (Default: `['-de']`)
 
-    - build\_dir (Optional)
+    - `build_dir` (Optional)
 
         Temporary directory to build binary.
 
-    - jobs: Int(Optional)
+    - `jobs: Int` (Optional)
 
         Parallel building and testing.
 
-        (Default: 1)
+        (Default: `1`)
 
-- Perl::Build->install(%args)
+- `Perl::Build->install(%args)`
 
     Build and install Perl5 from extracted source directory.
 
-    - src\_path (Required)
+    - `src_path` (Required)
 
         Source code directory to build.  That contains extracted Perl5 source code.
 
-    - dst\_path (Required)
+    - `dst_path` (Required)
 
         Destination directory to install perl.
 
-    - configure\_options : ArrayRef(Optional)
+    - `configure_options : ArrayRef` (Optional)
 
-        Command line arguments for ./Configure.
+        Command line arguments for `./Configure`.
 
         (Default: `['-de']`)
 
-    - test: Bool(Optional)
+    - `test: Bool` (Optional)
 
-        If you set this value as true, Perl::Build runs `make test` after building.
+        If you set this value as `true`, `Perl::Build` runs `make test` after building.
 
-        (Default: 0)
+        (Default: `0`)
 
-    - jobs: Int(Optional)
+    - `jobs: Int` (Optional)
 
         Parallel building and testing.
 
-        (Default: 1)
+        (Default: `1`)
 
     Returns an instance of [Perl::Build::Built](https://metacpan.org/pod/Perl::Build::Built) to facilitate using the built perl from code.
 
-- Perl::Build->symlink\_devel\_executables($bin\_dir:Str)
+- `Perl::Build->symlink_devel_executables($bin_dir:Str)`
 
-    Perl5 binary generated with ` -Dusedevel `, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
+    Perl5 binary generated with `-Dusedevel`, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
 
 # FAQ
 
@@ -142,7 +142,7 @@ This is yet another perl builder module.
 
     If you want to use patchperl plugins, please Google "PERL5\_PATCHPERL\_PLUGIN".
 
-- What's the difference between perlbrew?
+- What's the difference between `perlbrew`?
 
     [perlbrew](https://metacpan.org/pod/perlbrew) is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
     It makes perl5 installation easily. That's all. perl-build doesn't care about the user's environment.
@@ -151,7 +151,7 @@ This is yet another perl builder module.
 
 # THANKS TO
 
-Most of the code was taken from [App::perlbrew](https://metacpan.org/pod/App::perlbrew).
+Most of the code was taken from [`App::perlbrew`](https://metacpan.org/pod/App::perlbrew).
 
 TYPESTER - suggests `--patches` option
 
