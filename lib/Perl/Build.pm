@@ -375,7 +375,7 @@ Perl::Build - perl builder
 
 =head1 SYNOPSIS
 
-=head1 Install as plenv plugin(Recommended)
+=head1 Install as plenv plugin (Recommended)
 
     % git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
 
@@ -417,109 +417,109 @@ B<THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE>.
 
 =over 4
 
-=item Perl::Build->install_from_cpan($version, %args)
+=item C<< Perl::Build->install_from_cpan($version, %args) >>
 
-Install $version perl from CPAN. This method fetches tar ball from CPAN, build, and install it.
+Install C<< $version >> perl from CPAN. This method fetches tar ball from CPAN, build, and install it.
 
-You can pass following options in %args.
+You can pass following options in C<< %args >>.
 
 =over 4
 
-=item dst_path
+=item C<< dst_path >>
 
 Destination directory to install perl.
 
-=item configure_options : ArrayRef(Optional)
+=item C<< configure_options : ArrayRef(Optional) >>
 
-Command line arguments for ./Configure.
+Command line arguments for C<< ./Configure >>.
 
 (Default: C<< ['-de'] >>)
 
-=item tarball_dir (Optional)
+=item C<< tarball_dir >> (Optional)
 
 Temporary directory to put tar ball.
 
-=item build_dir (Optional)
+=item C<< build_dir >> (Optional)
 
 Temporary directory to build binary.
 
-=item jobs: Int(Optional)
+=item C<< jobs: Int >> (Optional)
 
 Parallel building and testing.
 
-(Default: 1)
+(Default: C<1>)
 
 =back
 
-=item Perl::Build->install_from_tarball($dist_tarball_path, %args)
+=item C<< Perl::Build->install_from_tarball($dist_tarball_path, %args) >>
 
 Install perl from tar ball. This method extracts tar ball, build, and install.
 
-You can pass following options in %args.
+You can pass following options in C<< %args >>.
 
 =over 4
 
-=item dst_path (Required)
+=item C<< dst_path >> (Required)
 
 Destination directory to install perl.
 
-=item configure_options : ArrayRef(Optional)
+=item C<< configure_options : ArrayRef >> (Optional)
 
-Command line arguments for ./Configure.
+Command line arguments for C<< ./Configure >>.
 
 (Default: C<< ['-de'] >>)
 
-=item build_dir (Optional)
+=item C<< build_dir >> (Optional)
 
 Temporary directory to build binary.
 
-=item jobs: Int(Optional)
+=item C<< jobs: Int >> (Optional)
 
 Parallel building and testing.
 
-(Default: 1)
+(Default: C<1>)
 
 =back
 
-=item Perl::Build->install(%args)
+=item C<< Perl::Build->install(%args) >>
 
 Build and install Perl5 from extracted source directory.
 
 =over 4
 
-=item src_path (Required)
+=item C<< src_path >> (Required)
 
 Source code directory to build.  That contains extracted Perl5 source code.
 
-=item dst_path (Required)
+=item C<< dst_path >> (Required)
 
 Destination directory to install perl.
 
-=item configure_options : ArrayRef(Optional)
+=item C<< configure_options : ArrayRef >> (Optional)
 
-Command line arguments for ./Configure.
+Command line arguments for C<< ./Configure >>.
 
 (Default: C<< ['-de'] >>)
 
-=item test: Bool(Optional)
+=item C<< test: Bool >> (Optional)
 
-If you set this value as true, Perl::Build runs C<< make test >> after building.
+If you set this value as C<< true >>, C<< Perl::Build >> runs C<< make test >> after building.
 
-(Default: 0)
+(Default: C<0>)
 
-=item jobs: Int(Optional)
+=item C<< jobs: Int >> (Optional)
 
 Parallel building and testing.
 
-(Default: 1)
+(Default: C<1>)
 
 =back
 
 Returns an instance of L<Perl::Build::Built> to facilitate using the built perl from code.
 
-=item Perl::Build->symlink_devel_executables($bin_dir:Str)
+=item C<< Perl::Build->symlink_devel_executables($bin_dir:Str) >>
 
-Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
+Perl5 binary generated with C<< -Dusedevel >>, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
 
 =back
 
@@ -531,7 +531,7 @@ Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method 
 
 If you want to use patchperl plugins, please Google "PERL5_PATCHPERL_PLUGIN".
 
-=item What's the difference between perlbrew?
+=item What's the difference between C<< perlbrew >>?
 
 L<perlbrew> is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
 It makes perl5 installation easily. That's all. perl-build doesn't care about the user's environment.
@@ -542,7 +542,7 @@ So, perl-build is just a installer.
 
 =head1 THANKS TO
 
-Most of the code was taken from L<App::perlbrew>.
+Most of the code was taken from L<< C<App::perlbrew> >>.
 
 TYPESTER - suggests C<< --patches >> option
 
