@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 use 5.008002;
-our $VERSION = '1.06';
+our $VERSION = '1.08';
 
 use Carp ();
 use File::Basename;
@@ -15,8 +15,9 @@ use File::Temp;
 use HTTP::Tiny;
 use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
+use Time::Local;
 
-our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://search.cpan.org/CPAN';
+our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://www.cpan.org';
 
 sub available_perls {
     my ( $class, $dist ) = @_;
@@ -60,30 +61,87 @@ sub extract_tarball {
 sub perl_release {
     my ($class, $version) = @_;
 
-    # TODO: switch to metacpan API?
+    my ($dist_tarball, $dist_tarball_url);
+    for my $func (qw/cpan_perl_releases perl_releases_page search_cpan_org/) {
+        eval {
+            ($dist_tarball, $dist_tarball_url) = $class->can("perl_release_by_$func")->($class,$version);
+        };
+        warn "WARN: [$func] $@" if $@;
+        last if $dist_tarball && $dist_tarball_url;
+    }
+    die "ERROR: Cannot find the tarball for perl-$version\n"
+        if !$dist_tarball and !$dist_tarball_url;
+           
+    return ($dist_tarball, $dist_tarball_url);
+}
+
+sub perl_release_by_cpan_perl_releases {
+    my ($class, $version) = @_;
     my $tarballs = CPAN::Perl::Releases::perl_tarballs($version);
 
     my $x = (values %$tarballs)[0];
+    die "not found the tarball for perl-$version\n" unless $x;
+    my $dist_tarball = (split("/", $x))[-1];
+    my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
+    return ($dist_tarball, $dist_tarball_url);
+}
 
-    if ($x) {
-        my $dist_tarball = (split("/", $x))[-1];
-        my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
-        return ($dist_tarball, $dist_tarball_url);
+sub perl_release_by_perl_releases_page {
+    my ($class, $version) = @_;
+
+    my $url = "http://perl-releases.s3-website-us-east-1.amazonaws.com/";
+    my $http = HTTP::Tiny->new();
+    my $response = $http->get($url);
+    if (!$response->{success}) {
+        die "Cannot get content from $url: $response->{status} $response->{reason}\n";
     }
+
+    if ( ! exists $response->{headers}{'last-modified'} ) {
+        die "There is not Last-Modified header. ignore this response\n";
+    }
+
+    my $last_modified;
+    # Copy from HTTP::Tiny::_parse_date_time
+    my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
+    if ( $response->{headers}{'last-modified'} =~ 
+             /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
+        my @tl_parts = ($6, $5, $4, $1, (index($MoY,$2)/4), $3);
+        $last_modified = eval {
+            my $t = @tl_parts ? Time::Local::timegm(@tl_parts) : -1;
+            $t < 0 ? undef : $t;
+        };
+    }
+    if ( ! defined $last_modified || time - $last_modified > 3*86400 ) { #parse error or 3days old
+        die "This page is 3 or more days old. ignore\n";
+    }
+
+    my ($dist_path, $dist_tarball) =
+        $response->{content} =~ m[^\Q${version}\E\t(.+?/(perl-${version}.tar.(gz|bz2)))]m;
+    die "not found the tarball for perl-$version\n"
+        if !$dist_path and !$dist_tarball;
+    my $dist_tarball_url = "$CPAN_MIRROR/authors/id/${dist_path}";
+    return ($dist_tarball, $dist_tarball_url);
+
+}
+
+sub perl_release_by_search_cpan_org {
+    my ($class, $version) = @_;
 
     my $html = http_get("http://search.cpan.org/dist/perl-${version}");
 
     unless ($html) {
-        die "ERROR: Failed to download perl-${version} tarball.";
+        die "Failed to download perl-${version} tarball\n";
     }
 
     my ($dist_path, $dist_tarball) =
-        $html =~ m[<a href="(/CPAN/authors/id/.+/(perl-${version}.tar.(gz|bz2)))">Download</a>];
-    die "ERROR: Cannot find the tarball for perl-$version\n"
+        $html =~ m[<a href="/CPAN/(authors/id/.+/(perl-${version}.tar.(gz|bz2)))">Download</a>];
+    die "not found the tarball for perl-$version\n"
         if !$dist_path and !$dist_tarball;
-    my $dist_tarball_url = "http://search.cpan.org${dist_path}";
+    my $dist_tarball_url = "$CPAN_MIRROR/${dist_path}";
     return ($dist_tarball, $dist_tarball_url);
+
 }
+
 
 sub http_get {
     my ($url) = @_;
@@ -93,7 +151,7 @@ sub http_get {
     if ($response->{success}) {
         return $response->{content};
     } else {
-        return "Cannot get content from $url: $response->{status} $response->{reason}";
+        die "Cannot get content from $url: $response->{status} $response->{reason}\n";
     }
 }
 
@@ -317,7 +375,7 @@ Perl::Build - perl builder
 
 =head1 SYNOPSIS
 
-=head1 Install as plenv plugin(Recommended)
+=head1 Install as plenv plugin (Recommended)
 
     % git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
 
@@ -359,109 +417,109 @@ B<THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE>.
 
 =over 4
 
-=item Perl::Build->install_from_cpan($version, %args)
+=item C<< Perl::Build->install_from_cpan($version, %args) >>
 
-Install $version perl from CPAN. This method fetches tar ball from CPAN, build, and install it.
+Install C<< $version >> perl from CPAN. This method fetches tar ball from CPAN, build, and install it.
 
-You can pass following options in %args.
+You can pass following options in C<< %args >>.
 
 =over 4
 
-=item dst_path
+=item C<< dst_path >>
 
 Destination directory to install perl.
 
-=item configure_options : ArrayRef(Optional)
+=item C<< configure_options : ArrayRef(Optional) >>
 
-Command line arguments for ./Configure.
+Command line arguments for C<< ./Configure >>.
 
 (Default: C<< ['-de'] >>)
 
-=item tarball_dir (Optional)
+=item C<< tarball_dir >> (Optional)
 
 Temporary directory to put tar ball.
 
-=item build_dir (Optional)
+=item C<< build_dir >> (Optional)
 
 Temporary directory to build binary.
 
-=item jobs: Int(Optional)
+=item C<< jobs: Int >> (Optional)
 
 Parallel building and testing.
 
-(Default: 1)
+(Default: C<1>)
 
 =back
 
-=item Perl::Build->install_from_tarball($dist_tarball_path, %args)
+=item C<< Perl::Build->install_from_tarball($dist_tarball_path, %args) >>
 
 Install perl from tar ball. This method extracts tar ball, build, and install.
 
-You can pass following options in %args.
+You can pass following options in C<< %args >>.
 
 =over 4
 
-=item dst_path (Required)
+=item C<< dst_path >> (Required)
 
 Destination directory to install perl.
 
-=item configure_options : ArrayRef(Optional)
+=item C<< configure_options : ArrayRef >> (Optional)
 
-Command line arguments for ./Configure.
+Command line arguments for C<< ./Configure >>.
 
 (Default: C<< ['-de'] >>)
 
-=item build_dir (Optional)
+=item C<< build_dir >> (Optional)
 
 Temporary directory to build binary.
 
-=item jobs: Int(Optional)
+=item C<< jobs: Int >> (Optional)
 
 Parallel building and testing.
 
-(Default: 1)
+(Default: C<1>)
 
 =back
 
-=item Perl::Build->install(%args)
+=item C<< Perl::Build->install(%args) >>
 
 Build and install Perl5 from extracted source directory.
 
 =over 4
 
-=item src_path (Required)
+=item C<< src_path >> (Required)
 
 Source code directory to build.  That contains extracted Perl5 source code.
 
-=item dst_path (Required)
+=item C<< dst_path >> (Required)
 
 Destination directory to install perl.
 
-=item configure_options : ArrayRef(Optional)
+=item C<< configure_options : ArrayRef >> (Optional)
 
-Command line arguments for ./Configure.
+Command line arguments for C<< ./Configure >>.
 
 (Default: C<< ['-de'] >>)
 
-=item test: Bool(Optional)
+=item C<< test: Bool >> (Optional)
 
-If you set this value as true, Perl::Build runs C<< make test >> after building.
+If you set this value as C<< true >>, C<< Perl::Build >> runs C<< make test >> after building.
 
-(Default: 0)
+(Default: C<0>)
 
-=item jobs: Int(Optional)
+=item C<< jobs: Int >> (Optional)
 
 Parallel building and testing.
 
-(Default: 1)
+(Default: C<1>)
 
 =back
 
 Returns an instance of L<Perl::Build::Built> to facilitate using the built perl from code.
 
-=item Perl::Build->symlink_devel_executables($bin_dir:Str)
+=item C<< Perl::Build->symlink_devel_executables($bin_dir:Str) >>
 
-Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
+Perl5 binary generated with C<< -Dusedevel >>, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
 
 =back
 
@@ -473,7 +531,7 @@ Perl5 binary generated with C< -Dusedevel >, is "perl-5.12.2" form. This method 
 
 If you want to use patchperl plugins, please Google "PERL5_PATCHPERL_PLUGIN".
 
-=item What's the difference between perlbrew?
+=item What's the difference between C<< perlbrew >>?
 
 L<perlbrew> is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
 It makes perl5 installation easily. That's all. perl-build doesn't care about the user's environment.
@@ -484,7 +542,7 @@ So, perl-build is just a installer.
 
 =head1 THANKS TO
 
-Most of the code was taken from L<App::perlbrew>.
+Most of the code was taken from L<< C<App::perlbrew> >>.
 
 TYPESTER - suggests C<< --patches >> option
 

@@ -28,3 +28,6 @@ Perl-Build-*.tar.gz
 /fatpacker.trace
 /packlists
 !LICENSE
+/author/.vagrant
+*~
+

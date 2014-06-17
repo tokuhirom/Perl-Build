@@ -13,5 +13,6 @@ if type perlstrip >/dev/null 2>&1; then
 fi
 
 (echo "#!/usr/bin/env perl"; fatpack file; cat $SRC) > $DST
+perl -pi -e 's|^#!/usr/bin/perl|#!/usr/bin/env perl|' $DST
 chmod +x $DST
 
