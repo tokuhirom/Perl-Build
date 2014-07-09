@@ -55,7 +55,11 @@ sub extract_tarball {
     system($extract_command) == 0
         or die "Failed to extract $dist_tarball";
     $dist_tarball =~ s{(?:.*/)?([^/]+)\.tar\.(?:gz|bz2)$}{$1};
-    return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
+    if ($dist_tarball eq 'blead') {
+        return catfile($destdir, "perl5-$dist_tarball");
+    } else {
+        return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
+    }
 }
 
 sub perl_release {

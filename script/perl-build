@@ -63,7 +63,19 @@ push @configure_options, map { "-U$_" } @U;
 
 $ENV{PERL5_PATCHPERL_PLUGIN} = $patches if defined $patches;
 
-if ($stuff =~ m{^http://}) {
+if ($stuff eq 'blead') {
+    my $url = "https://github.com/Perl/perl5/archive/blead.tar.gz";
+    Perl::Build->install_from_url(
+        $url => (
+            dst_path          => $dest,
+            configure_options => \@configure_options,
+            test              => $test,
+            build_dir         => $build_dir,
+            jobs              => $jobs,
+            tarball_dir       => $tarball_dir,
+        )
+    );
+} elsif ($stuff =~ m{^http://}) {
     Perl::Build->install_from_url(
         $stuff => (
             dst_path          => $dest,
