@@ -55,7 +55,19 @@ sub extract_tarball {
     system($extract_command) == 0
         or die "Failed to extract $dist_tarball";
     $dist_tarball =~ s{(?:.*/)?([^/]+)\.tar\.(?:gz|bz2)$}{$1};
-    return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
+    if ($dist_tarball eq 'blead') {
+        opendir my $dh, $destdir or die "Can't open $destdir: $!";
+        my $latest = [];
+        while(my $dir = readdir $dh) {
+            next unless -d $dir && $dir =~ /perl-[0-9a-f]{7,8}$/;
+            my $mtime = (stat(_))[9];
+            $latest = [$dir, $mtime] if !$latest->[1] or $latest->[1] < $mtime;
+        }
+        closedir $dh;
+        return catfile($destdir, $latest->[0]);
+    } else {
+        return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
+    }
 }
 
 sub perl_release {
