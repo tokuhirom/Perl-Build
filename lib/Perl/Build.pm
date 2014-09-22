@@ -59,7 +59,7 @@ sub extract_tarball {
         opendir my $dh, $destdir or die "Can't open $destdir: $!";
         my $latest = [];
         while(my $dir = readdir $dh) {
-            next unless -d $dir && $dir =~ /perl-[0-9a-f]{7,8}$/;
+            next unless -d catfile($destdir, $dir) && $dir =~ /perl-[0-9a-f]{7,8}$/;
             my $mtime = (stat(_))[9];
             $latest = [$dir, $mtime] if !$latest->[1] or $latest->[1] < $mtime;
         }
