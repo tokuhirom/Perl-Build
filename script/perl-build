@@ -68,7 +68,7 @@ if ($stuff eq 'blead') {
     Perl::Build->install_from_url(
         $url => (
             dst_path          => $dest,
-            configure_options => \@configure_options,
+            configure_options => ['-Dusedevel', @configure_options],
             test              => $test,
             build_dir         => $build_dir,
             jobs              => $jobs,
