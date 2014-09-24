@@ -2,6 +2,11 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.09 2014-09-24T02:46:59Z
+
+    - add support for install blead from perl5.git snapshot
+      (charsbar, syohex)
+
 1.08 2014-06-09T02:57:17Z
 
     - requires newer Pod::Usage for fixing a dependencies error on perl-5.8
