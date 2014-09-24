@@ -318,6 +318,9 @@ sub install {
 
         # build
         my @make = qw(make);
+        if ($ENV{PERL_BUILD_COMPILE_OPTIONS}) {
+            push @make, $ENV{PERL_BUILD_COMPILE_OPTIONS};
+        }
         if ($jobs) {
             push @make, '-j', $jobs;
         }
