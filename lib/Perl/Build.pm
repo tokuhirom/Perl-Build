@@ -248,6 +248,26 @@ sub install_from_url {
     );
 }
 
+sub install_from_checkout {
+    my ($class, $checkout_dir, %args) = @_;
+    $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
+
+    my $build_dir = $checkout_dir;
+    my $dst_path = $args{dst_path}
+        or die "Missing mandatory parameter: dst_path";
+    my $configure_options = $args{configure_options}
+        || ['-de'];
+
+    Perl::Build->install(
+        src_path          => $checkout_dir,
+        dst_path          => $dst_path,
+        configure_options => $configure_options,
+        test              => $args{test},
+        jobs              => $args{jobs},
+        revision          => $args{revision},
+    );
+}
+
 sub install_from_tarball {
     my ($class, $dist_tarball_path, %args) = @_;
     $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
@@ -297,6 +317,10 @@ sub install {
 
     {
         my $dir = pushd($src_path);
+
+        if ($args{revision} && -d "$dir/.git") {
+            $class->do_system("git checkout $args{revision}");
+        }
 
         # determine_version is a public API.
         my $dist_version = Devel::PatchPerl->determine_version();
@@ -422,6 +446,14 @@ Perl::Build - perl builder
         )
     );
 
+    # install perl from checkout
+    my $result = Perl::Build->install_from_checkout(
+        'path/to/checkout' => (
+            dst_path          => '/path/to/blead-12345abcde/',
+            configure_options => ['-des', '-Dusedevel'],
+        )
+    );
+
 =head1 DESCRIPTION
 
 This is yet another perl builder module.
@@ -493,6 +525,36 @@ Temporary directory to build binary.
 Parallel building and testing.
 
 (Default: C<1>)
+
+=back
+
+=item C<< Perl::Build->install_from_checkout($checkout_dir, %args) >>
+
+Install perl from a directory where you checked out from the Perl5 repository. This method does build and install, but not fetch nor extract.
+
+You can pass following options in C<< %args >>.
+
+=over 4
+
+=item C<< dst_path >> (Required)
+
+Destination directory to install perl.
+
+=item C<< configure_options : ArrayRef >> (Optional)
+
+Command line arguments for C<< ./Configure >>.
+
+(Default: C<< ['-de'] >>)
+
+=item C<< jobs: Int >> (Optional)
+
+Parallel building and testing.
+
+(Default: C<1>)
+
+=item C<< revision >> (Optional)
+
+Git revision of the repository. This is usually taken from C<< .git/(FETCH_)?HEAD >> file.
 
 =back
 
