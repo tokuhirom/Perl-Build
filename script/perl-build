@@ -31,6 +31,8 @@ GetOptions(
     'tarball-dir=s' => \my $tarball_dir,
     'version' => \my $show_version,
     'symlink-devel-executables!' => \$symlink_devel_executables,
+    'checkout-dir=s' => \my $checkout_dir,
+    'revision=s' => \my $revision,
 );
 for (@D, @A, @U) {
     s/^=//;
@@ -63,7 +65,17 @@ push @configure_options, map { "-U$_" } @U;
 
 $ENV{PERL5_PATCHPERL_PLUGIN} = $patches if defined $patches;
 
-if ($stuff eq 'blead') {
+if ($checkout_dir) {
+    Perl::Build->install_from_checkout(
+        $checkout_dir => (
+            dst_path          => $dest,
+            configure_options => ['-Dusedevel', @configure_options],
+            test              => $test,
+            jobs              => $jobs,
+            revision          => $revision,
+        )
+    );
+} elsif ($stuff eq 'blead') {
     my $url = "http://perl5.git.perl.org/perl.git/snapshot/blead.tar.gz";
     Perl::Build->install_from_url(
         $url => (
@@ -185,6 +197,14 @@ Show version number and exit.
 =item --symlink-devel-executables
 
 Create symlinks for development version perl commands.
+
+=item --checkout-dir
+
+Specify a directory where you checked out from the Perl5 git repository.
+
+=item --revision
+
+Specify a git revision of Perl5.
 
 =back
 

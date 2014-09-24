@@ -4,12 +4,15 @@
 #
 # Usage: plenv install [-v|--verbose] <version>
 #        plenv install [-v|--verbose] /path/to/definition
+#        plenv install [-v|--verbose] --checkout-dir /path/to/checkout
 #        plenv install -l|--list
 #
 #   -l/--list        List all available versions
 #   -v/--verbose     Verbose mode: print compilation status to stdout
 #   --as=<NAME>      Install the definition as <NAME>
 #   --test           Run test cases
+#   --checkout-dir=<DIR> Install (blead HEAD) from a checkout directory
+#   --revision=<SHA1> Specify a git revision
 #
 # For detailed information on installing Perl versions with
 # perl-build, including a list of environment variables for adjusting
@@ -48,6 +51,8 @@ sub main {
         'h|help'         => \my $help,
         'l|list'         => \my $list,
         'as=s'           => \my $as,
+        'checkout-dir=s' => \my $checkout_dir,
+        'revision=s'     => \my $revision,
 
         # perl-build args
         'j|jobs=i' => \my $jobs,
@@ -64,6 +69,27 @@ sub main {
         print "Available versions:\n";
         print `$^X $PERL_BUILD --definitions | sed 's/^/ /g'`;
         exit 0;
+    }
+    if ($checkout_dir) {
+        if (!$revision) {
+            if (open my $fh, '<', "$checkout_dir/.git/HEAD") {
+                my $line = <$fh>;
+                $revision = substr($line, 0, 10) if $line =~ /^[0-9a-f]{10}/i;
+                close $fh;
+            }
+            if (!$revision && open my $fh, '<', "$checkout_dir/.git/FETCH_HEAD") {
+                while(<$fh>) {
+                    if (/branch 'blead'/) {
+                        $revision = substr($_, 0, 10);
+                        last;
+                    }
+                }
+                close $fh;
+            }
+            die "Revision not found.\n" unless $revision;
+        }
+        $as = "blead-$revision";
+        unshift @ARGV, $as if !@ARGV or $ARGV[0] =~ /^blead/;
     }
 
     my $definition = shift @ARGV or usage();
@@ -92,6 +118,8 @@ sub main {
         '--symlink-devel-executables',
         '--build-dir'   => $build_dir,
         '--tarball-dir' => $cache_dir,
+        '--checkout-dir' => $checkout_dir,
+        '--revision' => $revision,
         '-Dusedevel',
         (map { "-D$_" } @D),
         (map { "-A$_" } @A),
