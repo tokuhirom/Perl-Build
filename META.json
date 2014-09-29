@@ -72,7 +72,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.09",
+   "version" : "1.10",
    "x_contributors" : [
       "Daisuke Murase <typester@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",
@@ -84,8 +84,8 @@
       "Masahiro Chiba <nihen@megabbs.com>",
       "hagihala <hagihala@hatena.ne.jp>",
       "Tony <zearin@gonk.net>",
-      "Kenichi Ishigaki <ishigaki@cpan.org>",
+      "Syohei YOSHIDA <syohex@gmail.com>",
       "Masahiro Nagano <kazeburo@gmail.com>",
-      "Syohei YOSHIDA <syohex@gmail.com>"
+      "Kenichi Ishigaki <ishigaki@cpan.org>"
    ]
 }

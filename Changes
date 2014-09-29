@@ -2,6 +2,10 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.10 2014-09-29T06:54:29Z
+
+    - support PERL_BUILD_COMPILE_OPTIONS env (charsbar)
+
 1.09 2014-09-24T02:46:59Z
 
     - add support for install blead from perl5.git snapshot
