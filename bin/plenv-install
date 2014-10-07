@@ -73,7 +73,12 @@ sub main {
     if ($definition =~ /\A-/) {
         die "You should put `${definition}` as a last argument.\n";
     }
-    my $prefix = "$ENV{PLENV_ROOT}/versions/$as";
+    my $prefix;
+    if (defined $ENV{PLENV_PREFIX}) {
+        $prefix = "$ENV{PLENV_PREFIX}/versions/$as";
+    } else {
+        $prefix = "$ENV{PLENV_ROOT}/versions/$as";
+    }
     if (-d $prefix) {
         die "$prefix is already installed\n";
     }
