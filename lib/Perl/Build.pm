@@ -326,7 +326,7 @@ sub install {
         }
         $class->do_system(\@make);
         if ($test) {
-            local $ENV{TEST_JOBS} = $jobs;
+            local $ENV{TEST_JOBS} = $jobs if $jobs;
             # Test via "make test_harness" if available so we'll get
             # automatic parallel testing via $HARNESS_OPTIONS. The
             # "test_harness" target was added in 5.7.3, which was the last
