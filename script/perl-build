@@ -31,6 +31,7 @@ GetOptions(
     'tarball-dir=s' => \my $tarball_dir,
     'version' => \my $show_version,
     'symlink-devel-executables!' => \$symlink_devel_executables,
+    'noman' => \my $noman,
 );
 for (@D, @A, @U) {
     s/^=//;
@@ -60,6 +61,7 @@ my @configure_options = @ARGV ? @ARGV : ('-de');
 push @configure_options, map { "-D$_" } @D;
 push @configure_options, map { "-A$_" } @A;
 push @configure_options, map { "-U$_" } @U;
+push @configure_options, "-Dman1dir=none", "-Dman3dir=none" if $noman;
 
 $ENV{PERL5_PATCHPERL_PLUGIN} = $patches if defined $patches;
 
@@ -185,6 +187,11 @@ Show version number and exit.
 =item --symlink-devel-executables
 
 Create symlinks for development version perl commands.
+
+=item --noman
+
+Skip installation of manpages.
+This is equivalent to specifying C<-Dman1dir=none> and C<-Dman3dir=none>.
 
 =back
 

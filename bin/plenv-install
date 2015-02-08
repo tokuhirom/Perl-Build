@@ -10,6 +10,7 @@
 #   -v/--verbose     Verbose mode: print compilation status to stdout
 #   --as=<NAME>      Install the definition as <NAME>
 #   --test           Run test cases
+#   --noman          Skip installation of manpages
 #
 # For detailed information on installing Perl versions with
 # perl-build, including a list of environment variables for adjusting
@@ -54,6 +55,7 @@ sub main {
         'D=s@'  => \@D,
         'A=s@'  => \@A,
         'U=s@'  => \@U,
+        'noman' => \my $noman,
     );
     if ($version) {
         print "$Perl::Build::VERSION\n";
@@ -97,6 +99,7 @@ sub main {
         (map { "-A$_" } @A),
         (map { "-U$_" } @U),
         ($jobs ? "--jobs=${jobs}" : ()),
+        ($noman ? "--noman" : ()),
         @ARGV,
         $definition,
         $prefix
