@@ -82,7 +82,7 @@ sub main {
 
     my $cache_dir = "$ENV{PLENV_ROOT}/cache/";
     mkpath($cache_dir);
-    my $build_dir = "$ENV{PLENV_ROOT}/build/";
+    my $build_dir = "$ENV{PLENV_ROOT}/build/" . time . ".$$/";
     mkpath($build_dir);
 
     print "Installing $definition as $as\n";
