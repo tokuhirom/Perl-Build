@@ -11,10 +11,13 @@
 #   --as=<NAME>      Install the definition as <NAME>
 #   --test           Run test cases
 #   --noman          Skip installation of manpages
+#   -D, -A, -U, -j   perl configure options via perl-build
 #
-# For detailed information on installing Perl versions with
-# perl-build, including a list of environment variables for adjusting
-# compilation, see: https://github.com/tokuhirom/perl-build#usage
+# Example:
+#   plenv install 5.20.2 -j 8 -Dcc=gcc -UDEBUGGING -Accflags=...
+#
+# For more options that are passed through perl-build, run `perl-build --help`
+# or see: https://metacpan.org/pod/distribution/Perl-Build/script/perl-build#OPTIONS
 use strict;
 use warnings;
 use 5.008001;
