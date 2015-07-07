@@ -39,6 +39,29 @@ sub available_perls {
         }
     }
 
+    my @available_stableperl_versions = _retrieve_available_stableperls();
+
+    return (@available_versions, @available_stableperl_versions);
+}
+
+sub _retrieve_available_stableperls {
+    my $url = "http://stableperl.schmorp.de/dist/";
+    my $html = http_get( $url );
+
+    unless($html) {
+        die "\nERROR: Unable to retrieve the list of stableperls.\n\n";
+    }
+
+    my @available_versions;
+
+    my %uniq;
+    for ( split "\n", $html ) {
+        if (my ($version) = m|<a href="(stableperl-.+)\.tar\.gz">.+?</a>|) {
+            next if $uniq{$version}++;
+            push @available_versions, $version;
+        }
+    }
+
     return @available_versions;
 }
 
@@ -83,7 +106,7 @@ sub perl_release {
     }
     die "ERROR: Cannot find the tarball for perl-$version\n"
         if !$dist_tarball and !$dist_tarball_url;
-           
+
     return ($dist_tarball, $dist_tarball_url);
 }
 
@@ -115,7 +138,7 @@ sub perl_release_by_perl_releases_page {
     my $last_modified;
     # Copy from HTTP::Tiny::_parse_date_time
     my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
-    if ( $response->{headers}{'last-modified'} =~ 
+    if ( $response->{headers}{'last-modified'} =~
              /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
         my @tl_parts = ($6, $5, $4, $1, (index($MoY,$2)/4), $3);
         $last_modified = eval {
