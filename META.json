@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v1.1.0, CPAN::Meta::Converter version 2.141170",
+   "generated_by" : "Minilla/v2.4.1, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
    ],
@@ -28,8 +28,6 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "CPAN::Meta" : "0",
-            "CPAN::Meta::Prereqs" : "0",
             "Module::Build" : "0.38"
          }
       },
@@ -72,7 +70,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.10",
+   "version" : "1.11",
    "x_contributors" : [
       "Daisuke Murase <typester@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",
@@ -84,8 +82,12 @@
       "Masahiro Chiba <nihen@megabbs.com>",
       "hagihala <hagihala@hatena.ne.jp>",
       "Tony <zearin@gonk.net>",
-      "Syohei YOSHIDA <syohex@gmail.com>",
+      "Przemysław Wesołek <jest@go.art.pl>",
+      "Kenichi Ishigaki <ishigaki@cpan.org>",
       "Masahiro Nagano <kazeburo@gmail.com>",
-      "Kenichi Ishigaki <ishigaki@cpan.org>"
+      "Syohei YOSHIDA <syohex@gmail.com>",
+      "Shoichi Kaji <skaji@cpan.org>",
+      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
+      "moznion <moznion@gmail.com>"
    ]
 }
