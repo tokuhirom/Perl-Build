@@ -98,6 +98,18 @@ if ($stuff eq 'blead') {
             jobs              => $jobs,
         )
     );
+} elsif ($stuff =~ /^stableperl-/) {
+    my $version = $stuff;
+    Perl::Build->install_from_stableperl(
+        $version => (
+            dst_path          => $dest,
+            configure_options => \@configure_options,
+            test              => $test,
+            build_dir         => $build_dir,
+            jobs              => $jobs,
+            tarball_dir       => $tarball_dir,
+        )
+    );
 } else {
     my $version = $stuff;
     Perl::Build->install_from_cpan(
@@ -124,7 +136,7 @@ __END__
 
 perl-build - perl binary builder
 
-=head1 SYNOPSIS 
+=head1 SYNOPSIS
 
     # perl-build command is FatPacker ready
     % curl https://raw.github.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
