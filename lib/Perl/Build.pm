@@ -39,6 +39,29 @@ sub available_perls {
         }
     }
 
+    my @available_stableperl_versions = _retrieve_available_stableperls();
+
+    return (@available_versions, @available_stableperl_versions);
+}
+
+sub _retrieve_available_stableperls {
+    my $url = "http://stableperl.schmorp.de/dist/";
+    my $html = http_get( $url );
+
+    unless($html) {
+        die "\nERROR: Unable to retrieve the list of stableperls.\n\n";
+    }
+
+    my @available_versions;
+
+    my %uniq;
+    for ( split "\n", $html ) {
+        if (my ($version) = m|<a href="(stableperl-.+)\.tar\.gz">.+?</a>|) {
+            next if $uniq{$version}++;
+            push @available_versions, $version;
+        }
+    }
+
     return @available_versions;
 }
 
@@ -83,7 +106,7 @@ sub perl_release {
     }
     die "ERROR: Cannot find the tarball for perl-$version\n"
         if !$dist_tarball and !$dist_tarball_url;
-           
+
     return ($dist_tarball, $dist_tarball_url);
 }
 
@@ -115,7 +138,7 @@ sub perl_release_by_perl_releases_page {
     my $last_modified;
     # Copy from HTTP::Tiny::_parse_date_time
     my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
-    if ( $response->{headers}{'last-modified'} =~ 
+    if ( $response->{headers}{'last-modified'} =~
              /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
         my @tl_parts = ($6, $5, $4, $1, (index($MoY,$2)/4), $3);
         $last_modified = eval {
@@ -154,6 +177,14 @@ sub perl_release_by_search_cpan_org {
 
 }
 
+sub stableperl_release {
+    my ($class, $version) = @_;
+
+    my $dist_tarball = "${version}.tar.gz";
+    my $dist_tarball_url = "http://stableperl.schmorp.de/dist/$dist_tarball";
+
+    return ($dist_tarball, $dist_tarball_url);
+}
 
 sub http_get {
     my ($url) = @_;
@@ -195,6 +226,42 @@ sub install_from_cpan {
 
     # download tar ball
     my ($dist_tarball, $dist_tarball_url) = Perl::Build->perl_release($version);
+    my $dist_tarball_path = catfile($tarball_dir, $dist_tarball);
+    if (-f $dist_tarball_path) {
+        print "Use the previously fetched ${dist_tarball}\n";
+    }
+    else {
+        print "Fetching $version as $dist_tarball_path ($dist_tarball_url)\n";
+        http_mirror( $dist_tarball_url, $dist_tarball_path );
+    }
+
+    # and extract tar ball.
+    my $dist_extracted_path = Perl::Build->extract_tarball($dist_tarball_path, $build_dir);
+    Perl::Build->install(
+        src_path          => $dist_extracted_path,
+        dst_path          => $dst_path,
+        configure_options => $configure_options,
+        test              => $args{test},
+        jobs              => $args{jobs},
+    );
+}
+
+sub install_from_stableperl {
+    my ($class, $version, %args) = @_;
+
+    $args{patchperl} && Carp::croak "The patchperl argument was deprected.";
+
+    my $tarball_dir = $args{tarball_dir}
+        || File::Temp::tempdir( CLEANUP => 1 );
+    my $build_dir = $args{build_dir}
+        || File::Temp::tempdir( CLEANUP => 1 );
+    my $dst_path = $args{dst_path}
+        or die "Missing mandatory parameter: dst_path";
+    my $configure_options = $args{configure_options}
+        || ['-de'];
+
+    # download tar ball
+    my ($dist_tarball, $dist_tarball_url) = Perl::Build->stableperl_release($version);
     my $dist_tarball_path = catfile($tarball_dir, $dist_tarball);
     if (-f $dist_tarball_path) {
         print "Use the previously fetched ${dist_tarball}\n";
@@ -531,6 +598,40 @@ Parallel building and testing.
 =back
 
 Returns an instance of L<Perl::Build::Built> to facilitate using the built perl from code.
+
+=item C<< Perl::Build->install_from_stableperl($version, %args) >>
+
+Install stableperl which is corresponded to C<< $version >> from L<stableperl dist|http://stableperl.schmorp.de/dist/>. This method fetches tar ball from stableperl dist, build, and install it. Please see following web site for information about stableperl; L<http://blog.schmorp.de/2015-06-06-a-stable-perl.html>
+
+You can pass following options in C<< %args >>.
+
+=over 4
+
+=item C<< dst_path >>
+
+Destination directory to install perl.
+
+=item C<< configure_options : ArrayRef(Optional) >>
+
+Command line arguments for C<< ./Configure >>.
+
+(Default: C<< ['-de'] >>)
+
+=item C<< tarball_dir >> (Optional)
+
+Temporary directory to put tar ball.
+
+=item C<< build_dir >> (Optional)
+
+Temporary directory to build binary.
+
+=item C<< jobs: Int >> (Optional)
+
+Parallel building and testing.
+
+(Default: C<1>)
+
+=back
 
 =item C<< Perl::Build->symlink_devel_executables($bin_dir:Str) >>
 
