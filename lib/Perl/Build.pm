@@ -599,6 +599,40 @@ Parallel building and testing.
 
 Returns an instance of L<Perl::Build::Built> to facilitate using the built perl from code.
 
+=item C<< Perl::Build->install_from_stableperl($version, %args) >>
+
+Install stableperl which is corresponded to C<< $version >> from L<stableperl dist|http://stableperl.schmorp.de/dist/>. This method fetches tar ball from stableperl dist, build, and install it. Please see following web site for information about stableperl; L<http://blog.schmorp.de/2015-06-06-a-stable-perl.html>
+
+You can pass following options in C<< %args >>.
+
+=over 4
+
+=item C<< dst_path >>
+
+Destination directory to install perl.
+
+=item C<< configure_options : ArrayRef(Optional) >>
+
+Command line arguments for C<< ./Configure >>.
+
+(Default: C<< ['-de'] >>)
+
+=item C<< tarball_dir >> (Optional)
+
+Temporary directory to put tar ball.
+
+=item C<< build_dir >> (Optional)
+
+Temporary directory to build binary.
+
+=item C<< jobs: Int >> (Optional)
+
+Parallel building and testing.
+
+(Default: C<1>)
+
+=back
+
 =item C<< Perl::Build->symlink_devel_executables($bin_dir:Str) >>
 
 Perl5 binary generated with C<< -Dusedevel >>, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
