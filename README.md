@@ -132,36 +132,6 @@ This is yet another perl builder module.
 
     Returns an instance of [Perl::Build::Built](https://metacpan.org/pod/Perl::Build::Built) to facilitate using the built perl from code.
 
-- `Perl::Build->install_from_stableperl($version, %args)`
-
-    Install stableperl which is corresponded to `$version` from [stableperl dist](http://stableperl.schmorp.de/dist/). This method fetches tar ball from stableperl dist, build, and install it. Please see following web site for information about stableperl; [http://blog.schmorp.de/2015-06-06-a-stable-perl.html](http://blog.schmorp.de/2015-06-06-a-stable-perl.html)
-
-    You can pass following options in `%args`.
-
-    - `dst_path`
-
-        Destination directory to install perl.
-
-    - `configure_options : ArrayRef(Optional)`
-
-        Command line arguments for `./Configure`.
-
-        (Default: `['-de']`)
-
-    - `tarball_dir` (Optional)
-
-        Temporary directory to put tar ball.
-
-    - `build_dir` (Optional)
-
-        Temporary directory to build binary.
-
-    - `jobs: Int` (Optional)
-
-        Parallel building and testing.
-
-        (Default: `1`)
-
 - `Perl::Build->symlink_devel_executables($bin_dir:Str)`
 
     Perl5 binary generated with `-Dusedevel`, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
