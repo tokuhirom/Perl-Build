@@ -32,11 +32,10 @@ sub available_perls {
     my @available_versions;
 
     my %uniq;
-    for ( split "\n", $html ) {
-        if (my ($version) = m|<a href="perl-(.+)\.tar\.gz">(.+?)</a>|) {
-            next if $uniq{$version}++;
-            push @available_versions, $version;
-        }
+    while ($html =~ m|<a href="perl-([^"]+)\.tar\.gz">(.+?)</a>|g) {
+        my $version = $1;
+        next if $uniq{$version}++;
+        push @available_versions, $version;
     }
 
     return @available_versions;
