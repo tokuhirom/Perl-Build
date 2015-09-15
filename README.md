@@ -159,7 +159,7 @@ Thanks
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom@gmail.com>
+Tokuhiro Matsuno &lt;tokuhirom@gmail.com>
 
 # LICENSE
 

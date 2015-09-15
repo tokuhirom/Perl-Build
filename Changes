@@ -2,6 +2,11 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.12 2015-09-15T02:58:10Z
+
+    - support cperl.
+    - support installing from https
+
 1.11 2015-07-07T23:25:44Z
 
     - Support stableperl(moznion)
