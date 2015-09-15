@@ -4,6 +4,13 @@ DST=perl-build
 export PLENV_VERSION=5.8.5
 export PERL5LIB=`dirname $0`/../lib/
 
+plenv install-cpanm
+
+cpanm Test::More
+cpanm Perl::Strip
+cpanm App::FatPacker
+cpanm CPAN::Perl::Releases File::pushd HTTP::Tiny Devel::PatchPerl File::Temp Getopt::Long Pod::Usage
+
 fatpack trace $SRC
 fatpack packlists-for `cat fatpacker.trace` >packlists
 fatpack tree `cat packlists`

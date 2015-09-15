@@ -64,6 +64,16 @@ sub extract_tarball {
         }
         closedir $dh;
         return catfile($destdir, $latest->[0]);
+    } elsif ($dist_tarball =~ /^cperl-/) {
+        opendir my $dh, $destdir or die "Can't open $destdir: $!";
+        my $latest = [];
+        while(my $dir = readdir $dh) {
+            next unless $dir =~ /^cperl-/;
+            my $mtime = (stat(_))[9];
+            $latest = [$dir, $mtime] if !$latest->[1] or $latest->[1] < $mtime;
+        }
+        closedir $dh;
+        return catfile($destdir, $latest->[0]);
     } else {
         return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
     }

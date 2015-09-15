@@ -77,7 +77,7 @@ if ($stuff eq 'blead') {
             tarball_dir       => $tarball_dir,
         )
     );
-} elsif ($stuff =~ m{^http://}) {
+} elsif ($stuff =~ m{^https?://}) {
     Perl::Build->install_from_url(
         $stuff => (
             dst_path          => $dest,
