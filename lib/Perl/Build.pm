@@ -100,7 +100,7 @@ sub perl_release_by_cpan_perl_releases {
     my ($class, $version) = @_;
     my $tarballs = CPAN::Perl::Releases::perl_tarballs($version);
 
-    my $x = (values %$tarballs)[0];
+    my $x = $tarballs->{'tar.gz'};
     die "not found the tarball for perl-$version\n" unless $x;
     my $dist_tarball = (split("/", $x))[-1];
     my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
