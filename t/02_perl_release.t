@@ -4,8 +4,8 @@ use Perl::Build;
 use CPAN::Perl::Releases;
 
 my %test = (
+    '5.22.1' => q!S/SH/SHAY/perl-5.22.1.tar.!,
     '5.18.2' => q!R/RJ/RJBS/perl-5.18.2.tar.!,
-    '5.18.0-RC4' => q!R/RJ/RJBS/perl-5.18.0-RC4.tar.!,
     '5.16.1' => q!R/RJ/RJBS/perl-5.16.1.tar.!,
     '5.12.5' => q!D/DO/DOM/perl-5.12.5.tar.!,
     '5.8.5'  => q!N/NW/NWCLARK/perl-5.8.5.tar.!,
