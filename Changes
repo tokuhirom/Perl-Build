@@ -2,6 +2,52 @@ Revision history for Perl extension App::perlbuild
 
 {{$NEXT}}
 
+1.13 2016-04-02T05:40:07Z
+
+    commit d757b7f982b8efa48d1b802b7fd91c4ff0c03040
+    Merge: 37a22d8 db28ded
+    Author: Tatsuhiko Miyagawa <miyagawa@gmail.com>
+    Date:   Sat Jan 23 09:05:09 2016 -0800
+
+        Merge pull request #54 from tokuhirom/rc-version
+
+        Remove RC version
+
+    commit db28ded756fe80b092a233d98cbce85a5c9ddd77
+    Author: Syohei YOSHIDA <syohex@gmail.com>
+    Date:   Sat Jan 23 17:23:16 2016 +0900
+
+        Remove RC version
+
+        Because old RC versions were removed.
+
+    commit 37a22d802074be898c8dcd0c1fa49ccbf20b57a0
+    Author: Tokuhiro Matsuno <tokuhirom@gmail.com>
+    Date:   Fri Jan 8 19:09:20 2016 +0900
+
+        Rerun fatpacker - Close #52
+
+    commit 445bb6a7cc87ab4c28ca976f0449821b9403082a
+    Merge: 320b022 4c2c637
+    Author: Tokuhiro Matsuno <tokuhirom@gmail.com>
+    Date:   Fri Sep 18 14:47:19 2015 +0900
+
+        Merge pull request #51 from tokuhirom/fix-xz-fetch-issue
+
+        Fix xz fetch issue
+
+    commit 4c2c637578ca8c1d146c873f9494e810f64b39ab
+    Author: Syohei YOSHIDA <syohex@gmail.com>
+    Date:   Fri Sep 18 14:46:07 2015 +0900
+
+        Update perl-build
+
+    commit 8fc95b0fb9f964f6b202404bc79336080dd63e92
+    Author: Syohei YOSHIDA <syohex@gmail.com>
+    Date:   Fri Sep 18 14:44:04 2015 +0900
+
+        Fix fetching .xz file issue
+
 1.12 2015-09-15T02:58:10Z
 
     - support cperl.

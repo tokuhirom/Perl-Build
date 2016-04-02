@@ -70,7 +70,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.12",
+   "version" : "1.13",
    "x_contributors" : [
       "Daisuke Murase <typester@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",
@@ -85,11 +85,12 @@
       "Przemysław Wesołek <jest@go.art.pl>",
       "Kenichi Ishigaki <ishigaki@cpan.org>",
       "Masahiro Nagano <kazeburo@gmail.com>",
-      "Syohei YOSHIDA <syohex@gmail.com>",
       "Shoichi Kaji <skaji@cpan.org>",
       "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
       "moznion <moznion@gmail.com>",
-      "Ashley Hindmarsh <ash+github@best-scarper.co.uk>"
+      "Ashley Hindmarsh <ash+github@best-scarper.co.uk>",
+      "Syohei YOSHIDA <syohex@gmail.com>",
+      "Tatsuhiko Miyagawa <miyagawa@gmail.com>"
    ],
    "x_serialization_backend" : "JSON::PP version 2.27300"
 }
