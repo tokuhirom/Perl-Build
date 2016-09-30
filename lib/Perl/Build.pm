@@ -372,7 +372,7 @@ sub symlink_devel_executables {
     my ($class, $bin_dir) = @_;
 
     for my $executable (glob("$bin_dir/*")) {
-        my ($name, $version) = $executable =~ m/bin\/(.+?)(5\.\d.*)?$/;
+        my ($name, $version) = basename( $executable ) =~ m/(.+?)(5\.\d.*)?$/;
         if ($version) {
             my $cmd = "ln -fs $executable $bin_dir/$name";
             $class->info($cmd);
