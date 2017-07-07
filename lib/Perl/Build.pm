@@ -347,7 +347,11 @@ sub install {
             }
             $class->do_system([@make, $test_target]);
         }
-        $class->do_system('make install');
+	@make = qw(make install);
+	if ($ENV{PERL_BUILD_INSTALL_OPTIONS}) {
+	    push @make, $ENV{PERL_BUILD_INSTALL_OPTIONS};
+	}
+        $class->do_system(\@make);
     }
     return Perl::Build::Built->new({
         installed_path => $dst_path,
