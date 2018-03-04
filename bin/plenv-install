@@ -97,7 +97,6 @@ sub main {
         '--symlink-devel-executables',
         '--build-dir'   => $build_dir,
         '--tarball-dir' => $cache_dir,
-        '-Dusedevel',
         (map { "-D$_" } @D),
         (map { "-A$_" } @A),
         (map { "-U$_" } @U),
