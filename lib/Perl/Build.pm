@@ -13,6 +13,7 @@ use CPAN::Perl::Releases;
 use File::pushd qw(pushd);
 use File::Temp;
 use HTTP::Tiny;
+use JSON::PP qw(decode_json);
 use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
 use Time::Local;
@@ -83,7 +84,7 @@ sub perl_release {
     my ($class, $version) = @_;
 
     my ($dist_tarball, $dist_tarball_url);
-    for my $func (qw/cpan_perl_releases perl_releases_page search_cpan_org/) {
+    for my $func (qw/cpan_perl_releases perl_releases_page metacpan/) {
         eval {
             ($dist_tarball, $dist_tarball_url) = $class->can("perl_release_by_$func")->($class,$version);
         };
@@ -145,22 +146,22 @@ sub perl_release_by_perl_releases_page {
 
 }
 
-sub perl_release_by_search_cpan_org {
+sub perl_release_by_metacpan {
     my ($class, $version) = @_;
 
-    my $html = http_get("http://search.cpan.org/dist/perl-${version}");
+    my $json = http_get("https://fastapi.metacpan.org/v1/release/_search?size=1&q=name:perl-${version}");
 
-    unless ($html) {
+    my $result;
+    unless ($json and $result = decode_json($json)->{hits}{hits}[0]) {
         die "Failed to download perl-${version} tarball\n";
     }
 
     my ($dist_path, $dist_tarball) =
-        $html =~ m[<a href="/CPAN/(authors/id/.+/(perl-${version}.tar.(gz|bz2)))">Download</a>];
+        $result->{_source}{download_url} =~ m[/(authors/id/.+/(perl-${version}.tar.(gz|bz2|xz)))$];
     die "not found the tarball for perl-$version\n"
         if !$dist_path and !$dist_tarball;
     my $dist_tarball_url = "$CPAN_MIRROR/${dist_path}";
     return ($dist_tarball, $dist_tarball_url);
-
 }
 
 
