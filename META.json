@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.5.0, CPAN::Meta::Converter version 2.150005",
+   "generated_by" : "Minilla/v3.0.9, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
@@ -28,7 +28,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.4005"
          }
       },
       "develop" : {
@@ -83,14 +83,16 @@
       "hagihala <hagihala@hatena.ne.jp>",
       "Tony <zearin@gonk.net>",
       "Przemysław Wesołek <jest@go.art.pl>",
-      "Kenichi Ishigaki <ishigaki@cpan.org>",
       "Masahiro Nagano <kazeburo@gmail.com>",
-      "Shoichi Kaji <skaji@cpan.org>",
       "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
       "moznion <moznion@gmail.com>",
       "Ashley Hindmarsh <ash+github@best-scarper.co.uk>",
+      "Tatsuhiko Miyagawa <miyagawa@gmail.com>",
+      "Diab Jerius <djerius@cfa.harvard.edu>",
       "Syohei YOSHIDA <syohex@gmail.com>",
-      "Tatsuhiko Miyagawa <miyagawa@gmail.com>"
+      "Kenichi Ishigaki <ishigaki@cpan.org>",
+      "Mitch McCracken <mrmccrac@gmail.com>",
+      "Shoichi Kaji <skaji@cpan.org>"
    ],
-   "x_serialization_backend" : "JSON::PP version 2.27300"
+   "x_serialization_backend" : "JSON::PP version 2.27400"
 }
