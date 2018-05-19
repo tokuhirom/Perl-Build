@@ -410,7 +410,7 @@ Perl::Build - perl builder
 =head1 CLI interface without dependencies
 
     # perl-build command is FatPacker ready
-    % curl https://raw.githubusercontent.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
+    % curl -L https://raw.githubusercontent.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
 
 =head1 CLI interface
 
