@@ -127,7 +127,7 @@ perl-build - perl binary builder
 =head1 SYNOPSIS 
 
     # perl-build command is FatPacker ready
-    % curl https://raw.github.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
+    % curl -L https://raw.github.com/tokuhirom/Perl-Build/master/perl-build | perl - 5.16.2 /opt/perl-5.16/
 
     # Or, just install from CPAN
     % cpanm Perl::Build
