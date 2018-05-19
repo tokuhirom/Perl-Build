@@ -1,3 +1,5 @@
+module_maker="ModuleBuild"
+
 [FileGatherer]
 exclude_match = [
     '^perl-build$'
