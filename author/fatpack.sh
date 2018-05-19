@@ -9,7 +9,7 @@ plenv install-cpanm
 cpanm Test::More
 cpanm Perl::Strip
 cpanm App::FatPacker
-cpanm CPAN::Perl::Releases File::pushd HTTP::Tiny Devel::PatchPerl File::Temp Getopt::Long Pod::Usage
+cpanm CPAN::Perl::Releases File::pushd HTTP::Tiny JSON::PP Devel::PatchPerl File::Temp Getopt::Long Pod::Usage
 
 fatpack trace $SRC
 fatpack packlists-for `cat fatpacker.trace` >packlists
