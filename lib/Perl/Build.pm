@@ -93,7 +93,7 @@ sub perl_release {
     }
     die "ERROR: Cannot find the tarball for perl-$version\n"
         if !$dist_tarball and !$dist_tarball_url;
-           
+
     return ($dist_tarball, $dist_tarball_url);
 }
 
@@ -115,7 +115,11 @@ sub perl_release_by_perl_releases_page {
     my $http = HTTP::Tiny->new();
     my $response = $http->get($url);
     if (!$response->{success}) {
-        die "Cannot get content from $url: $response->{status} $response->{reason}\n";
+        my $errmsg = sprintf 'Cannot get content from %s: %s %s',
+            $url, $response->{status}, $response->{reason};
+        $errmsg .= "\nContent: " . $response->{content}
+            if $response->{status} == 599;
+        die "$errmsg\n";
     }
 
     if ( ! exists $response->{headers}{'last-modified'} ) {
@@ -125,7 +129,7 @@ sub perl_release_by_perl_releases_page {
     my $last_modified;
     # Copy from HTTP::Tiny::_parse_date_time
     my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
-    if ( $response->{headers}{'last-modified'} =~ 
+    if ( $response->{headers}{'last-modified'} =~
              /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
         my @tl_parts = ($6, $5, $4, $1, (index($MoY,$2)/4), $3);
         $last_modified = eval {
