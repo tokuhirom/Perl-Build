@@ -112,7 +112,7 @@ sub perl_release_by_perl_releases_page {
     my ($class, $version) = @_;
 
     my $url = "http://perl-releases.s3-website-us-east-1.amazonaws.com/";
-    my $http = HTTP::Tinyish->new();
+    my $http = HTTP::Tinyish->new(verify_SSL => 1);
     my $response = $http->get($url);
     if (!$response->{success}) {
         die "Cannot get content from $url: $response->{status} $response->{reason}\n";
@@ -168,7 +168,7 @@ sub perl_release_by_metacpan {
 sub http_get {
     my ($url) = @_;
 
-    my $http = HTTP::Tinyish->new();
+    my $http = HTTP::Tinyish->new(verify_SSL => 1);
     my $response = $http->get($url);
     if ($response->{success}) {
         return $response->{content};
@@ -180,7 +180,7 @@ sub http_get {
 sub http_mirror {
     my ($url, $path) = @_;
 
-    my $http = HTTP::Tinyish->new();
+    my $http = HTTP::Tinyish->new(verify_SSL => 1);
     my $response = $http->mirror($url, $path);
     if ($response->{success}) {
         print "Downloaded $url to $path.\n";
