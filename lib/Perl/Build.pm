@@ -12,7 +12,7 @@ use File::Spec::Functions qw(catfile catdir rel2abs);
 use CPAN::Perl::Releases;
 use File::pushd qw(pushd);
 use File::Temp;
-use HTTP::Tiny;
+use HTTP::Tinyish;
 use JSON::PP qw(decode_json);
 use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
@@ -112,7 +112,7 @@ sub perl_release_by_perl_releases_page {
     my ($class, $version) = @_;
 
     my $url = "http://perl-releases.s3-website-us-east-1.amazonaws.com/";
-    my $http = HTTP::Tiny->new();
+    my $http = HTTP::Tinyish->new();
     my $response = $http->get($url);
     if (!$response->{success}) {
         die "Cannot get content from $url: $response->{status} $response->{reason}\n";
@@ -123,7 +123,7 @@ sub perl_release_by_perl_releases_page {
     }
 
     my $last_modified;
-    # Copy from HTTP::Tiny::_parse_date_time
+    # Copy from HTTP::Tinyish::_parse_date_time
     my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
     if ( $response->{headers}{'last-modified'} =~ 
              /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
@@ -168,7 +168,7 @@ sub perl_release_by_metacpan {
 sub http_get {
     my ($url) = @_;
 
-    my $http = HTTP::Tiny->new();
+    my $http = HTTP::Tinyish->new();
     my $response = $http->get($url);
     if ($response->{success}) {
         return $response->{content};
@@ -180,7 +180,7 @@ sub http_get {
 sub http_mirror {
     my ($url, $path) = @_;
 
-    my $http = HTTP::Tiny->new();
+    my $http = HTTP::Tinyish->new();
     my $response = $http->mirror($url, $path);
     if ($response->{success}) {
         print "Downloaded $url to $path.\n";
