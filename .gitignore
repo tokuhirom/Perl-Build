@@ -30,4 +30,5 @@ Perl-Build-*.tar.gz
 !LICENSE
 /author/.vagrant
 *~
+/author/local/
 
