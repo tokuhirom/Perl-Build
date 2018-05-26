@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-3.56
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.56.tar.gz
+  CPAN-Perl-Releases-3.58
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.58.tar.gz
     provides:
-      CPAN::Perl::Releases 3.56
+      CPAN::Perl::Releases 3.58
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
@@ -43,10 +43,17 @@ DISTRIBUTIONS
     requirements:
       Carp 1.05
       ExtUtils::MakeMaker 0
-  File-pushd-1.014
-    pathname: D/DA/DAGOLDEN/File-pushd-1.014.tar.gz
+  File-Which-1.22
+    pathname: P/PL/PLICEASE/File-Which-1.22.tar.gz
     provides:
-      File::pushd 1.014
+      File::Which 1.22
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.006
+  File-pushd-1.016
+    pathname: D/DA/DAGOLDEN/File-pushd-1.016.tar.gz
+    provides:
+      File::pushd 1.016
     requirements:
       Carp 0
       Cwd 0
@@ -75,6 +82,30 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  HTTP-Tinyish-0.14
+    pathname: M/MI/MIYAGAWA/HTTP-Tinyish-0.14.tar.gz
+    provides:
+      HTTP::Tinyish 0.14
+      HTTP::Tinyish::Base undef
+      HTTP::Tinyish::Curl undef
+      HTTP::Tinyish::HTTPTiny undef
+      HTTP::Tinyish::LWP undef
+      HTTP::Tinyish::Wget undef
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Which 0
+      HTTP::Tiny 0.055
+      IPC::Run3 0
+      parent 0
+      perl 5.008001
+  IPC-Run3-0.048
+    pathname: R/RJ/RJBS/IPC-Run3-0.048.tar.gz
+    provides:
+      IPC::Run3 0.048
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0.31
+      Time::HiRes 0
   JSON-PP-2.97001
     pathname: I/IS/ISHIGAKI/JSON-PP-2.97001.tar.gz
     provides:
@@ -276,6 +307,13 @@ DISTRIBUTIONS
       Storable 0
       perl 5.006002
       utf8 0
+  parent-0.236
+    pathname: C/CO/CORION/parent-0.236.tar.gz
+    provides:
+      parent 0.236
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0.4
   podlators-4.11
     pathname: R/RR/RRA/podlators-4.11.tar.gz
     provides:

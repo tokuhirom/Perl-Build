@@ -32,14 +32,14 @@ subtest 'perl-releases-page' => sub {
 
 subtest 'metacpan.org' => sub {
     plan skip_all => 'author test only' unless $ENV{AUTHOR_TESTING};
-    my $tiny = HTTP::Tiny->new(timeout=>5);
+    my $tiny = HTTP::Tinyish->new(timeout=>5);
     my $res = $tiny->get("https://fastapi.metacpan.org/");
     plan skip_all => 'fastapi.metacpan.org seems to be down' unless $res->{success};
     local $Perl::Build::CPAN_MIRROR = '';
     no warnings 'redefine';
     *{CPAN::Perl::Releases::perl_tarballs} = sub {};
-    my $orig = HTTP::Tiny->can('get');
-    *{HTTP::Tiny::get} = sub {
+    my $orig = HTTP::Tinyish->can('get');
+    *{HTTP::Tinyish::get} = sub {
         return {success=>0,status=>599,reason=>"test error"} if $_[1] =~ m!perl-releases\.!;
         $orig->(@_);
     };
