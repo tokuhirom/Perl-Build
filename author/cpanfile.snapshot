@@ -1,0 +1,293 @@
+# carton snapshot format: version 1.0
+DISTRIBUTIONS
+  CPAN-Perl-Releases-3.56
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.56.tar.gz
+    provides:
+      CPAN::Perl::Releases 3.56
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0.47
+      perl 5.006000
+  Carp-1.38
+    pathname: R/RJ/RJBS/Carp-1.38.tar.gz
+    provides:
+      Carp 1.38
+      Carp::Heavy 1.38
+    requirements:
+      Config 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      IPC::Open3 1.0103
+      Test::More 0.47
+      overload 0
+      strict 0
+      warnings 0
+  Devel-PatchPerl-1.48
+    pathname: B/BI/BINGOS/Devel-PatchPerl-1.48.tar.gz
+    provides:
+      Devel::PatchPerl 1.48
+      Devel::PatchPerl::Hints 1.48
+      Devel::PatchPerl::Plugin 1.48
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::pushd 1.00
+      IO::File 0
+      MIME::Base64 0
+      Module::Pluggable 0
+      perl 5.006000
+  Exporter-5.72
+    pathname: T/TO/TODDR/Exporter-5.72.tar.gz
+    provides:
+      Exporter 5.72
+      Exporter::Heavy 5.72
+    requirements:
+      Carp 1.05
+      ExtUtils::MakeMaker 0
+  File-pushd-1.014
+    pathname: D/DA/DAGOLDEN/File-pushd-1.014.tar.gz
+    provides:
+      File::pushd 1.014
+    requirements:
+      Carp 0
+      Cwd 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.17
+      File::Path 0
+      File::Spec 0
+      File::Temp 0
+      overload 0
+      perl 5.006
+      strict 0
+      warnings 0
+  HTTP-Tiny-0.070
+    pathname: D/DA/DAGOLDEN/HTTP-Tiny-0.070.tar.gz
+    provides:
+      HTTP::Tiny 0.070
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 6.17
+      Fcntl 0
+      IO::Socket 0
+      MIME::Base64 0
+      Socket 0
+      Time::Local 0
+      bytes 0
+      perl 5.006
+      strict 0
+      warnings 0
+  JSON-PP-2.97001
+    pathname: I/IS/ISHIGAKI/JSON-PP-2.97001.tar.gz
+    provides:
+      JSON::PP 2.97001
+      JSON::PP::Boolean 2.97001
+      JSON::PP::IncrParser 2.97001
+    requirements:
+      ExtUtils::MakeMaker 0
+      Scalar::Util 1.08
+      Test::More 0
+  Module-Pluggable-5.2
+    pathname: S/SI/SIMONW/Module-Pluggable-5.2.tar.gz
+    provides:
+      Devel::InnerPackage 0.4
+      Module::Pluggable 5.2
+      Module::Pluggable::Object 5.2
+    requirements:
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Find 0
+      File::Spec 3.00
+      File::Spec::Functions 0
+      if 0
+      perl 5.00503
+      strict 0
+  PathTools-3.74
+    pathname: X/XS/XSAWYERX/PathTools-3.74.tar.gz
+    provides:
+      Cwd 3.74
+      File::Spec 3.74
+      File::Spec::AmigaOS 3.74
+      File::Spec::Cygwin 3.74
+      File::Spec::Epoc 3.74
+      File::Spec::Functions 3.74
+      File::Spec::Mac 3.74
+      File::Spec::OS2 3.74
+      File::Spec::Unix 3.74
+      File::Spec::VMS 3.74
+      File::Spec::Win32 3.74
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      Scalar::Util 0
+      Test::More 0.88
+  Pod-Escapes-1.07
+    pathname: N/NE/NEILB/Pod-Escapes-1.07.tar.gz
+    provides:
+      Pod::Escapes 1.07
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      perl 5.006
+      strict 0
+      vars 0
+      warnings 0
+  Pod-Simple-3.35
+    pathname: K/KH/KHW/Pod-Simple-3.35.tar.gz
+    provides:
+      Pod::Simple 3.35
+      Pod::Simple::BlackBox 3.35
+      Pod::Simple::Checker 3.35
+      Pod::Simple::Debug 3.35
+      Pod::Simple::DumpAsText 3.35
+      Pod::Simple::DumpAsXML 3.35
+      Pod::Simple::HTML 3.35
+      Pod::Simple::HTMLBatch 3.35
+      Pod::Simple::HTMLLegacy 5.01
+      Pod::Simple::LinkSection 3.35
+      Pod::Simple::Methody 3.35
+      Pod::Simple::Progress 3.35
+      Pod::Simple::PullParser 3.35
+      Pod::Simple::PullParserEndToken 3.35
+      Pod::Simple::PullParserStartToken 3.35
+      Pod::Simple::PullParserTextToken 3.35
+      Pod::Simple::PullParserToken 3.35
+      Pod::Simple::RTF 3.35
+      Pod::Simple::Search 3.35
+      Pod::Simple::SimpleTree 3.35
+      Pod::Simple::Text 3.35
+      Pod::Simple::TextContent 3.35
+      Pod::Simple::TiedOutFH 3.35
+      Pod::Simple::Transcode 3.35
+      Pod::Simple::TranscodeDumb 3.35
+      Pod::Simple::TranscodeSmart 3.35
+      Pod::Simple::XHTML 3.35
+      Pod::Simple::XMLOutStream 3.35
+    requirements:
+      Carp 0
+      Config 0
+      Cwd 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Find 0
+      File::Spec 0
+      Pod::Escapes 1.04
+      Symbol 0
+      Test 1.25
+      Test::More 0
+      Text::Wrap 98.112902
+      integer 0
+      overload 0
+      strict 0
+  Pod-Usage-1.69
+    pathname: M/MA/MAREKR/Pod-Usage-1.69.tar.gz
+    provides:
+      Pod::Usage 1.69
+    requirements:
+      Cwd 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Spec 0.82
+      Pod::Text 4
+      Test::More 0.6
+      blib 0
+  Test-1.26
+    pathname: J/JE/JESSE/Test-1.26.tar.gz
+    provides:
+      Test 1.26
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Spec 0
+      Test::Harness 1.1601
+  Test-Simple-1.302136
+    pathname: E/EX/EXODIST/Test-Simple-1.302136.tar.gz
+    provides:
+      Test2 1.302136
+      Test2::API 1.302136
+      Test2::API::Breakage 1.302136
+      Test2::API::Context 1.302136
+      Test2::API::Instance 1.302136
+      Test2::API::Stack 1.302136
+      Test2::Event 1.302136
+      Test2::Event::Bail 1.302136
+      Test2::Event::Diag 1.302136
+      Test2::Event::Encoding 1.302136
+      Test2::Event::Exception 1.302136
+      Test2::Event::Fail 1.302136
+      Test2::Event::Generic 1.302136
+      Test2::Event::Note 1.302136
+      Test2::Event::Ok 1.302136
+      Test2::Event::Pass 1.302136
+      Test2::Event::Plan 1.302136
+      Test2::Event::Skip 1.302136
+      Test2::Event::Subtest 1.302136
+      Test2::Event::TAP::Version 1.302136
+      Test2::Event::V2 1.302136
+      Test2::Event::Waiting 1.302136
+      Test2::EventFacet 1.302136
+      Test2::EventFacet::About 1.302136
+      Test2::EventFacet::Amnesty 1.302136
+      Test2::EventFacet::Assert 1.302136
+      Test2::EventFacet::Control 1.302136
+      Test2::EventFacet::Error 1.302136
+      Test2::EventFacet::Hub 1.302136
+      Test2::EventFacet::Info 1.302136
+      Test2::EventFacet::Meta 1.302136
+      Test2::EventFacet::Parent 1.302136
+      Test2::EventFacet::Plan 1.302136
+      Test2::EventFacet::Render 1.302136
+      Test2::EventFacet::Trace 1.302136
+      Test2::Formatter 1.302136
+      Test2::Formatter::TAP 1.302136
+      Test2::Hub 1.302136
+      Test2::Hub::Interceptor 1.302136
+      Test2::Hub::Interceptor::Terminator 1.302136
+      Test2::Hub::Subtest 1.302136
+      Test2::IPC 1.302136
+      Test2::IPC::Driver 1.302136
+      Test2::IPC::Driver::Files 1.302136
+      Test2::Tools::Tiny 1.302136
+      Test2::Util 1.302136
+      Test2::Util::ExternalMeta 1.302136
+      Test2::Util::Facets2Legacy 1.302136
+      Test2::Util::HashBase 1.302136
+      Test2::Util::Trace 1.302136
+      Test::Builder 1.302136
+      Test::Builder::Formatter 1.302136
+      Test::Builder::IO::Scalar 2.114
+      Test::Builder::Module 1.302136
+      Test::Builder::Tester 1.302136
+      Test::Builder::Tester::Color 1.302136
+      Test::Builder::Tester::Tie 1.302136
+      Test::Builder::TodoDiag 1.302136
+      Test::More 1.302136
+      Test::Simple 1.302136
+      Test::Tester 1.302136
+      Test::Tester::Capture 1.302136
+      Test::Tester::CaptureRunner 1.302136
+      Test::Tester::Delegate 1.302136
+      Test::use::ok 1.302136
+      ok 1.302136
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Spec 0
+      File::Temp 0
+      Scalar::Util 1.13
+      Storable 0
+      perl 5.006002
+      utf8 0
+  podlators-4.11
+    pathname: R/RR/RRA/podlators-4.11.tar.gz
+    provides:
+      Pod undef
+      Pod::Man 4.11
+      Pod::ParseLink 4.11
+      Pod::Text 4.11
+      Pod::Text::Color 4.11
+      Pod::Text::Overstrike 4.11
+      Pod::Text::Termcap 4.11
+    requirements:
+      Encode 0
+      ExtUtils::MakeMaker 0
+      Pod::Simple 3.06
+      perl 5.006
