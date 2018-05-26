@@ -84,7 +84,7 @@ sub perl_release {
     my ($class, $version) = @_;
 
     my ($dist_tarball, $dist_tarball_url);
-    for my $func (qw/cpan_perl_releases perl_releases_page metacpan/) {
+    for my $func (qw/cpan_perl_releases metacpan/) {
         eval {
             ($dist_tarball, $dist_tarball_url) = $class->can("perl_release_by_$func")->($class,$version);
         };
@@ -106,48 +106,6 @@ sub perl_release_by_cpan_perl_releases {
     my $dist_tarball = (split("/", $x))[-1];
     my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
     return ($dist_tarball, $dist_tarball_url);
-}
-
-sub perl_release_by_perl_releases_page {
-    my ($class, $version) = @_;
-
-    my $url = "http://perl-releases.s3-website-us-east-1.amazonaws.com/";
-    my $http = HTTP::Tinyish->new(verify_SSL => 1);
-    my $response = $http->get($url);
-    if (!$response->{success}) {
-        my $errmsg = sprintf 'Cannot get content from %s: %s %s',
-            $url, $response->{status}, $response->{reason};
-        $errmsg .= "\nContent: " . $response->{content}
-            if $response->{status} == 599;
-        die "$errmsg\n";
-    }
-
-    if ( ! exists $response->{headers}{'last-modified'} ) {
-        die "There is not Last-Modified header. ignore this response\n";
-    }
-
-    my $last_modified;
-    # Copy from HTTP::Tinyish::_parse_date_time
-    my $MoY = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
-    if ( $response->{headers}{'last-modified'} =~
-             /^[SMTWF][a-z]+, +(\d{1,2}) ($MoY) +(\d\d\d\d) +(\d\d):(\d\d):(\d\d) +GMT$/) {
-        my @tl_parts = ($6, $5, $4, $1, (index($MoY,$2)/4), $3);
-        $last_modified = eval {
-            my $t = @tl_parts ? Time::Local::timegm(@tl_parts) : -1;
-            $t < 0 ? undef : $t;
-        };
-    }
-    if ( ! defined $last_modified || time - $last_modified > 3*86400 ) { #parse error or 3days old
-        die "This page is 3 or more days old. ignore\n";
-    }
-
-    my ($dist_path, $dist_tarball) =
-        $response->{content} =~ m[^\Q${version}\E\t(.+?/(perl-${version}.tar.(gz|bz2)))]m;
-    die "not found the tarball for perl-$version\n"
-        if !$dist_path and !$dist_tarball;
-    my $dist_tarball_url = "$CPAN_MIRROR/authors/id/${dist_path}";
-    return ($dist_tarball, $dist_tarball_url);
-
 }
 
 sub perl_release_by_metacpan {
