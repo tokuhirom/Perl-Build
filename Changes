@@ -1,6 +1,14 @@
-Revision history for Perl extension App::perlbuild
+Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
+
+1.20 2018-05-26T12:28:58Z
+    - Resolve perl release versions and URLs from MetaCPAN entirely (Grinnz, sjn #66 #67, #73, #74, #75)
+    - Use HTTP::Tinyish for transparent https support (AnaTofuZ #72)
+    - If error status is 599 also display content (djzort #71)
+    - Add -L to curl in installation instructions (akarelas #68, #70)
+    - Support PERL_BUILD_INSTALL_OPTIONS env var (defc0n #61)
+    - blead.tar.gz is now extracted into perl-blead-(hash), not perl-(hash) (charsbar #60)
 
 1.13 2016-04-02T05:40:07Z
 

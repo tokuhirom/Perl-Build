@@ -4,13 +4,13 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.0.9, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.0, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-      "version" : "2"
+      "version" : 2
    },
    "name" : "Perl-Build",
    "no_index" : {
@@ -43,11 +43,13 @@
       "runtime" : {
          "requires" : {
             "CPAN::Perl::Releases" : "0",
+            "CPAN::Perl::Releases::MetaCPAN" : "0",
             "Devel::PatchPerl" : "0.88",
             "File::Temp" : "0",
             "File::pushd" : "0",
             "Getopt::Long" : "0",
-            "HTTP::Tiny" : "0",
+            "HTTP::Tinyish" : "0",
+            "JSON::PP" : "0",
             "Pod::Usage" : "1.63",
             "perl" : "5.008002"
          }
@@ -70,29 +72,34 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.13",
+   "version" : "1.20",
    "x_contributors" : [
+      "Akihiro Uchida <uchida@ike-dyn.ritsumei.ac.jp>",
+      "AnaTofuZ <anatofuz@gmail.com>",
+      "Ashley Hindmarsh <ash+github@best-scarper.co.uk>",
       "Daisuke Murase <typester@cpan.org>",
+      "Dan Book <grinnz@grinnz.com>",
+      "Dean Hamstead <dean@fragfest.com.au>",
+      "Diab Jerius <djerius@cfa.harvard.edu>",
+      "Kang-min Liu <gugod@gugod.org>",
+      "Katsuhiro KONISHI <konishi@hauN.org>",
+      "Kenichi Ishigaki <ishigaki@cpan.org>",
       "Kent Fredric <kentfredric@gmail.com>",
       "Mark Stosberg <mark@stosberg.com>",
-      "Kang-min Liu <gugod@gugod.org>",
-      "Akihiro Uchida <uchida@ike-dyn.ritsumei.ac.jp>",
-      "Neil Bowers <neil@bowers.com>",
-      "Katsuhiro KONISHI <konishi@hauN.org>",
       "Masahiro Chiba <nihen@megabbs.com>",
-      "hagihala <hagihala@hatena.ne.jp>",
-      "Tony <zearin@gonk.net>",
-      "Przemysław Wesołek <jest@go.art.pl>",
       "Masahiro Nagano <kazeburo@gmail.com>",
-      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
-      "moznion <moznion@gmail.com>",
-      "Ashley Hindmarsh <ash+github@best-scarper.co.uk>",
-      "Tatsuhiko Miyagawa <miyagawa@gmail.com>",
-      "Diab Jerius <djerius@cfa.harvard.edu>",
-      "Syohei YOSHIDA <syohex@gmail.com>",
-      "Kenichi Ishigaki <ishigaki@cpan.org>",
       "Mitch McCracken <mrmccrac@gmail.com>",
-      "Shoichi Kaji <skaji@cpan.org>"
+      "Neil Bowers <neil@bowers.com>",
+      "Przemysław Wesołek <jest@go.art.pl>",
+      "Shoichi Kaji <skaji@cpan.org>",
+      "Shoichi Kaji <skaji@outlook.com>",
+      "Syohei YOSHIDA <syohex@gmail.com>",
+      "Tatsuhiko Miyagawa <miyagawa@bulknews.net>",
+      "Tatsuhiko Miyagawa <miyagawa@gmail.com>",
+      "Tony <zearin@gonk.net>",
+      "hagihala <hagihala@hatena.ne.jp>",
+      "moznion <moznion@gmail.com>"
    ],
-   "x_serialization_backend" : "JSON::PP version 2.27400"
+   "x_serialization_backend" : "JSON::PP version 2.97001",
+   "x_static_install" : 1
 }

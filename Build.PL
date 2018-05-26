@@ -23,11 +23,13 @@ my %args = (
 
     requires => {
         'CPAN::Perl::Releases' => '0',
+        'CPAN::Perl::Releases::MetaCPAN' => '0',
         'Devel::PatchPerl' => '0.88',
         'File::Temp' => '0',
         'File::pushd' => '0',
         'Getopt::Long' => '0',
-        'HTTP::Tiny' => '0',
+        'HTTP::Tinyish' => '0',
+        'JSON::PP' => '0',
         'Pod::Usage' => '1.63',
         'perl' => '5.008002',
     },
@@ -50,7 +52,6 @@ my %args = (
     allow_pureperl => 0,
 
     script_files => [glob('script/*'), glob('bin/*')],
-    c_source     => [qw()],
     PL_files => {},
 
     test_files           => ((-d '.git' || $ENV{RELEASE_TESTING}) && -d 'xt') ? 't/ xt/' : 't/',
