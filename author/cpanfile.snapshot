@@ -8,6 +8,16 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::More 0.47
       perl 5.006000
+  CPAN-Perl-Releases-MetaCPAN-0.006
+    pathname: S/SK/SKAJI/CPAN-Perl-Releases-MetaCPAN-0.006.tar.gz
+    provides:
+      CPAN::Perl::Releases::MetaCPAN 0.006
+    requirements:
+      HTTP::Tiny 0.055
+      HTTP::Tinyish 0
+      JSON::PP 0
+      Module::Build::Tiny 0.034
+      perl 5.008001
   Carp-1.38
     pathname: R/RJ/RJBS/Carp-1.38.tar.gz
     provides:
