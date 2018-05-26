@@ -1,5 +1,6 @@
 requires 'perl' => '5.008002';
 requires 'CPAN::Perl::Releases' => '0';
+requires 'CPAN::Perl::Releases::MetaCPAN' => '0';
 requires 'File::pushd' => '0';
 requires 'HTTP::Tinyish' => '0';
 requires 'JSON::PP' => '0';

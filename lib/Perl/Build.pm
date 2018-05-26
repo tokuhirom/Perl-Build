@@ -10,6 +10,7 @@ use Carp ();
 use File::Basename;
 use File::Spec::Functions qw(catfile catdir rel2abs);
 use CPAN::Perl::Releases;
+use CPAN::Perl::Releases::MetaCPAN;
 use File::pushd qw(pushd);
 use File::Temp;
 use HTTP::Tinyish;
@@ -21,25 +22,18 @@ use Time::Local;
 our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://www.cpan.org';
 
 sub available_perls {
-    my ( $class, $dist ) = @_;
+    my $class = shift;
 
-    my $url = "http://www.cpan.org/src/5.0/";
-    my $html = http_get( $url );
-
-    unless($html) {
-        die "\nERROR: Unable to retrieve the list of perls.\n\n";
-    }
-
+    my $releases = CPAN::Perl::Releases::MetaCPAN->new->get;
     my @available_versions;
-
-    my %uniq;
-    while ($html =~ m|<a href="perl-([^"]+)\.tar\.gz">(.+?)</a>|g) {
-        my $version = $1;
-        next if $uniq{$version}++;
-        push @available_versions, $version;
+    for my $release (@$releases) {
+        if ($release->{name} =~ /^perl-(5.(\d+).(\d+)(-\w+)?)$/) {
+            my ($version, $major, $minor, $rc) = ($1, $2, $3, $4);
+            my $sort_by = sprintf "%03d%03d%s", $major, $minor, $rc || "ZZZ";
+            push @available_versions, { version => $version, sort_by => $sort_by };
+        }
     }
-
-    return @available_versions;
+    map { $_->{version} } sort { $b->{sort_by} cmp $a->{sort_by} } @available_versions;
 }
 
 # @return extracted source directory
@@ -97,35 +91,26 @@ sub perl_release {
     return ($dist_tarball, $dist_tarball_url);
 }
 
-sub perl_release_by_cpan_perl_releases {
-    my ($class, $version) = @_;
-    my $tarballs = CPAN::Perl::Releases::perl_tarballs($version);
+sub _perl_release {
+    my ($class, $version, $by) = @_;
+    my $tarballs = $by->($version);
 
-    my $x = $tarballs->{'tar.gz'};
+    my $x = $tarballs->{'tar.gz'} || $tarballs->{'tar.bz2'};
     die "not found the tarball for perl-$version\n" unless $x;
     my $dist_tarball = (split("/", $x))[-1];
     my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
     return ($dist_tarball, $dist_tarball_url);
 }
 
-sub perl_release_by_metacpan {
+sub perl_release_by_cpan_perl_releases {
     my ($class, $version) = @_;
-
-    my $json = http_get("https://fastapi.metacpan.org/v1/release/_search?size=1&q=name:perl-${version}");
-
-    my $result;
-    unless ($json and $result = decode_json($json)->{hits}{hits}[0]) {
-        die "Failed to download perl-${version} tarball\n";
-    }
-
-    my ($dist_path, $dist_tarball) =
-        $result->{_source}{download_url} =~ m[/(authors/id/.+/(perl-${version}.tar.(gz|bz2|xz)))$];
-    die "not found the tarball for perl-$version\n"
-        if !$dist_path and !$dist_tarball;
-    my $dist_tarball_url = "$CPAN_MIRROR/${dist_path}";
-    return ($dist_tarball, $dist_tarball_url);
+    $class->_perl_release($version, \&CPAN::Perl::Releases::perl_tarballs);
 }
 
+sub perl_release_by_metacpan {
+    my ($class, $version) = @_;
+    $class->_perl_release($version, \&CPAN::Perl::Releases::MetaCPAN::perl_tarballs);
+}
 
 sub http_get {
     my ($url) = @_;
