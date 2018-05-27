@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.23 2018-05-27T22:14:34Z
+    - Support tar.xz (#81)
+
 1.22 2018-05-27T15:26:27Z
     - Silence "Use of uninitialized value" warning on old perls (#80)
 
