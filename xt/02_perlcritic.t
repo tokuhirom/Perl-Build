@@ -15,7 +15,7 @@ eval {
 note $@ if $@;
 plan skip_all => "Perl::Critic 1.105+ or Test::Perl::Critic 1.02+ is not installed." if $@;
 
-all_critic_ok('lib', 'script', 'bin');
+all_critic_ok('lib', 'script');
 
 __END__
 
