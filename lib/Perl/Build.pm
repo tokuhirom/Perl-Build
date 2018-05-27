@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-use 5.008002;
+use 5.008001;
 our $VERSION = '1.20';
 
 use Carp ();
