@@ -22,7 +22,6 @@ use strict;
 use warnings;
 use 5.008001;
 use FindBin;
-use lib "$FindBin::Bin/../lib/";
 
 use Getopt::Long ();
 use File::Path qw(mkpath);
