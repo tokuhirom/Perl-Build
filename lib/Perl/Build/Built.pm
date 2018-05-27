@@ -24,8 +24,9 @@ sub run_env {
               . ' or ->run_env(\&code)'
               . ' or ->run_env(\%config)' );
     }
-    local $ENV{PATH}    = $self->combined_bin_path;
-    local $ENV{MANPATH} = $self->combined_man_path;
+    local $ENV{PATH} = $self->combined_bin_path;
+    my $combined_man_path = $self->combined_man_path;
+    local $ENV{MANPATH} = $combined_man_path if $combined_man_path;
     delete local $ENV{PERL5LIB};
     return $config->{code}->();
 }
