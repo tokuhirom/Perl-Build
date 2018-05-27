@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.22 2018-05-27T15:26:27Z
+    - Silence "Use of uninitialized value" warning on old perls (#80)
+
 1.21 2018-05-27T14:14:59Z
     - Silence "[cpan_perl_releases] not found the tarball" warning (#76)
     - Remove unnecessary 'use lib "lib"' (#77)
