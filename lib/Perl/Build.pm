@@ -44,11 +44,12 @@ sub extract_tarball {
     # installed as 'gtar' - RT #61042
     my $tarx =
         ($^O eq 'solaris' ? 'gtar ' : 'tar ') .
-        ( $dist_tarball =~ m/bz2$/ ? 'xjf' : 'xzf' );
+        (  $dist_tarball =~ m/bz2$/ ? 'xjf'
+         : $dist_tarball =~ m/xz$/  ? 'xJf' : 'xzf' );
     my $extract_command = "cd @{[ $destdir ]}; $tarx @{[ File::Spec->rel2abs($dist_tarball) ]}";
     system($extract_command) == 0
         or die "Failed to extract $dist_tarball";
-    $dist_tarball =~ s{(?:.*/)?([^/]+)\.tar\.(?:gz|bz2)$}{$1};
+    $dist_tarball =~ s{(?:.*/)?([^/]+)\.tar\.(?:gz|bz2|xz)$}{$1};
     if ($dist_tarball eq 'blead') {
         opendir my $dh, $destdir or die "Can't open $destdir: $!";
         my $latest = [];
@@ -98,7 +99,7 @@ sub _perl_release {
     my ($class, $version, $by) = @_;
     my $tarballs = $by->($version);
 
-    my $x = $tarballs->{'tar.gz'} || $tarballs->{'tar.bz2'};
+    my $x = $tarballs->{'tar.gz'} || $tarballs->{'tar.bz2'} || $tarballs->{'tar.xz'};
     die "not found the tarball for perl-$version\n" unless $x;
     my $dist_tarball = (split("/", $x))[-1];
     my $dist_tarball_url = $CPAN_MIRROR . "/authors/id/$x";
