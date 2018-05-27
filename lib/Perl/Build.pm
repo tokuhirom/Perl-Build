@@ -78,15 +78,18 @@ sub perl_release {
     my ($class, $version) = @_;
 
     my ($dist_tarball, $dist_tarball_url);
+    my @err;
     for my $func (qw/cpan_perl_releases metacpan/) {
         eval {
             ($dist_tarball, $dist_tarball_url) = $class->can("perl_release_by_$func")->($class,$version);
         };
-        warn "WARN: [$func] $@" if $@;
+        push @err, "[$func] $@" if $@;
         last if $dist_tarball && $dist_tarball_url;
     }
-    die "ERROR: Cannot find the tarball for perl-$version\n"
-        if !$dist_tarball and !$dist_tarball_url;
+    if (!$dist_tarball and !$dist_tarball_url) {
+        push @err, "ERROR: Cannot find the tarball for perl-$version\n";
+        die join "", @err;
+    }
 
     return ($dist_tarball, $dist_tarball_url);
 }
