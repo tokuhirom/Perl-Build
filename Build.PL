@@ -22,8 +22,8 @@ my %args = (
     },
 
     requires => {
-        'CPAN::Perl::Releases' => '0',
-        'CPAN::Perl::Releases::MetaCPAN' => '0',
+        'CPAN::Perl::Releases' => '3.58',
+        'CPAN::Perl::Releases::MetaCPAN' => '0.006',
         'Devel::PatchPerl' => '0.88',
         'File::Temp' => '0',
         'File::pushd' => '0',
@@ -31,7 +31,7 @@ my %args = (
         'HTTP::Tinyish' => '0',
         'JSON::PP' => '0',
         'Pod::Usage' => '1.63',
-        'perl' => '5.008002',
+        'perl' => '5.008001',
     },
 
     recommends => {

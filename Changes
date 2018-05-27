@@ -2,6 +2,11 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.21 2018-05-27T14:14:59Z
+    - Silence "[cpan_perl_releases] not found the tarball" warning (#76)
+    - Remove unnecessary 'use lib "lib"' (#77)
+    - Relax perl requirement 5.8.2 -> 5.8.1 (#79)
+
 1.20 2018-05-26T12:28:58Z
     - Resolve perl release versions and URLs from MetaCPAN entirely (Grinnz, sjn #66 #67, #73, #74, #75)
     - Use HTTP::Tinyish for transparent https support (AnaTofuZ #72)
