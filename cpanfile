@@ -1,4 +1,4 @@
-requires 'perl' => '5.008002';
+requires 'perl' => '5.008001';
 requires 'CPAN::Perl::Releases' => '3.58';
 requires 'CPAN::Perl::Releases::MetaCPAN' => '0.006';
 requires 'File::pushd' => '0';

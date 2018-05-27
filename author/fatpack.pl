@@ -30,7 +30,7 @@ Getopt::Long::GetOptions
     "h|help" => sub { exec "perldoc", $0 },
 or exit 1;
 
-my $target = '5.8.2';
+my $target = '5.8.1';
 
 my $resolver = -f "cpanfile.snapshot" && !$update ? "snapshot" : "metadb";
 
