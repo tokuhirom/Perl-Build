@@ -36,6 +36,7 @@ my $resolver = -f "cpanfile.snapshot" && !$update ? "snapshot" : "metadb";
 
 warn "Resolver $resolver\n";
 cpm "install", "--cpanfile", "../cpanfile", "--target-perl", $target, "--resolver", $resolver;
+cpm "install", "--resolver", $resolver, "--reinstall", "ExtUtils::MakeMaker";
 gen_snapshot if $update;
 print STDERR "FatPacking...";
 fatpack
