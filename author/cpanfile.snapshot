@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-3.60
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.60.tar.gz
+  CPAN-Perl-Releases-3.68
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.68.tar.gz
     provides:
-      CPAN::Perl::Releases 3.60
+      CPAN::Perl::Releases 3.68
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
@@ -32,12 +32,12 @@ DISTRIBUTIONS
       overload 0
       strict 0
       warnings 0
-  Devel-PatchPerl-1.48
-    pathname: B/BI/BINGOS/Devel-PatchPerl-1.48.tar.gz
+  Devel-PatchPerl-1.52
+    pathname: B/BI/BINGOS/Devel-PatchPerl-1.52.tar.gz
     provides:
-      Devel::PatchPerl 1.48
-      Devel::PatchPerl::Hints 1.48
-      Devel::PatchPerl::Plugin 1.48
+      Devel::PatchPerl 1.52
+      Devel::PatchPerl::Hints 1.52
+      Devel::PatchPerl::Plugin 1.52
     requirements:
       ExtUtils::MakeMaker 0
       File::pushd 1.00
@@ -49,7 +49,7 @@ DISTRIBUTIONS
     pathname: T/TO/TODDR/Exporter-5.72.tar.gz
     provides:
       Exporter 5.72
-      Exporter::Heavy 5.72
+      Exporter::Heavy 5.73
     requirements:
       Carp 1.05
       ExtUtils::MakeMaker 0
