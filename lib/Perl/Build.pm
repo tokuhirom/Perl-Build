@@ -19,7 +19,7 @@ use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
 use Time::Local;
 
-our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://www.cpan.org';
+our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'https://cpan.metacpan.org';
 
 sub available_perls {
     my $class = shift;
