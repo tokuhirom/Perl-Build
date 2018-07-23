@@ -19,7 +19,7 @@ use Devel::PatchPerl 0.88;
 use Perl::Build::Built;
 use Time::Local;
 
-our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'http://www.cpan.org';
+our $CPAN_MIRROR = $ENV{PERL_BUILD_CPAN_MIRROR} || 'https://cpan.metacpan.org';
 
 sub available_perls {
     my $class = shift;
@@ -95,10 +95,9 @@ sub perl_release {
     return ($dist_tarball, $dist_tarball_url);
 }
 
-sub _perl_release {
-    my ($class, $version, $by) = @_;
-    my $tarballs = $by->($version);
-
+sub perl_release_by_cpan_perl_releases {
+    my ($class, $version) = @_;
+    my $tarballs = CPAN::Perl::Releases::perl_tarballs($version);
     my $x = $tarballs->{'tar.gz'} || $tarballs->{'tar.bz2'} || $tarballs->{'tar.xz'};
     die "not found the tarball for perl-$version\n" unless $x;
     my $dist_tarball = (split("/", $x))[-1];
@@ -106,14 +105,18 @@ sub _perl_release {
     return ($dist_tarball, $dist_tarball_url);
 }
 
-sub perl_release_by_cpan_perl_releases {
-    my ($class, $version) = @_;
-    $class->_perl_release($version, \&CPAN::Perl::Releases::perl_tarballs);
-}
-
 sub perl_release_by_metacpan {
     my ($class, $version) = @_;
-    $class->_perl_release($version, \&CPAN::Perl::Releases::MetaCPAN::perl_tarballs);
+    my $releases = CPAN::Perl::Releases::MetaCPAN->new->get;
+    for my $release (@$releases) {
+        if ($release->{name} eq "perl-$version") {
+            my ($path) = $release->{download_url} =~ m{(/authors/id/.*)};
+            my $dist_tarball = (split("/", $path))[-1];
+            my $dist_tarball_url = $CPAN_MIRROR . $path;
+            return ($dist_tarball, $dist_tarball_url);
+        }
+    }
+    die "not found the tarball for perl-$version\n";
 }
 
 sub http_get {
