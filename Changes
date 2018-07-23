@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.24 2018-07-23T14:30:29Z
+    - Support perl releases in BackPAN (#84)
+
 1.23 2018-05-27T22:14:34Z
     - Support tar.xz (#81)
 
