@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-3.68
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.68.tar.gz
+  CPAN-Perl-Releases-3.70
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.70.tar.gz
     provides:
-      CPAN::Perl::Releases 3.68
+      CPAN::Perl::Releases 3.70
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
@@ -285,75 +285,75 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       File::Spec 0
       Test::Harness 1.1601
-  Test-Simple-1.302136
-    pathname: E/EX/EXODIST/Test-Simple-1.302136.tar.gz
+  Test-Simple-1.302138
+    pathname: E/EX/EXODIST/Test-Simple-1.302138.tar.gz
     provides:
-      Test2 1.302136
-      Test2::API 1.302136
-      Test2::API::Breakage 1.302136
-      Test2::API::Context 1.302136
-      Test2::API::Instance 1.302136
-      Test2::API::Stack 1.302136
-      Test2::Event 1.302136
-      Test2::Event::Bail 1.302136
-      Test2::Event::Diag 1.302136
-      Test2::Event::Encoding 1.302136
-      Test2::Event::Exception 1.302136
-      Test2::Event::Fail 1.302136
-      Test2::Event::Generic 1.302136
-      Test2::Event::Note 1.302136
-      Test2::Event::Ok 1.302136
-      Test2::Event::Pass 1.302136
-      Test2::Event::Plan 1.302136
-      Test2::Event::Skip 1.302136
-      Test2::Event::Subtest 1.302136
-      Test2::Event::TAP::Version 1.302136
-      Test2::Event::V2 1.302136
-      Test2::Event::Waiting 1.302136
-      Test2::EventFacet 1.302136
-      Test2::EventFacet::About 1.302136
-      Test2::EventFacet::Amnesty 1.302136
-      Test2::EventFacet::Assert 1.302136
-      Test2::EventFacet::Control 1.302136
-      Test2::EventFacet::Error 1.302136
-      Test2::EventFacet::Hub 1.302136
-      Test2::EventFacet::Info 1.302136
-      Test2::EventFacet::Meta 1.302136
-      Test2::EventFacet::Parent 1.302136
-      Test2::EventFacet::Plan 1.302136
-      Test2::EventFacet::Render 1.302136
-      Test2::EventFacet::Trace 1.302136
-      Test2::Formatter 1.302136
-      Test2::Formatter::TAP 1.302136
-      Test2::Hub 1.302136
-      Test2::Hub::Interceptor 1.302136
-      Test2::Hub::Interceptor::Terminator 1.302136
-      Test2::Hub::Subtest 1.302136
-      Test2::IPC 1.302136
-      Test2::IPC::Driver 1.302136
-      Test2::IPC::Driver::Files 1.302136
-      Test2::Tools::Tiny 1.302136
-      Test2::Util 1.302136
-      Test2::Util::ExternalMeta 1.302136
-      Test2::Util::Facets2Legacy 1.302136
-      Test2::Util::HashBase 1.302136
-      Test2::Util::Trace 1.302136
-      Test::Builder 1.302136
-      Test::Builder::Formatter 1.302136
+      Test2 1.302138
+      Test2::API 1.302138
+      Test2::API::Breakage 1.302138
+      Test2::API::Context 1.302138
+      Test2::API::Instance 1.302138
+      Test2::API::Stack 1.302138
+      Test2::Event 1.302138
+      Test2::Event::Bail 1.302138
+      Test2::Event::Diag 1.302138
+      Test2::Event::Encoding 1.302138
+      Test2::Event::Exception 1.302138
+      Test2::Event::Fail 1.302138
+      Test2::Event::Generic 1.302138
+      Test2::Event::Note 1.302138
+      Test2::Event::Ok 1.302138
+      Test2::Event::Pass 1.302138
+      Test2::Event::Plan 1.302138
+      Test2::Event::Skip 1.302138
+      Test2::Event::Subtest 1.302138
+      Test2::Event::TAP::Version 1.302138
+      Test2::Event::V2 1.302138
+      Test2::Event::Waiting 1.302138
+      Test2::EventFacet 1.302138
+      Test2::EventFacet::About 1.302138
+      Test2::EventFacet::Amnesty 1.302138
+      Test2::EventFacet::Assert 1.302138
+      Test2::EventFacet::Control 1.302138
+      Test2::EventFacet::Error 1.302138
+      Test2::EventFacet::Hub 1.302138
+      Test2::EventFacet::Info 1.302138
+      Test2::EventFacet::Meta 1.302138
+      Test2::EventFacet::Parent 1.302138
+      Test2::EventFacet::Plan 1.302138
+      Test2::EventFacet::Render 1.302138
+      Test2::EventFacet::Trace 1.302138
+      Test2::Formatter 1.302138
+      Test2::Formatter::TAP 1.302138
+      Test2::Hub 1.302138
+      Test2::Hub::Interceptor 1.302138
+      Test2::Hub::Interceptor::Terminator 1.302138
+      Test2::Hub::Subtest 1.302138
+      Test2::IPC 1.302138
+      Test2::IPC::Driver 1.302138
+      Test2::IPC::Driver::Files 1.302138
+      Test2::Tools::Tiny 1.302138
+      Test2::Util 1.302138
+      Test2::Util::ExternalMeta 1.302138
+      Test2::Util::Facets2Legacy 1.302138
+      Test2::Util::HashBase 1.302138
+      Test2::Util::Trace 1.302138
+      Test::Builder 1.302138
+      Test::Builder::Formatter 1.302138
       Test::Builder::IO::Scalar 2.114
-      Test::Builder::Module 1.302136
-      Test::Builder::Tester 1.302136
-      Test::Builder::Tester::Color 1.302136
-      Test::Builder::Tester::Tie 1.302136
-      Test::Builder::TodoDiag 1.302136
-      Test::More 1.302136
-      Test::Simple 1.302136
-      Test::Tester 1.302136
-      Test::Tester::Capture 1.302136
-      Test::Tester::CaptureRunner 1.302136
-      Test::Tester::Delegate 1.302136
-      Test::use::ok 1.302136
-      ok 1.302136
+      Test::Builder::Module 1.302138
+      Test::Builder::Tester 1.302138
+      Test::Builder::Tester::Color 1.302138
+      Test::Builder::Tester::Tie 1.302138
+      Test::Builder::TodoDiag 1.302138
+      Test::More 1.302138
+      Test::Simple 1.302138
+      Test::Tester 1.302138
+      Test::Tester::Capture 1.302138
+      Test::Tester::CaptureRunner 1.302138
+      Test::Tester::Delegate 1.302138
+      Test::use::ok 1.302138
+      ok 1.302138
     requirements:
       ExtUtils::MakeMaker 0
       File::Spec 0
@@ -362,13 +362,14 @@ DISTRIBUTIONS
       Storable 0
       perl 5.006002
       utf8 0
-  parent-0.236
-    pathname: C/CO/CORION/parent-0.236.tar.gz
+  parent-0.237
+    pathname: C/CO/CORION/parent-0.237.tar.gz
     provides:
-      parent 0.236
+      parent 0.237
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.4
+      perl 5.006
   podlators-4.11
     pathname: R/RR/RRA/podlators-4.11.tar.gz
     provides:
