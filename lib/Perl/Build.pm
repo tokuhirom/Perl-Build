@@ -127,7 +127,9 @@ sub http_get {
     if ($response->{success}) {
         return $response->{content};
     } else {
-        die "Cannot get content from $url: $response->{status} $response->{reason}\n";
+        my $msg = $response->{status} == 599 ? ", $response->{content}" : "";
+        chomp $msg;
+        die "Cannot get content from $url: $response->{status} $response->{reason}$msg\n";
     }
 }
 
@@ -139,7 +141,9 @@ sub http_mirror {
     if ($response->{success}) {
         print "Downloaded $url to $path.\n";
     } else {
-        die "Cannot get file from $url: $response->{status} $response->{reason}";
+        my $msg = $response->{status} == 599 ? ", $response->{content}" : "";
+        chomp $msg;
+        die "Cannot get file from $url: $response->{status} $response->{reason}$msg";
     }
 }
 
