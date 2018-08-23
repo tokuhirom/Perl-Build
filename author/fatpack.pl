@@ -23,12 +23,12 @@ sub gen_snapshot {
     $snapshot->save;
 }
 
-chdir $FindBin::Bin;
-
 Getopt::Long::GetOptions
     "u|update" => \my $update,
     "h|help" => sub { exec "perldoc", $0 },
 or exit 1;
+
+chdir $FindBin::Bin;
 
 my $target = '5.8.1';
 
