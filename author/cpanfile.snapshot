@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-3.74
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.74.tar.gz
+  CPAN-Perl-Releases-3.76
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.76.tar.gz
     provides:
-      CPAN::Perl::Releases 3.74
+      CPAN::Perl::Releases 3.76
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
@@ -18,11 +18,11 @@ DISTRIBUTIONS
       JSON::PP 0
       Module::Build::Tiny 0.034
       perl 5.008001
-  Carp-1.38
-    pathname: R/RJ/RJBS/Carp-1.38.tar.gz
+  Carp-1.50
+    pathname: X/XS/XSAWYERX/Carp-1.50.tar.gz
     provides:
-      Carp 1.38
-      Carp::Heavy 1.38
+      Carp 1.50
+      Carp::Heavy 1.50
     requirements:
       Config 0
       Exporter 0
@@ -45,10 +45,10 @@ DISTRIBUTIONS
       MIME::Base64 0
       Module::Pluggable 0
       perl 5.006000
-  Exporter-5.72
-    pathname: T/TO/TODDR/Exporter-5.72.tar.gz
+  Exporter-5.73
+    pathname: T/TO/TODDR/Exporter-5.73.tar.gz
     provides:
-      Exporter 5.72
+      Exporter 5.73
       Exporter::Heavy 5.73
     requirements:
       Carp 1.05
@@ -137,10 +137,10 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
-  HTTP-Tinyish-0.14
-    pathname: M/MI/MIYAGAWA/HTTP-Tinyish-0.14.tar.gz
+  HTTP-Tinyish-0.15
+    pathname: M/MI/MIYAGAWA/HTTP-Tinyish-0.15.tar.gz
     provides:
-      HTTP::Tinyish 0.14
+      HTTP::Tinyish 0.15
       HTTP::Tinyish::Base undef
       HTTP::Tinyish::Curl undef
       HTTP::Tinyish::HTTPTiny undef
@@ -187,20 +187,20 @@ DISTRIBUTIONS
       if 0
       perl 5.00503
       strict 0
-  PathTools-3.74
-    pathname: X/XS/XSAWYERX/PathTools-3.74.tar.gz
+  PathTools-3.75
+    pathname: X/XS/XSAWYERX/PathTools-3.75.tar.gz
     provides:
-      Cwd 3.74
-      File::Spec 3.74
-      File::Spec::AmigaOS 3.74
-      File::Spec::Cygwin 3.74
-      File::Spec::Epoc 3.74
-      File::Spec::Functions 3.74
-      File::Spec::Mac 3.74
-      File::Spec::OS2 3.74
-      File::Spec::Unix 3.74
-      File::Spec::VMS 3.74
-      File::Spec::Win32 3.74
+      Cwd 3.75
+      File::Spec 3.75
+      File::Spec::AmigaOS 3.75
+      File::Spec::Cygwin 3.75
+      File::Spec::Epoc 3.75
+      File::Spec::Functions 3.75
+      File::Spec::Mac 3.75
+      File::Spec::OS2 3.75
+      File::Spec::Unix 3.75
+      File::Spec::VMS 3.75
+      File::Spec::Win32 3.75
     requirements:
       Carp 0
       ExtUtils::MakeMaker 0
