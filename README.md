@@ -6,7 +6,7 @@ Perl::Build - perl builder
 
 # Install as plenv plugin (Recommended)
 
-    % git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
+    % git clone git://github.com/tokuhirom/Perl-Build.git $(plenv root)/plugins/perl-build/
 
 # CLI interface without dependencies
 
