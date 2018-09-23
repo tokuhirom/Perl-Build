@@ -1,7 +1,9 @@
 Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
-    - Change hardcoded plenv path in README and module pod to $(plenv root)
+
+1.26 2018-09-23T12:24:24Z
+    - Change hardcoded plenv path in README and module pod to $(plenv root) (mikkoi #86)
 
 1.25 2018-08-23T12:18:36Z
     - Dump response body if http status = 599 (#85)

@@ -72,7 +72,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.25",
+   "version" : "1.26",
    "x_contributors" : [
       "Akihiro Uchida <uchida@ike-dyn.ritsumei.ac.jp>",
       "AnaTofuZ <anatofuz@gmail.com>",
@@ -88,6 +88,7 @@
       "Mark Stosberg <mark@stosberg.com>",
       "Masahiro Chiba <nihen@megabbs.com>",
       "Masahiro Nagano <kazeburo@gmail.com>",
+      "Mikko Johannes Koivunalho <mikko.koivunalho@iki.fi>",
       "Mitch McCracken <mrmccrac@gmail.com>",
       "Neil Bowers <neil@bowers.com>",
       "Przemysław Wesołek <jest@go.art.pl>",
