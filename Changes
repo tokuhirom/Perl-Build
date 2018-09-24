@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.27 2018-09-24T03:07:15Z
+    - Bump HTTP::Tinyish prereq
+
 1.26 2018-09-23T12:24:24Z
     - Change hardcoded plenv path in README and module pod to $(plenv root) (mikkoi #86)
 

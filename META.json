@@ -72,7 +72,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.26",
+   "version" : "1.27",
    "x_contributors" : [
       "Akihiro Uchida <uchida@ike-dyn.ritsumei.ac.jp>",
       "AnaTofuZ <anatofuz@gmail.com>",
