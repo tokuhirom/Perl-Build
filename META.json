@@ -48,7 +48,7 @@
             "File::Temp" : "0",
             "File::pushd" : "0",
             "Getopt::Long" : "0",
-            "HTTP::Tinyish" : "0",
+            "HTTP::Tinyish" : "0.15",
             "JSON::PP" : "0",
             "Pod::Usage" : "1.63",
             "perl" : "5.008001"
