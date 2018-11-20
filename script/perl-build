@@ -86,7 +86,7 @@ if ($stuff eq 'blead') {
             tarball_dir       => $tarball_dir,
         )
     );
-} elsif ($stuff =~ /\.(gz|bz2)$/) {
+} elsif ($stuff =~ /\.(gz|bz2|xz)$/) {
     Perl::Build->install_from_tarball(
         $stuff => (
             dst_path          => $dest,
