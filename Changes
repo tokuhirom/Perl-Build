@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.28 2018-11-20T23:10:18Z
+    - Allow installing from local tar.xz (Grinnz #88)
+
 1.27 2018-09-24T03:07:15Z
     - Bump HTTP::Tinyish prereq
 
