@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.29 2018-12-21T12:34:40Z
+    - Use https explicitly for installing blead perl (Grinnz #89)
+
 1.28 2018-11-20T23:10:18Z
     - Allow installing from local tar.xz (Grinnz #88)
 
