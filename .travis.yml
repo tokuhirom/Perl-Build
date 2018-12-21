@@ -1,7 +1,7 @@
 language: perl
 sudo: false
 perl:
-  - "5.26"
+  - "5.28"
   - "5.10"
   - "5.8"
 script:
