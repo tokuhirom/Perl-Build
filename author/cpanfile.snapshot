@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-3.82
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.82.tar.gz
+  CPAN-Perl-Releases-3.86
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-3.86.tar.gz
     provides:
-      CPAN::Perl::Releases 3.82
+      CPAN::Perl::Releases 3.86
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0.47
@@ -161,12 +161,12 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::More 0.31
       Time::HiRes 0
-  JSON-PP-2.97001
-    pathname: I/IS/ISHIGAKI/JSON-PP-2.97001.tar.gz
+  JSON-PP-4.00
+    pathname: I/IS/ISHIGAKI/JSON-PP-4.00.tar.gz
     provides:
-      JSON::PP 2.97001
-      JSON::PP::Boolean 2.97001
-      JSON::PP::IncrParser 2.97001
+      JSON::PP 4.00
+      JSON::PP::Boolean 4.00
+      JSON::PP::IncrParser 4.00
     requirements:
       ExtUtils::MakeMaker 0
       Scalar::Util 1.08
@@ -285,75 +285,75 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       File::Spec 0
       Test::Harness 1.1601
-  Test-Simple-1.302140
-    pathname: E/EX/EXODIST/Test-Simple-1.302140.tar.gz
+  Test-Simple-1.302141
+    pathname: E/EX/EXODIST/Test-Simple-1.302141.tar.gz
     provides:
-      Test2 1.302140
-      Test2::API 1.302140
-      Test2::API::Breakage 1.302140
-      Test2::API::Context 1.302140
-      Test2::API::Instance 1.302140
-      Test2::API::Stack 1.302140
-      Test2::Event 1.302140
-      Test2::Event::Bail 1.302140
-      Test2::Event::Diag 1.302140
-      Test2::Event::Encoding 1.302140
-      Test2::Event::Exception 1.302140
-      Test2::Event::Fail 1.302140
-      Test2::Event::Generic 1.302140
-      Test2::Event::Note 1.302140
-      Test2::Event::Ok 1.302140
-      Test2::Event::Pass 1.302140
-      Test2::Event::Plan 1.302140
-      Test2::Event::Skip 1.302140
-      Test2::Event::Subtest 1.302140
-      Test2::Event::TAP::Version 1.302140
-      Test2::Event::V2 1.302140
-      Test2::Event::Waiting 1.302140
-      Test2::EventFacet 1.302140
-      Test2::EventFacet::About 1.302140
-      Test2::EventFacet::Amnesty 1.302140
-      Test2::EventFacet::Assert 1.302140
-      Test2::EventFacet::Control 1.302140
-      Test2::EventFacet::Error 1.302140
-      Test2::EventFacet::Hub 1.302140
-      Test2::EventFacet::Info 1.302140
-      Test2::EventFacet::Meta 1.302140
-      Test2::EventFacet::Parent 1.302140
-      Test2::EventFacet::Plan 1.302140
-      Test2::EventFacet::Render 1.302140
-      Test2::EventFacet::Trace 1.302140
-      Test2::Formatter 1.302140
-      Test2::Formatter::TAP 1.302140
-      Test2::Hub 1.302140
-      Test2::Hub::Interceptor 1.302140
-      Test2::Hub::Interceptor::Terminator 1.302140
-      Test2::Hub::Subtest 1.302140
-      Test2::IPC 1.302140
-      Test2::IPC::Driver 1.302140
-      Test2::IPC::Driver::Files 1.302140
-      Test2::Tools::Tiny 1.302140
-      Test2::Util 1.302140
-      Test2::Util::ExternalMeta 1.302140
-      Test2::Util::Facets2Legacy 1.302140
-      Test2::Util::HashBase 1.302140
-      Test2::Util::Trace 1.302140
-      Test::Builder 1.302140
-      Test::Builder::Formatter 1.302140
+      Test2 1.302141
+      Test2::API 1.302141
+      Test2::API::Breakage 1.302141
+      Test2::API::Context 1.302141
+      Test2::API::Instance 1.302141
+      Test2::API::Stack 1.302141
+      Test2::Event 1.302141
+      Test2::Event::Bail 1.302141
+      Test2::Event::Diag 1.302141
+      Test2::Event::Encoding 1.302141
+      Test2::Event::Exception 1.302141
+      Test2::Event::Fail 1.302141
+      Test2::Event::Generic 1.302141
+      Test2::Event::Note 1.302141
+      Test2::Event::Ok 1.302141
+      Test2::Event::Pass 1.302141
+      Test2::Event::Plan 1.302141
+      Test2::Event::Skip 1.302141
+      Test2::Event::Subtest 1.302141
+      Test2::Event::TAP::Version 1.302141
+      Test2::Event::V2 1.302141
+      Test2::Event::Waiting 1.302141
+      Test2::EventFacet 1.302141
+      Test2::EventFacet::About 1.302141
+      Test2::EventFacet::Amnesty 1.302141
+      Test2::EventFacet::Assert 1.302141
+      Test2::EventFacet::Control 1.302141
+      Test2::EventFacet::Error 1.302141
+      Test2::EventFacet::Hub 1.302141
+      Test2::EventFacet::Info 1.302141
+      Test2::EventFacet::Meta 1.302141
+      Test2::EventFacet::Parent 1.302141
+      Test2::EventFacet::Plan 1.302141
+      Test2::EventFacet::Render 1.302141
+      Test2::EventFacet::Trace 1.302141
+      Test2::Formatter 1.302141
+      Test2::Formatter::TAP 1.302141
+      Test2::Hub 1.302141
+      Test2::Hub::Interceptor 1.302141
+      Test2::Hub::Interceptor::Terminator 1.302141
+      Test2::Hub::Subtest 1.302141
+      Test2::IPC 1.302141
+      Test2::IPC::Driver 1.302141
+      Test2::IPC::Driver::Files 1.302141
+      Test2::Tools::Tiny 1.302141
+      Test2::Util 1.302141
+      Test2::Util::ExternalMeta 1.302141
+      Test2::Util::Facets2Legacy 1.302141
+      Test2::Util::HashBase 1.302141
+      Test2::Util::Trace 1.302141
+      Test::Builder 1.302141
+      Test::Builder::Formatter 1.302141
       Test::Builder::IO::Scalar 2.114
-      Test::Builder::Module 1.302140
-      Test::Builder::Tester 1.302140
-      Test::Builder::Tester::Color 1.302140
-      Test::Builder::Tester::Tie 1.302140
-      Test::Builder::TodoDiag 1.302140
-      Test::More 1.302140
-      Test::Simple 1.302140
-      Test::Tester 1.302140
-      Test::Tester::Capture 1.302140
-      Test::Tester::CaptureRunner 1.302140
-      Test::Tester::Delegate 1.302140
-      Test::use::ok 1.302140
-      ok 1.302140
+      Test::Builder::Module 1.302141
+      Test::Builder::Tester 1.302141
+      Test::Builder::Tester::Color 1.302141
+      Test::Builder::Tester::Tie 1.302141
+      Test::Builder::TodoDiag 1.302141
+      Test::More 1.302141
+      Test::Simple 1.302141
+      Test::Tester 1.302141
+      Test::Tester::Capture 1.302141
+      Test::Tester::CaptureRunner 1.302141
+      Test::Tester::Delegate 1.302141
+      Test::use::ok 1.302141
+      ok 1.302141
     requirements:
       ExtUtils::MakeMaker 0
       File::Spec 0
