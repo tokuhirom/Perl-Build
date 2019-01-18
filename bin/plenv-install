@@ -12,6 +12,7 @@
 #   --test           Run test cases
 #   --noman          Skip installation of manpages
 #   -D, -A, -U, -j   perl configure options via perl-build
+#   --version        show perl-build plugin version
 #
 # Example:
 #   plenv install 5.20.2 -j 8 -Dcc=gcc -UDEBUGGING -Accflags=...
@@ -60,8 +61,8 @@ sub main {
         'noman' => \my $noman,
     );
     if ($version) {
-        print "$Perl::Build::VERSION\n";
-        exit 0;
+        exec $^X, $PERL_BUILD, "--version";
+        exit 255;
     } elsif ($help) {
         usage();
     } elsif ($list) {
