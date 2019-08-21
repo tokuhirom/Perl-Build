@@ -1,8 +1,10 @@
 language: perl
-sudo: false
-perl:
-  - "5.28"
-  - "5.10"
-  - "5.8"
+matrix:
+  include:
+    - perl: "5.30"
+    - perl: "5.10"
+      dist: trusty
+    - perl: "5.8"
+      dist: trusty
 script:
   - prove -lr t xt
