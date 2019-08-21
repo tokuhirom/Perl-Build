@@ -523,7 +523,7 @@ If you want to use patchperl plugins, please Google "PERL5_PATCHPERL_PLUGIN".
 L<perlbrew> is a perl5 installation manager. But perl-build is a simple perl5 compilation and installation assistant tool.
 It makes perl5 installation easily. That's all. perl-build doesn't care about the user's environment.
 
-So, perl-build is just a installer.
+So, perl-build is just an installer.
 
 =back
 
