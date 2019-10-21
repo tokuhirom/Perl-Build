@@ -64,7 +64,7 @@ push @configure_options, "-Dman1dir=none", "-Dman3dir=none" if $noman;
 $ENV{PERL5_PATCHPERL_PLUGIN} = $patches if defined $patches;
 
 if ($stuff eq 'blead') {
-    my $url = "https://perl5.git.perl.org/perl.git/snapshot/blead.tar.gz";
+    my $url = "https://github.com/Perl/perl5/archive/blead.tar.gz";
     Perl::Build->install_from_url(
         $url => (
             dst_path          => $dest,
