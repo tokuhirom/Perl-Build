@@ -42,37 +42,30 @@ sub extract_tarball {
 
     # Was broken on Solaris, where GNU tar is probably
     # installed as 'gtar' - RT #61042
-    my $tarx =
-        ($^O eq 'solaris' ? 'gtar ' : 'tar ') .
-        (  $dist_tarball =~ m/bz2$/ ? 'xjf'
-         : $dist_tarball =~ m/xz$/  ? 'xJf' : 'xzf' );
-    my $extract_command = "cd @{[ $destdir ]}; $tarx @{[ File::Spec->rel2abs($dist_tarball) ]}";
-    system($extract_command) == 0
+    my $tar = $^O eq 'solaris' ? 'gtar' : 'tar';
+
+    my $type
+        = $dist_tarball =~ m/bz2$/  ? 'j'
+        : $dist_tarball =~ m/xz$/   ? 'J'
+                                    : 'z';
+
+    my $abs_tarball = File::Spec->rel2abs($dist_tarball);
+
+    my @tar_files = `$tar t${type}f "$abs_tarball"`;
+    $? == 0
         or die "Failed to extract $dist_tarball";
-    $dist_tarball =~ s{(?:.*/)?([^/]+)\.tar\.(?:gz|bz2|xz)$}{$1};
-    if ($dist_tarball eq 'blead') {
-        opendir my $dh, $destdir or die "Can't open $destdir: $!";
-        my $latest = [];
-        while(my $dir = readdir $dh) {
-            next unless -d catfile($destdir, $dir) && $dir =~ /perl-(?:blead-)?[0-9a-f]{7,8}$/;
-            my $mtime = (stat(_))[9];
-            $latest = [$dir, $mtime] if !$latest->[1] or $latest->[1] < $mtime;
-        }
-        closedir $dh;
-        return catfile($destdir, $latest->[0]);
-    } elsif ($dist_tarball =~ /^cperl-/) {
-        opendir my $dh, $destdir or die "Can't open $destdir: $!";
-        my $latest = [];
-        while(my $dir = readdir $dh) {
-            next unless $dir =~ /^cperl-/;
-            my $mtime = (stat(_))[9];
-            $latest = [$dir, $mtime] if !$latest->[1] or $latest->[1] < $mtime;
-        }
-        closedir $dh;
-        return catfile($destdir, $latest->[0]);
-    } else {
-        return "$destdir/$dist_tarball"; # Note that this is incorrect for blead
-    }
+
+    chomp @tar_files;
+    my %seen;
+    my @prefixes = grep !$seen{$_}++, map m{\A(?:\./)?([^/]+)}, @tar_files;
+
+    die "$dist_tarball does not contain single directory : @prefixes"
+        if @prefixes != 1;
+
+    system(qq{cd "$destdir"; $tar x${type}f "$abs_tarball"}) == 0
+        or die "Failed to extract $dist_tarball";
+
+    return catfile($destdir, $prefixes[0]);
 }
 
 sub perl_release {
