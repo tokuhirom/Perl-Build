@@ -130,7 +130,7 @@ This is yet another perl builder module.
 
         (Default: `1`)
 
-    Returns an instance of [Perl::Build::Built](https://metacpan.org/pod/Perl::Build::Built) to facilitate using the built perl from code.
+    Returns an instance of [Perl::Build::Built](https://metacpan.org/pod/Perl%3A%3ABuild%3A%3ABuilt) to facilitate using the built perl from code.
 
 - `Perl::Build->symlink_devel_executables($bin_dir:Str)`
 
@@ -151,7 +151,7 @@ This is yet another perl builder module.
 
 # THANKS TO
 
-Most of the code was taken from [`App::perlbrew`](https://metacpan.org/pod/App::perlbrew).
+Most of the code was taken from [`App::perlbrew`](https://metacpan.org/pod/App%3A%3Aperlbrew).
 
 TYPESTER - suggests `--patches` option
 
@@ -168,7 +168,7 @@ Copyright (C) Tokuhiro Matsuno
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-This software takes lot of the code from [App::perlbrew](https://metacpan.org/pod/App::perlbrew). App::perlbrew's license is:
+This software takes lot of the code from [App::perlbrew](https://metacpan.org/pod/App%3A%3Aperlbrew). App::perlbrew's license is:
 
     The MIT License
 

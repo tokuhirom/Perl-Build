@@ -2,6 +2,11 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.30 2019-10-25T23:43:38Z
+    - Use github for blead archive (haarg toddr #94, #95)
+    - Fix grammar (scop #92)
+    - Fix `plenv install --version` (#91)
+
 1.29 2018-12-21T12:34:40Z
     - Use https explicitly for installing blead perl (Grinnz #89)
 
