@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-5.20200620
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-5.20200620.tar.gz
+  CPAN-Perl-Releases-5.20201120
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-5.20201120.tar.gz
     provides:
-      CPAN::Perl::Releases 5.20200620
+      CPAN::Perl::Releases 5.20201120
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006000
@@ -31,12 +31,12 @@ DISTRIBUTIONS
       overload 0
       strict 0
       warnings 0
-  Devel-PatchPerl-2.00
-    pathname: B/BI/BINGOS/Devel-PatchPerl-2.00.tar.gz
+  Devel-PatchPerl-2.04
+    pathname: B/BI/BINGOS/Devel-PatchPerl-2.04.tar.gz
     provides:
-      Devel::PatchPerl 2.00
-      Devel::PatchPerl::Hints 2.00
-      Devel::PatchPerl::Plugin 2.00
+      Devel::PatchPerl 2.04
+      Devel::PatchPerl::Hints 2.04
+      Devel::PatchPerl::Plugin 2.04
     requirements:
       ExtUtils::MakeMaker 0
       File::pushd 1.00
@@ -53,44 +53,45 @@ DISTRIBUTIONS
     requirements:
       Carp 1.05
       ExtUtils::MakeMaker 0
-  ExtUtils-MakeMaker-7.46
-    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.46.tar.gz
+  ExtUtils-MakeMaker-7.56
+    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.56.tar.gz
     provides:
-      ExtUtils::Command 7.46
-      ExtUtils::Command::MM 7.46
-      ExtUtils::Liblist 7.46
-      ExtUtils::Liblist::Kid 7.46
-      ExtUtils::MM 7.46
-      ExtUtils::MM_AIX 7.46
-      ExtUtils::MM_Any 7.46
-      ExtUtils::MM_BeOS 7.46
-      ExtUtils::MM_Cygwin 7.46
-      ExtUtils::MM_DOS 7.46
-      ExtUtils::MM_Darwin 7.46
-      ExtUtils::MM_MacOS 7.46
-      ExtUtils::MM_NW5 7.46
-      ExtUtils::MM_OS2 7.46
-      ExtUtils::MM_QNX 7.46
-      ExtUtils::MM_UWIN 7.46
-      ExtUtils::MM_Unix 7.46
-      ExtUtils::MM_VMS 7.46
-      ExtUtils::MM_VOS 7.46
-      ExtUtils::MM_Win32 7.46
-      ExtUtils::MM_Win95 7.46
-      ExtUtils::MY 7.46
-      ExtUtils::MakeMaker 7.46
-      ExtUtils::MakeMaker::Config 7.46
-      ExtUtils::MakeMaker::Locale 7.46
-      ExtUtils::MakeMaker::_version 7.46
-      ExtUtils::MakeMaker::charstar 7.46
-      ExtUtils::MakeMaker::version 7.46
-      ExtUtils::MakeMaker::version::regex 7.46
-      ExtUtils::MakeMaker::version::vpp 7.46
-      ExtUtils::Mkbootstrap 7.46
-      ExtUtils::Mksymlists 7.46
-      ExtUtils::testlib 7.46
-      MM 7.46
-      MY 7.46
+      ExtUtils::Command 7.56
+      ExtUtils::Command::MM 7.56
+      ExtUtils::Liblist 7.56
+      ExtUtils::Liblist::Kid 7.56
+      ExtUtils::MM 7.56
+      ExtUtils::MM_AIX 7.56
+      ExtUtils::MM_Any 7.56
+      ExtUtils::MM_BeOS 7.56
+      ExtUtils::MM_Cygwin 7.56
+      ExtUtils::MM_DOS 7.56
+      ExtUtils::MM_Darwin 7.56
+      ExtUtils::MM_MacOS 7.56
+      ExtUtils::MM_NW5 7.56
+      ExtUtils::MM_OS2 7.56
+      ExtUtils::MM_OS390 7.56
+      ExtUtils::MM_QNX 7.56
+      ExtUtils::MM_UWIN 7.56
+      ExtUtils::MM_Unix 7.56
+      ExtUtils::MM_VMS 7.56
+      ExtUtils::MM_VOS 7.56
+      ExtUtils::MM_Win32 7.56
+      ExtUtils::MM_Win95 7.56
+      ExtUtils::MY 7.56
+      ExtUtils::MakeMaker 7.56
+      ExtUtils::MakeMaker::Config 7.56
+      ExtUtils::MakeMaker::Locale 7.56
+      ExtUtils::MakeMaker::_version 7.56
+      ExtUtils::MakeMaker::charstar 7.56
+      ExtUtils::MakeMaker::version 7.56
+      ExtUtils::MakeMaker::version::regex 7.56
+      ExtUtils::MakeMaker::version::vpp 7.56
+      ExtUtils::Mkbootstrap 7.56
+      ExtUtils::Mksymlists 7.56
+      ExtUtils::testlib 7.56
+      MM 7.56
+      MY 7.56
     requirements:
       Data::Dumper 0
       Encode 0
@@ -98,6 +99,39 @@ DISTRIBUTIONS
       File::Spec 0.8
       Pod::Man 0
       perl 5.006
+  File-Path-2.18
+    pathname: J/JK/JKEENAN/File-Path-2.18.tar.gz
+    provides:
+      File::Path 2.18
+    requirements:
+      Cwd 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Spec 0
+  File-Temp-0.2311
+    pathname: E/ET/ETHER/File-Temp-0.2311.tar.gz
+    provides:
+      File::Temp 0.2311
+    requirements:
+      Carp 0
+      Carp::Heavy 0
+      Cwd 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      Fcntl 1.03
+      File::Path 2.06
+      File::Spec 0.8
+      IO::Handle 0
+      IO::Seekable 0
+      POSIX 0
+      Scalar::Util 0
+      Symbol 0
+      constant 0
+      overload 0
+      parent 0.221
+      perl 5.006
+      strict 0
   File-Which-1.23
     pathname: P/PL/PLICEASE/File-Which-1.23.tar.gz
     provides:
@@ -218,38 +252,72 @@ DISTRIBUTIONS
       strict 0
       vars 0
       warnings 0
-  Pod-Simple-3.40
-    pathname: K/KH/KHW/Pod-Simple-3.40.tar.gz
+  Pod-Perldoc-3.28
+    pathname: M/MA/MALLEN/Pod-Perldoc-3.28.tar.gz
     provides:
-      Pod::Simple 3.40
-      Pod::Simple::BlackBox 3.40
-      Pod::Simple::Checker 3.40
-      Pod::Simple::Debug 3.40
-      Pod::Simple::DumpAsText 3.40
-      Pod::Simple::DumpAsXML 3.40
-      Pod::Simple::HTML 3.40
-      Pod::Simple::HTMLBatch 3.40
+      Pod::Perldoc 3.28
+      Pod::Perldoc::BaseTo 3.28
+      Pod::Perldoc::GetOptsOO 3.28
+      Pod::Perldoc::ToANSI 3.28
+      Pod::Perldoc::ToChecker 3.28
+      Pod::Perldoc::ToMan 3.28
+      Pod::Perldoc::ToNroff 3.28
+      Pod::Perldoc::ToPod 3.28
+      Pod::Perldoc::ToRtf 3.28
+      Pod::Perldoc::ToTerm 3.28
+      Pod::Perldoc::ToText 3.28
+      Pod::Perldoc::ToTk 3.28
+      Pod::Perldoc::ToXml 3.28
+    requirements:
+      Config 0
+      Encode 0
+      ExtUtils::MakeMaker 0
+      Fcntl 0
+      File::Spec::Functions 0
+      File::Temp 0.22
+      IO::Select 0
+      Pod::Man 2.18
+      Pod::Simple::RTF 3.16
+      Pod::Simple::XMLOutStream 3.16
+      Pod::Text 0
+      Symbol 0
+      Test::More 0
+      Text::ParseWords 0
+      parent 0
+      strict 0
+      warnings 0
+  Pod-Simple-3.42
+    pathname: K/KH/KHW/Pod-Simple-3.42.tar.gz
+    provides:
+      Pod::Simple 3.42
+      Pod::Simple::BlackBox 3.42
+      Pod::Simple::Checker 3.42
+      Pod::Simple::Debug 3.42
+      Pod::Simple::DumpAsText 3.42
+      Pod::Simple::DumpAsXML 3.42
+      Pod::Simple::HTML 3.42
+      Pod::Simple::HTMLBatch 3.42
       Pod::Simple::HTMLLegacy 5.01
       Pod::Simple::JustPod undef
-      Pod::Simple::LinkSection 3.40
-      Pod::Simple::Methody 3.40
-      Pod::Simple::Progress 3.40
-      Pod::Simple::PullParser 3.40
-      Pod::Simple::PullParserEndToken 3.40
-      Pod::Simple::PullParserStartToken 3.40
-      Pod::Simple::PullParserTextToken 3.40
-      Pod::Simple::PullParserToken 3.40
-      Pod::Simple::RTF 3.40
-      Pod::Simple::Search 3.40
-      Pod::Simple::SimpleTree 3.40
-      Pod::Simple::Text 3.40
-      Pod::Simple::TextContent 3.40
-      Pod::Simple::TiedOutFH 3.40
-      Pod::Simple::Transcode 3.40
-      Pod::Simple::TranscodeDumb 3.40
-      Pod::Simple::TranscodeSmart 3.40
-      Pod::Simple::XHTML 3.40
-      Pod::Simple::XMLOutStream 3.40
+      Pod::Simple::LinkSection 3.42
+      Pod::Simple::Methody 3.42
+      Pod::Simple::Progress 3.42
+      Pod::Simple::PullParser 3.42
+      Pod::Simple::PullParserEndToken 3.42
+      Pod::Simple::PullParserStartToken 3.42
+      Pod::Simple::PullParserTextToken 3.42
+      Pod::Simple::PullParserToken 3.42
+      Pod::Simple::RTF 3.42
+      Pod::Simple::Search 3.42
+      Pod::Simple::SimpleTree 3.42
+      Pod::Simple::Text 3.42
+      Pod::Simple::TextContent 3.42
+      Pod::Simple::TiedOutFH 3.42
+      Pod::Simple::Transcode 3.42
+      Pod::Simple::TranscodeDumb 3.42
+      Pod::Simple::TranscodeSmart 3.42
+      Pod::Simple::XHTML 3.42
+      Pod::Simple::XMLOutStream 3.42
     requirements:
       Carp 0
       Config 0
@@ -260,103 +328,99 @@ DISTRIBUTIONS
       File::Spec 0
       Pod::Escapes 1.04
       Symbol 0
-      Test 1.25
       Test::More 0
       Text::Wrap 98.112902
       if 0
       integer 0
       overload 0
       strict 0
-  Pod-Usage-1.70
-    pathname: M/MA/MAREKR/Pod-Usage-1.70.tar.gz
+  Pod-Usage-2.01
+    pathname: A/AT/ATOOMIC/Pod-Usage-2.01.tar.gz
     provides:
-      Pod::Usage 1.70
+      Pod::Usage 2.01
     requirements:
       Cwd 0
       ExtUtils::MakeMaker 0
       File::Basename 0
       File::Spec 0.82
-      Pod::Text 4
-      Test::More 0.6
-      blib 0
-  Test-1.26
-    pathname: J/JE/JESSE/Test-1.26.tar.gz
+      Pod::Perldoc 3.28
+      Pod::Simple 3.40
+      Pod::Text 4.00
+  Test-Simple-1.302183
+    pathname: E/EX/EXODIST/Test-Simple-1.302183.tar.gz
     provides:
-      Test 1.26
-    requirements:
-      ExtUtils::MakeMaker 0
-      File::Spec 0
-      Test::Harness 1.1601
-  Test-Simple-1.302175
-    pathname: E/EX/EXODIST/Test-Simple-1.302175.tar.gz
-    provides:
-      Test2 1.302175
-      Test2::API 1.302175
-      Test2::API::Breakage 1.302175
-      Test2::API::Context 1.302175
-      Test2::API::Instance 1.302175
-      Test2::API::Stack 1.302175
-      Test2::Event 1.302175
-      Test2::Event::Bail 1.302175
-      Test2::Event::Diag 1.302175
-      Test2::Event::Encoding 1.302175
-      Test2::Event::Exception 1.302175
-      Test2::Event::Fail 1.302175
-      Test2::Event::Generic 1.302175
-      Test2::Event::Note 1.302175
-      Test2::Event::Ok 1.302175
-      Test2::Event::Pass 1.302175
-      Test2::Event::Plan 1.302175
-      Test2::Event::Skip 1.302175
-      Test2::Event::Subtest 1.302175
-      Test2::Event::TAP::Version 1.302175
-      Test2::Event::V2 1.302175
-      Test2::Event::Waiting 1.302175
-      Test2::EventFacet 1.302175
-      Test2::EventFacet::About 1.302175
-      Test2::EventFacet::Amnesty 1.302175
-      Test2::EventFacet::Assert 1.302175
-      Test2::EventFacet::Control 1.302175
-      Test2::EventFacet::Error 1.302175
-      Test2::EventFacet::Hub 1.302175
-      Test2::EventFacet::Info 1.302175
-      Test2::EventFacet::Info::Table 1.302175
-      Test2::EventFacet::Meta 1.302175
-      Test2::EventFacet::Parent 1.302175
-      Test2::EventFacet::Plan 1.302175
-      Test2::EventFacet::Render 1.302175
-      Test2::EventFacet::Trace 1.302175
-      Test2::Formatter 1.302175
-      Test2::Formatter::TAP 1.302175
-      Test2::Hub 1.302175
-      Test2::Hub::Interceptor 1.302175
-      Test2::Hub::Interceptor::Terminator 1.302175
-      Test2::Hub::Subtest 1.302175
-      Test2::IPC 1.302175
-      Test2::IPC::Driver 1.302175
-      Test2::IPC::Driver::Files 1.302175
-      Test2::Tools::Tiny 1.302175
-      Test2::Util 1.302175
-      Test2::Util::ExternalMeta 1.302175
-      Test2::Util::Facets2Legacy 1.302175
-      Test2::Util::HashBase 1.302175
-      Test2::Util::Trace 1.302175
-      Test::Builder 1.302175
-      Test::Builder::Formatter 1.302175
+      Test2 1.302183
+      Test2::API 1.302183
+      Test2::API::Breakage 1.302183
+      Test2::API::Context 1.302183
+      Test2::API::Instance 1.302183
+      Test2::API::InterceptResult 1.302183
+      Test2::API::InterceptResult::Event 1.302183
+      Test2::API::InterceptResult::Facet 1.302183
+      Test2::API::InterceptResult::Hub 1.302183
+      Test2::API::InterceptResult::Squasher 1.302183
+      Test2::API::Stack 1.302183
+      Test2::Event 1.302183
+      Test2::Event::Bail 1.302183
+      Test2::Event::Diag 1.302183
+      Test2::Event::Encoding 1.302183
+      Test2::Event::Exception 1.302183
+      Test2::Event::Fail 1.302183
+      Test2::Event::Generic 1.302183
+      Test2::Event::Note 1.302183
+      Test2::Event::Ok 1.302183
+      Test2::Event::Pass 1.302183
+      Test2::Event::Plan 1.302183
+      Test2::Event::Skip 1.302183
+      Test2::Event::Subtest 1.302183
+      Test2::Event::TAP::Version 1.302183
+      Test2::Event::V2 1.302183
+      Test2::Event::Waiting 1.302183
+      Test2::EventFacet 1.302183
+      Test2::EventFacet::About 1.302183
+      Test2::EventFacet::Amnesty 1.302183
+      Test2::EventFacet::Assert 1.302183
+      Test2::EventFacet::Control 1.302183
+      Test2::EventFacet::Error 1.302183
+      Test2::EventFacet::Hub 1.302183
+      Test2::EventFacet::Info 1.302183
+      Test2::EventFacet::Info::Table 1.302183
+      Test2::EventFacet::Meta 1.302183
+      Test2::EventFacet::Parent 1.302183
+      Test2::EventFacet::Plan 1.302183
+      Test2::EventFacet::Render 1.302183
+      Test2::EventFacet::Trace 1.302183
+      Test2::Formatter 1.302183
+      Test2::Formatter::TAP 1.302183
+      Test2::Hub 1.302183
+      Test2::Hub::Interceptor 1.302183
+      Test2::Hub::Interceptor::Terminator 1.302183
+      Test2::Hub::Subtest 1.302183
+      Test2::IPC 1.302183
+      Test2::IPC::Driver 1.302183
+      Test2::IPC::Driver::Files 1.302183
+      Test2::Tools::Tiny 1.302183
+      Test2::Util 1.302183
+      Test2::Util::ExternalMeta 1.302183
+      Test2::Util::Facets2Legacy 1.302183
+      Test2::Util::HashBase 1.302183
+      Test2::Util::Trace 1.302183
+      Test::Builder 1.302183
+      Test::Builder::Formatter 1.302183
       Test::Builder::IO::Scalar 2.114
-      Test::Builder::Module 1.302175
-      Test::Builder::Tester 1.302175
-      Test::Builder::Tester::Color 1.302175
-      Test::Builder::Tester::Tie 1.302175
-      Test::Builder::TodoDiag 1.302175
-      Test::More 1.302175
-      Test::Simple 1.302175
-      Test::Tester 1.302175
-      Test::Tester::Capture 1.302175
-      Test::Tester::CaptureRunner 1.302175
-      Test::Tester::Delegate 1.302175
-      Test::use::ok 1.302175
-      ok 1.302175
+      Test::Builder::Module 1.302183
+      Test::Builder::Tester 1.302183
+      Test::Builder::Tester::Color 1.302183
+      Test::Builder::Tester::Tie 1.302183
+      Test::Builder::TodoDiag 1.302183
+      Test::More 1.302183
+      Test::Simple 1.302183
+      Test::Tester 1.302183
+      Test::Tester::Capture 1.302183
+      Test::Tester::CaptureRunner 1.302183
+      Test::Tester::Delegate 1.302183
+      Test::use::ok 1.302183
+      ok 1.302183
     requirements:
       ExtUtils::MakeMaker 0
       File::Spec 0
