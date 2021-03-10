@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Perl::Build;
+use Devel::PatchPerl;
 use Getopt::Long;
 use Pod::Usage;
 use File::Spec;
@@ -36,7 +37,9 @@ for (@D, @A, @U) {
 }
 
 if ($show_version) {
-    print "$Perl::Build::VERSION\n";
+    print "perl-build $Perl::Build::VERSION ($0)\n";
+    print "perl $] ($^X)\n";
+    print "Devel::PatchPerl $Devel::PatchPerl::VERSION\n";
     exit 0;
 }
 
