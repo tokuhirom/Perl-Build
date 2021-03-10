@@ -1,9 +1,9 @@
 # carton snapshot format: version 1.0
 DISTRIBUTIONS
-  CPAN-Perl-Releases-5.20210109
-    pathname: B/BI/BINGOS/CPAN-Perl-Releases-5.20210109.tar.gz
+  CPAN-Perl-Releases-5.20210220
+    pathname: B/BI/BINGOS/CPAN-Perl-Releases-5.20210220.tar.gz
     provides:
-      CPAN::Perl::Releases 5.20210109
+      CPAN::Perl::Releases 5.20210220
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006000
@@ -53,45 +53,45 @@ DISTRIBUTIONS
     requirements:
       Carp 1.05
       ExtUtils::MakeMaker 0
-  ExtUtils-MakeMaker-7.58
-    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.58.tar.gz
+  ExtUtils-MakeMaker-7.60
+    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.60.tar.gz
     provides:
-      ExtUtils::Command 7.58
-      ExtUtils::Command::MM 7.58
-      ExtUtils::Liblist 7.58
-      ExtUtils::Liblist::Kid 7.58
-      ExtUtils::MM 7.58
-      ExtUtils::MM_AIX 7.58
-      ExtUtils::MM_Any 7.58
-      ExtUtils::MM_BeOS 7.58
-      ExtUtils::MM_Cygwin 7.58
-      ExtUtils::MM_DOS 7.58
-      ExtUtils::MM_Darwin 7.58
-      ExtUtils::MM_MacOS 7.58
-      ExtUtils::MM_NW5 7.58
-      ExtUtils::MM_OS2 7.58
-      ExtUtils::MM_OS390 7.58
-      ExtUtils::MM_QNX 7.58
-      ExtUtils::MM_UWIN 7.58
-      ExtUtils::MM_Unix 7.58
-      ExtUtils::MM_VMS 7.58
-      ExtUtils::MM_VOS 7.58
-      ExtUtils::MM_Win32 7.58
-      ExtUtils::MM_Win95 7.58
-      ExtUtils::MY 7.58
-      ExtUtils::MakeMaker 7.58
-      ExtUtils::MakeMaker::Config 7.58
-      ExtUtils::MakeMaker::Locale 7.58
-      ExtUtils::MakeMaker::_version 7.58
-      ExtUtils::MakeMaker::charstar 7.58
-      ExtUtils::MakeMaker::version 7.58
-      ExtUtils::MakeMaker::version::regex 7.58
-      ExtUtils::MakeMaker::version::vpp 7.58
-      ExtUtils::Mkbootstrap 7.58
-      ExtUtils::Mksymlists 7.58
-      ExtUtils::testlib 7.58
-      MM 7.58
-      MY 7.58
+      ExtUtils::Command 7.60
+      ExtUtils::Command::MM 7.60
+      ExtUtils::Liblist 7.60
+      ExtUtils::Liblist::Kid 7.60
+      ExtUtils::MM 7.60
+      ExtUtils::MM_AIX 7.60
+      ExtUtils::MM_Any 7.60
+      ExtUtils::MM_BeOS 7.60
+      ExtUtils::MM_Cygwin 7.60
+      ExtUtils::MM_DOS 7.60
+      ExtUtils::MM_Darwin 7.60
+      ExtUtils::MM_MacOS 7.60
+      ExtUtils::MM_NW5 7.60
+      ExtUtils::MM_OS2 7.60
+      ExtUtils::MM_OS390 7.60
+      ExtUtils::MM_QNX 7.60
+      ExtUtils::MM_UWIN 7.60
+      ExtUtils::MM_Unix 7.60
+      ExtUtils::MM_VMS 7.60
+      ExtUtils::MM_VOS 7.60
+      ExtUtils::MM_Win32 7.60
+      ExtUtils::MM_Win95 7.60
+      ExtUtils::MY 7.60
+      ExtUtils::MakeMaker 7.60
+      ExtUtils::MakeMaker::Config 7.60
+      ExtUtils::MakeMaker::Locale 7.60
+      ExtUtils::MakeMaker::_version 7.60
+      ExtUtils::MakeMaker::charstar 7.60
+      ExtUtils::MakeMaker::version 7.60
+      ExtUtils::MakeMaker::version::regex 7.60
+      ExtUtils::MakeMaker::version::vpp 7.60
+      ExtUtils::Mkbootstrap 7.60
+      ExtUtils::Mksymlists 7.60
+      ExtUtils::testlib 7.60
+      MM 7.60
+      MY 7.60
     requirements:
       Data::Dumper 0
       Encode 0
@@ -195,12 +195,12 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test::More 0.31
       Time::HiRes 0
-  JSON-PP-4.05
-    pathname: I/IS/ISHIGAKI/JSON-PP-4.05.tar.gz
+  JSON-PP-4.06
+    pathname: I/IS/ISHIGAKI/JSON-PP-4.06.tar.gz
     provides:
-      JSON::PP 4.05
-      JSON::PP::Boolean 4.05
-      JSON::PP::IncrParser 4.05
+      JSON::PP 4.06
+      JSON::PP::Boolean 4.06
+      JSON::PP::IncrParser 4.06
     requirements:
       ExtUtils::MakeMaker 0
       Scalar::Util 1.08
@@ -219,7 +219,7 @@ DISTRIBUTIONS
       File::Spec 3.00
       File::Spec::Functions 0
       if 0
-      perl 5.00503
+      perl 5.005030
       strict 0
   PathTools-3.75
     pathname: X/XS/XSAWYERX/PathTools-3.75.tar.gz
