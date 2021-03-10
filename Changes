@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.32 2021-03-10T15:23:02Z
+    - Show perl & Devel::PatchPerl versions in perl-build --version (#98)
+
 1.31 2020-07-12T02:05:29Z
     - Bump HTTP::Tinyish https://github.com/miyagawa/HTTP-Tinyish/pull/18
 
