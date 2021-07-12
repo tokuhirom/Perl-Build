@@ -253,6 +253,9 @@ sub install {
         push @$configure_options, "-A'eval:scriptdir=${dst_path}/bin'";
     }
 
+    my $userelocatableinc
+        = grep { $_ eq '-Duserelocatableinc' } @$configure_options;
+
     # clean up environment
     delete $ENV{$_} for qw(PERL5LIB PERL5OPT);
 
@@ -277,6 +280,10 @@ sub install {
         #     $class->do_system("$^X -i -nle 'print unless /command-line/' makefile x2p/makefile");
         # }
 
+        if ($userelocatableinc) {
+            $class->_fix_relocatableinc_defines($dst_path);
+        }
+
         # build
         my @make = qw(make);
         if ($ENV{PERL_BUILD_COMPILE_OPTIONS}) {
@@ -286,6 +293,7 @@ sub install {
             push @make, '-j', $jobs;
         }
         $class->do_system(\@make);
+
         if ($test) {
             local $ENV{TEST_JOBS} = $jobs if $jobs;
             # Test via "make test_harness" if available so we'll get
@@ -305,6 +313,12 @@ sub install {
 	}
         $class->do_system(\@make);
     }
+
+    if ($userelocatableinc) {
+        my $dir = pushd($dst_path);
+        $class->_fix_relocatableinc_config($dst_path);
+    }
+
     return Perl::Build::Built->new({
         installed_path => $dst_path,
     });
@@ -356,6 +370,106 @@ sub symlink_devel_executables {
             system($cmd);
         }
     }
+}
+
+# If someone is building a relocatable perl,
+# the Makefile needs to have some values still set with the $dst_path
+# in order the correctly install things,
+# but that means some things in the Config.pm and Config_heavy.pl
+# aren't relocatable.  We can fix it.
+sub _fix_relocatableinc {
+    my ( $class, $file, $fix ) = @_;
+
+    open my $fh, '+<', $file or Carp::croak("Unable to open $file: $!");
+
+    my @lines = readline $fh;
+
+    seek $fh, 0, 0 or Carp::croak("Unable to seek $file: $!");
+    truncate $fh, 0 or Carp::croak("Unable to truncate $file: $!");
+
+    print $fh $fix->(@lines);
+
+    close $fh or Carp::croak("Unable to close $file: $!");
+}
+
+sub _fix_relocatableinc_defines {
+    my ( $class, $dst_path ) = @_;
+
+    # Fix up config.h early to avoid embedding it somewhere.
+    $class->_fix_relocatableinc( "config.h" => sub {
+        for (@_) {
+            s{\Q$dst_path}{.../..};
+            s{\Q.../../bin\E/?}{.../};
+        }
+        @_;
+    } );
+
+    1;
+}
+
+sub _fix_relocatableinc_config {
+    my ( $class, $dst_path ) = @_;
+
+    my $perl;
+    {
+        opendir my $dh, "$dst_path/bin/"
+            or die "Couldn't opendir $dst_path/bin: $!";
+
+        ($perl) = sort grep { /^perl/ } readdir $dh;
+
+        closedir $dh;
+    }
+
+    my $config = $class->do_capture_stdout(
+        [ "$dst_path/bin/$perl", '-V:archlibexp' ] );
+
+    my %config = $config =~ /^(\w+)='([^']+)'/gxms;
+
+    my $lib = $config{archlibexp};
+
+    my %fix = (
+        "$lib/Config_heavy.pl" => sub {
+            my %r;
+            for (@_) {
+                next if /^initialinstalllocation/;
+                if (s{^(\w+)='\W*\K\Q$dst_path}{.../..}) {
+                    $r{$1} = 1;
+                }
+                s{\Q.../../bin\E/?}{.../};
+                s{^foreach \s+ my \s+ .what \s+ \( \s* qw\(\K( [^\)]+ )}{
+                        $r{$_} = 2 for split /\s+/, $1;
+                        delete @r{ grep { $r{"${_}exp"} } keys %r };
+                        join ' ', sort keys %r;
+                    }ex;
+            }
+            @_;
+        },
+
+        "$lib/Config.pm" => sub {
+            my $tied_config;
+            for (@_) {
+                $tied_config = 1 if /^tie %Config/;
+                next unless $tied_config;
+                s{'\Q$dst_path\E(.*)'}{relocate_inc('.../..$1')};
+                s{\Q.../../bin\E/?}{.../};
+            }
+            @_;
+        },
+    );
+
+    foreach my $file (sort keys %fix) {
+        my $mode = (stat $file)[2];
+
+        chmod $mode | 0600, $file
+            or Carp::croak("Unable to allow writing to $file: $!");
+
+        $class->_fix_relocatableinc($file, $fix{$file});
+
+        chmod $mode, $file
+            or Carp::croak("Unable to reset mode on $file: $!");
+    }
+
+    1;
 }
 
 sub info {
@@ -523,6 +637,14 @@ Returns an instance of L<Perl::Build::Built> to facilitate using the built perl 
 Perl5 binary generated with C<< -Dusedevel >>, is "perl-5.12.2" form. This method symlinks "perl-5.12.2" to "perl".
 
 =back
+
+=head1 Relocatable INC
+
+Since perl v5.10 it has been possible to build perl with C<-Duserelocatableinc>
+to allow moving the perl install to different paths.
+However, there are some paths that don't get adjusted because perl
+needs to know the full path for the initial build.
+These paths can be adjusted after the build is complete, so we do.
 
 =head1 FAQ
 
