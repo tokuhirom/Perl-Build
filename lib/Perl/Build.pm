@@ -324,6 +324,27 @@ sub do_system {
     }
 }
 
+sub do_capture_stdout {
+    my ($class, $cmd) = @_;
+
+    my $fh;
+
+    if (ref $cmd eq 'ARRAY') {
+        $class->info(join(' ', @$cmd));
+        open $fh, '-|', @$cmd
+            or die "Installation failure: @$cmd";
+    } else {
+        $class->info($cmd);
+        open $fh, '-|', $cmd
+            or die "Installation failure: $cmd";
+    }
+
+    my $stdout = do { local $/; readline $fh };
+    close $fh or die "Unable to close: $!";
+
+    return $stdout;
+}
+
 sub symlink_devel_executables {
     my ($class, $bin_dir) = @_;
 
