@@ -13,13 +13,29 @@ my $root = File::Temp->newdir( "Perl-Build-relocatableinc-XXXXXXXXX",
 write_files($root);
 
 my @system_calls;
-no warnings qw< redefine >;
+my @shebang_calls;
+my @info;
+no warnings qw< redefine once >;
 *Perl::Build::do_system = sub { push @system_calls, $_[1] };
 *Perl::Build::do_capture_stdout = sub {
     push @system_calls, $_[1];
     return "archlibexp='$root/dst/lib'\n";
 };
-use warnings qw< redefine >;
+*Perl::Build::info = sub { push @info, $_[1] };
+*App::ChangeShebang::new = sub { my $c = shift; bless {@_}, $c };
+*App::ChangeShebang::run = sub { push @shebang_calls, \@_ };
+use warnings qw< once redefine >;
+
+{
+    local @INC;    # no chance to load it, even if installed.
+    ok !Perl::Build->_change_shebang("$root/dst"),
+        "_change_shebang returns falsy when App::ChangeShebang isn't installed";
+    is_deeply \@info, [
+        'Not changing shebang lines, App::ChangeShebang is not installed',
+    ], "_change_shebang prints info when App::ChangeShebang isn't installed";
+}
+
+$INC{"App/ChangeShebang.pm"} = 1;
 
 Perl::Build->install(
     src_path          => "$root/src",
@@ -36,6 +52,13 @@ is_deeply \@system_calls, [
     [ "make", "install" ],
     [ "$root/dst/bin/perl", '-V:archlibexp' ],
 ], "Ran system calls we expected";
+
+is_deeply \@shebang_calls, [ [
+    bless {
+        file  => [ map {"$root/dst/bin/$_"} qw< perl perl99 perl99.99.99 > ],
+        force => 1,
+    }, 'App::ChangeShebang'
+] ], "Ran App::ChangeShebang as expected";
 
 my %expect = (
     'src/config.h' => [

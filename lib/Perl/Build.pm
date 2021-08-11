@@ -317,6 +317,7 @@ sub install {
     if ($userelocatableinc) {
         my $dir = pushd($dst_path);
         $class->_fix_relocatableinc_config($dst_path);
+        $class->_change_shebang($dst_path);
     }
 
     return Perl::Build::Built->new({
@@ -470,6 +471,30 @@ sub _fix_relocatableinc_config {
     }
 
     1;
+}
+
+my $has_change_shebang;
+sub _change_shebang {
+    my ( $class, $dst_path ) = @_;
+
+    $has_change_shebang = do { local $@; eval { require App::ChangeShebang } }
+        unless defined $has_change_shebang;
+
+    unless ($has_change_shebang) {
+        $class->info(
+            "Not changing shebang lines, App::ChangeShebang is not installed"
+        );
+        return;
+    }
+
+    my @file = do {
+        opendir my $dh, "$dst_path/bin"
+            or die "Unable to opendir $dst_path/bin: $!";
+        sort grep { -f $_ }
+            map {"$dst_path/bin/$_"} grep { !/^\./ } readdir $dh;
+    };
+
+    App::ChangeShebang->new( file => \@file, force => 1 )->run;
 }
 
 sub info {
@@ -645,6 +670,10 @@ to allow moving the perl install to different paths.
 However, there are some paths that don't get adjusted because perl
 needs to know the full path for the initial build.
 These paths can be adjusted after the build is complete, so we do.
+
+If L<App::ChangeShebang> is installed,
+it will be used to adjust the C<#!> lines of the files in the C<scriptdir>
+of the built perl.
 
 =head1 FAQ
 
