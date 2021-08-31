@@ -9,7 +9,10 @@ requires 'File::Temp';
 requires 'Getopt::Long';
 requires 'Pod::Usage', '1.63';
 
+feature 'userelocatableinc', 'userelocatableinc support' => sub {
+  recommends 'App::ChangeShebang';
+};
+
 on test => sub {
     requires 'Test::More' => '0.98';
 };
-
