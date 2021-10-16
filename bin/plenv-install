@@ -78,7 +78,7 @@ sub main {
     if (not defined $as) {
         if ($definition eq 'blead') {
             require Time::Piece;
-            $as = 'blead-' . Time::Piece->gmtime->datetime;
+            $as = 'blead-' . Time::Piece->gmtime->strftime("%Y%m%d%H%M");
         }
         else {
             $as = $definition;
