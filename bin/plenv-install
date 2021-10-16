@@ -75,34 +75,50 @@ sub main {
     }
 
     my $definition = shift @ARGV or usage();
+    if ($definition =~ /\A-/) {
+        die "You should put `${definition}` as a last argument.\n";
+    }
+
+    my $cache_dir = "$ENV{PLENV_ROOT}/cache/";
+    my $build_dir = "$ENV{PLENV_ROOT}/build/" . time . ".$$/";
+
+    my $blead_mtime;
+    if ( $definition eq 'blead' ) {
+        # would be nice to get the mtime from the commit at
+        # https://api.github.com/repos/Perl/Perl5/commits/blead
+
+        if ( -e "$cache_dir/blead.tar.gz" ) {
+            my $mtime = (stat _)[9];
+            if ( ( time - $mtime ) > 86_400 ) {
+                unlink "$cache_dir/blead.tar.gz";
+            }
+            else {
+                $blead_mtime = $mtime;
+            }
+        }
+        $blead_mtime ||= time;
+    }
+
     if (not defined $as) {
         if ($definition eq 'blead') {
             require Time::Piece;
-            $as = 'blead-' . Time::Piece->gmtime->strftime("%Y%m%d%H%M");
+            $as = 'blead-'
+                . Time::Piece->gmtime($blead_mtime)->strftime("%Y%m%d%H%M");
         }
         else {
             $as = $definition;
         }
     }
-    if ($definition =~ /\A-/) {
-        die "You should put `${definition}` as a last argument.\n";
-    }
+
     my $prefix = "$ENV{PLENV_ROOT}/versions/$as";
     if (-d $prefix) {
         die "$prefix is already installed\n";
     }
 
-    my $cache_dir = "$ENV{PLENV_ROOT}/cache/";
     mkpath($cache_dir);
-    my $build_dir = "$ENV{PLENV_ROOT}/build/" . time . ".$$/";
     mkpath($build_dir);
 
     print "Installing $definition as $as\n";
-
-    if ( $definition eq 'blead' and -e "$cache_dir/blead.tar.gz" ) {
-        my $age = time - (stat _)[9];
-        unlink "$cache_dir/blead.tar.gz" if $age > 86_400;
-    }
 
     my @cmd = (
         $^X,
@@ -124,6 +140,11 @@ sub main {
     print join(' ', @cmd), "\n";
 
     system(@cmd) == 0 or die "ABORT\n";
+
+    # Reset the mtime so we get the same "as"
+    if ( $blead_mtime && -e "$cache_dir/blead.tar.gz" ) {
+        utime $blead_mtime, $blead_mtime, "$cache_dir/blead.tar.gz";
+    }
 
     system("plenv rehash");
 }
