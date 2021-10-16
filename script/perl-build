@@ -66,19 +66,7 @@ push @configure_options, "-Dman1dir=none", "-Dman3dir=none" if $noman;
 
 $ENV{PERL5_PATCHPERL_PLUGIN} = $patches if defined $patches;
 
-if ($stuff eq 'blead') {
-    my $url = "https://github.com/Perl/perl5/archive/blead.tar.gz";
-    Perl::Build->install_from_url(
-        $url => (
-            dst_path          => $dest,
-            configure_options => ['-Dusedevel', @configure_options],
-            test              => $test,
-            build_dir         => $build_dir,
-            jobs              => $jobs,
-            tarball_dir       => $tarball_dir,
-        )
-    );
-} elsif ($stuff =~ m{^https?://}) {
+if ($stuff =~ m{^https?://}) {
     Perl::Build->install_from_url(
         $stuff => (
             dst_path          => $dest,
@@ -100,17 +88,38 @@ if ($stuff eq 'blead') {
         )
     );
 } else {
-    my $version = $stuff;
-    Perl::Build->install_from_cpan(
-        $version => (
-            dst_path          => $dest,
-            configure_options => \@configure_options,
-            test              => $test,
-            build_dir         => $build_dir,
-            jobs              => $jobs,
-            tarball_dir       => $tarball_dir,
-        )
-    );
+    my $version;
+    {
+        local $@;
+        $version = eval { [ Perl::Build->perl_release($stuff) ] };
+        die if $@ and $@ !~ /ERROR: Cannot find the tarball/;
+    }
+    if ($version) {
+        Perl::Build->install_from_cpan(
+            $version => (
+                dst_path          => $dest,
+                configure_options => \@configure_options,
+                test              => $test,
+                build_dir         => $build_dir,
+                jobs              => $jobs,
+                tarball_dir       => $tarball_dir,
+            )
+        );
+    } else {
+        my ($url, $name) = Perl::Build->perl_release_by_github($stuff);
+        $dest =~ s/\Q$stuff\E$/$name/;
+
+        Perl::Build->install_from_url(
+            $url => (
+                dst_path          => $dest,
+                configure_options => ['-Dusedevel', @configure_options],
+                test              => $test,
+                build_dir         => $build_dir,
+                jobs              => $jobs,
+                tarball_dir       => $tarball_dir,
+            )
+        );
+    }
 }
 
 if ($symlink_devel_executables) {
@@ -136,10 +145,21 @@ perl-build - perl binary builder
     # And run it.
     % perl-build 5.16.2 /usr/local/perl-5.16.2
     % perl-build path/to/perl-5.16.2.tar.gz /usr/local/perl-5.16.2
+    % perl-build blead path/to/blead # install to path/to/blead-$commit_date
+    % perl-build smoke-me/now smoke-me/now # install to ./smoke-me_now-$commit_date
+    % perl-build 29c6c804 29c6c804 # install to ./$full_hash
+    % perl-build perl-1.0 perl-1.0 # install to ./perl-1.0-19871218000000
+         # ^ won't actuall work, as Devel::PatchPerl gets confused
 
 =head1 DESCRIPTION
 
 This script fetch/build/install perl5 from CPAN or tar ball.
+
+It will also install directly from Github.
+You can specify a branch, a C<branch@{date}>, or other "committish"
+that the Github API recognizes.
+If you do this and the end of the destination path matches the committish,
+it will calculate a name for the requested perl and replace that tail.
 
 =head1 OPTIONS
 
