@@ -195,7 +195,8 @@ sub install_from_cpan {
         || ['-de'];
 
     # download tar ball
-    my ($dist_tarball, $dist_tarball_url) = Perl::Build->perl_release($version);
+    my ( $dist_tarball, $dist_tarball_url )
+        = ref $version ? @{$version} : Perl::Build->perl_release($version);
     my $dist_tarball_path = catfile($tarball_dir, $dist_tarball);
     if (-f $dist_tarball_path) {
         print "Use the previously fetched ${dist_tarball}\n";
