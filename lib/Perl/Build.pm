@@ -112,6 +112,46 @@ sub perl_release_by_metacpan {
     die "not found the tarball for perl-$version\n";
 }
 
+sub perl_release_by_github {
+    my ($class, $committish) = @_;
+
+    # URL encode the committish
+    require HTTP::Tiny;
+    ( my $c = HTTP::Tiny->www_form_urlencode([''=>$committish]) ) =~ s/^=//;
+    my $commit_url = "https://api.github.com/repos/Perl/perl5/commits/$c";
+
+    # The API puts the error message in the content, so we can't http_get
+    my $res = HTTP::Tinyish->new(verify_SSL => 1)->get($commit_url);
+
+    my %content = do { local $@; local $SIG{__DIE__}; eval {
+        %{ decode_json( $res->{content} ) } } };
+
+    unless ($res->{success}) {
+        my $m = $content{message} || $res->{reason};
+        die "$m\n";
+    }
+
+    my $name = $committish;
+    $committish = $content{sha};
+
+    # If they specified part of the commit-hash use the full hash as the name.
+    # Otherwise they specified a branch or tag, like "blead" or "blead@{date}"
+    # and we'll use the prefix plus the commit date.
+
+    if ( $committish =~ /^\Q$name/i ) {
+        $name = $content{sha};
+    } else {
+        $name =~ s/@.*$//;
+        $name =~ s{/}{_}g; # branches can have slashes, dest can't
+        ( my $date = $content{commit}{committer}{date} ) =~ s/\D//g;
+        $name .= "-$date";
+    }
+
+    my $url = "https://github.com/Perl/perl5/archive/$committish.tar.gz";
+
+    return ( $url, $name );
+}
+
 sub http_get {
     my ($url) = @_;
 
