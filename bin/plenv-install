@@ -17,7 +17,8 @@
 # Example:
 #   plenv install 5.20.2 -j 8 -Dcc=gcc -UDEBUGGING -Accflags=...
 #
-# If the <version> is "blead", "as" defaults to appending the datetime.
+# If the <version> is "blead", "as" defaults to appending the datetime
+# and the cached blead.tar.gz is not used if it is over 1 day old.
 #
 # For more options that are passed through perl-build, run `perl-build --help`
 # or see: https://metacpan.org/pod/distribution/Perl-Build/script/perl-build#OPTIONS
@@ -97,6 +98,11 @@ sub main {
     mkpath($build_dir);
 
     print "Installing $definition as $as\n";
+
+    if ( $definition eq 'blead' and -e "$cache_dir/blead.tar.gz" ) {
+        my $age = time - (stat _)[9];
+        unlink "$cache_dir/blead.tar.gz" if $age > 86_400;
+    }
 
     my @cmd = (
         $^X,
