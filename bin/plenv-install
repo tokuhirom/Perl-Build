@@ -17,6 +17,8 @@
 # Example:
 #   plenv install 5.20.2 -j 8 -Dcc=gcc -UDEBUGGING -Accflags=...
 #
+# If the <version> is "blead", "as" defaults to appending the datetime.
+#
 # For more options that are passed through perl-build, run `perl-build --help`
 # or see: https://metacpan.org/pod/distribution/Perl-Build/script/perl-build#OPTIONS
 use strict;
@@ -73,7 +75,13 @@ sub main {
 
     my $definition = shift @ARGV or usage();
     if (not defined $as) {
-        $as = $definition;
+        if ($definition eq 'blead') {
+            require Time::Piece;
+            $as = 'blead-' . Time::Piece->gmtime->datetime;
+        }
+        else {
+            $as = $definition;
+        }
     }
     if ($definition =~ /\A-/) {
         die "You should put `${definition}` as a last argument.\n";
