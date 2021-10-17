@@ -83,6 +83,32 @@ sub main {
         die "$prefix is already installed\n";
     }
 
+    # If we're going to attempt to install from github
+    # we need to know the "calculated" name.
+    # We optimize slightly by making sure $as matches $definition
+    # and doesn't look like any of the things that are likely to
+    # mean we are going to install from somewhere else.
+    if ( $as eq $definition && $as !~ m{^\d|://|\.(?:gz|bz2|xz)$} ) {
+        my $name;
+        my $pid = open my $fh, '-|' // die $!;
+        if ( !$pid ) {
+            open STDERR, '>/dev/null';
+            exec $^X, '--', $PERL_BUILD, '--github-name', $definition;
+            exit 255;
+        }
+        ($name) = readline $fh;
+        close $fh;
+        waitpid $pid, 0;
+
+        if ($name) {
+            chomp $name;
+            my $prefix = "$ENV{PLENV_ROOT}/versions/$name";
+            if ( -d $prefix ) {
+                die "$prefix is already installed\n";
+            }
+        }
+    }
+
     my $cache_dir = "$ENV{PLENV_ROOT}/cache/";
     mkpath($cache_dir);
     my $build_dir = "$ENV{PLENV_ROOT}/build/" . time . ".$$/";

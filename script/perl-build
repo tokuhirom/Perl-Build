@@ -26,6 +26,7 @@ GetOptions(
     'definitions' => \my $definitions,
     'patches=s' => \$patches,
     'build-dir=s' => \$build_dir,
+    'github-name' => \my $github_name,
     'j|jobs=i' => \my $jobs,
     'tarball-dir=s' => \my $tarball_dir,
     'version' => \my $show_version,
@@ -53,6 +54,13 @@ if ($definitions) {
 }
 
 shift @ARGV if @ARGV >= 1 && $ARGV[0] eq '--';
+
+if ($github_name) {
+    my $stuff = shift @ARGV || pod2usage();
+    my (undef, $name) = Perl::Build->perl_release_by_github($stuff);
+    print "$name\n";
+    exit;
+}
 
 my $stuff   = shift @ARGV or pod2usage();
 my $dest    = shift @ARGV or pod2usage();
