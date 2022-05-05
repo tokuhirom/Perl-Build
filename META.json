@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.11, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.17, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
@@ -68,7 +68,7 @@
       "homepage" : "https://github.com/tokuhirom/Perl-Build",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/tokuhirom/Perl-Build.git",
+         "url" : "https://github.com/tokuhirom/Perl-Build.git",
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
