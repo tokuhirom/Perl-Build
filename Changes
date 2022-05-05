@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.33 2022-05-05T01:28:16Z
+    - Use https for github urls (AnaTofuZ #103)
+
 1.32 2021-03-10T15:23:02Z
     - Show perl & Devel::PatchPerl versions in perl-build --version (#98)
 

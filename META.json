@@ -72,7 +72,7 @@
          "web" : "https://github.com/tokuhirom/Perl-Build"
       }
    },
-   "version" : "1.32",
+   "version" : "1.33",
    "x_contributors" : [
       "Akihiro Uchida <uchida@ike-dyn.ritsumei.ac.jp>",
       "AnaTofuZ <anatofuz@gmail.com>",
@@ -103,6 +103,6 @@
       "hagihala <hagihala@hatena.ne.jp>",
       "moznion <moznion@gmail.com>"
    ],
-   "x_serialization_backend" : "JSON::PP version 4.06",
+   "x_serialization_backend" : "JSON::PP version 4.08",
    "x_static_install" : 1
 }
