@@ -2,5 +2,7 @@ module_maker="ModuleBuild"
 
 [FileGatherer]
 exclude_match = [
-    '^perl-build$'
+    '^perl-build$',
+    '^xt',
+    '^author',
 ]
