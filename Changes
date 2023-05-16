@@ -2,6 +2,9 @@ Revision history for Perl extension Perl-Build
 
 {{$NEXT}}
 
+1.34 2023-05-16T12:48:45Z
+    - Fix document (bes-internal #104)
+
 1.33 2022-05-05T01:28:16Z
     - Use https for github urls (AnaTofuZ #103)
 
