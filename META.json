@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.17, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.21, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
@@ -100,9 +100,10 @@
       "Tatsuhiko Miyagawa <miyagawa@gmail.com>",
       "Tony <zearin@gonk.net>",
       "Ville Skyttä <ville.skytta@iki.fi>",
+      "Vladimir Varlamov <bes.internal@gmail.com>",
       "hagihala <hagihala@hatena.ne.jp>",
       "moznion <moznion@gmail.com>"
    ],
-   "x_serialization_backend" : "JSON::PP version 4.08",
+   "x_serialization_backend" : "JSON::PP version 4.16",
    "x_static_install" : 1
 }
